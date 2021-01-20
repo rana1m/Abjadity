@@ -4,60 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue"
+    android:backgroundTint="#5CFFFFFF"
 
     tools:context=".LogInActivity" >
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="337dp"
-        android:layout_height="521dp"
-        android:background="@drawable/card"
-        android:backgroundTint="@color/white"
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="440dp"
+        android:layout_height="857dp"
+        android:background="#005C6BC0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/back" />
 
-        <Button
-            android:id="@+id/logInButton"
-            android:layout_width="160dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginBottom="68dp"
-            android:background="@drawable/round_button"
-            android:text="تسجيل الدخول"
-            android:textColor="@color/pink"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            app:backgroundTint="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.474"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="346dp"
+        android:layout_height="418dp"
+        android:background="@drawable/card"
+        android:backgroundTint="@color/white"
+        android:elevation="@dimen/default_shadow_radius"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.29">
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="170dp"
-            android:layout_height="183dp"
-            android:layout_marginTop="59dp"
+            android:layout_width="290dp"
+            android:layout_height="175dp"
+            android:layout_marginTop="40dp"
+            android:src="@mipmap/b"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@mipmap/photo" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/editTextTextPersonName3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="19dp"
-            android:backgroundTint="@color/white"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/round_button"
+            android:backgroundTint="#FFFFFF"
             android:ems="10"
             android:gravity="center"
+
             android:hint="الإسم"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.511"
+            app:layout_constraintHorizontal_bias="0.514"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
@@ -66,7 +65,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="23dp"
-            android:backgroundTint="@color/white"
+            android:background="@drawable/round_button"
+            android:backgroundTint="#41FFFFFF"
             android:ems="10"
             android:gravity="center"
             android:hint="الرقم السري"
@@ -76,4 +76,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/logInButton"
+        android:layout_width="205dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="58dp"
+        android:background="@drawable/round_button"
+        android:text="تسجيل الدخول"
+        android:textColor="#E672B2"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

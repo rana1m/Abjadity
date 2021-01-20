@@ -4,75 +4,87 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".MainActivity">
-
-    <ImageView
-        android:layout_width="453dp"
-        android:layout_height="733dp"
-        android:background="#FFFFFF"
-        android:foreground="@mipmap/picture1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </ImageView>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
-        android:text="أبجديتي"
-        android:textColor="@color/white"
-        android:textSize="70sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/أ"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="287dp"
+        android:layout_marginBottom="488dp"
         android:text="أ"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/LogInButton"
-        android:layout_width="160dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="36dp"
-        android:background="@drawable/round_button"
-        android:text="تسجيل الدخول"
-        android:textColor="@color/pink"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        app:backgroundTint="@color/white"
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="440dp"
+        android:layout_height="857dp"
+        android:background="#005C6BC0"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/image1" />
 
-    <Button
-        android:id="@+id/RegisterButton"
-        android:layout_width="160dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/round_button"
-        android:text="سجل معنا"
-        android:textColor="@color/pink"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        app:backgroundTint="@color/white"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+android:background="#5CFFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LogInButton" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/LogInButton"
+            android:layout_width="160dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="459dp"
+            android:background="@drawable/round_button"
+            android:backgroundTint="#E672B2"
+            android:text="تسجيل الدخول"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/RegisterButton"
+            android:layout_width="160dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/round_button"
+            android:text="سجل معنا"
+            android:textColor="#E672B2"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/LogInButton" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:text="أبجديتي"
+            android:textColor="#E672B2"
+            android:textSize="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
