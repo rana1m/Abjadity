@@ -34,6 +34,14 @@ public class Parent {
         this.email = email;
         this.password = password;
     }
+    public Parent(String id,String type,String character, String name, String email, String password) {
+        this.id = id;
+        this.type = type;
+        this.character = character;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
 
     public String getId() {
         return id;

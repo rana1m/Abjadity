@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
+    FirebaseDatabase database;
     DatabaseReference accountRef,alphabetsRef,digitsRef;
     Button logIn,Register;
 
@@ -28,24 +29,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        logIn=findViewById(R.id.LogInButton);
-        Register=findViewById(R.id.RegisterButton);
+        initialization();
 
+        accountRef.setValue("s");
 
-// Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        accountRef = database.getReference("accounts");
-        alphabetsRef = database.getReference("alphabets");
-        digitsRef = database.getReference("digits");
+//        ArrayList<Child> childs = new ArrayList<Child>();
+//        childs.add(new Child("id","type", "character", "name","email",  "password",  "level",  "score",  "alarm"));
 
-        accountRef.setValue("Hello, World!");
-        alphabetsRef.setValue("Hello, World!");
-        digitsRef.setValue("Hello, World!");
-        ArrayList<Child> childs = new ArrayList<Child>();
-        childs.add(new Child("id","type", "character", "name","email",  "password",  "level",  "score",  "alarm"));
-
-        accountRef.push().setValue(new Parent("id","d",childs,"f","ff","f","f"));
-        accountRef.push().setValue(new Parent("id","d",childs,"f","ff","f","f"));
+        // Read from the database
+       // accountRef.push().setValue(new Parent("id","d","f","ff","f","f"));
 
 
         // Read from the database
@@ -90,6 +82,24 @@ public class MainActivity extends AppCompatActivity {
 
         }
     });
+
+        Register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this,RegisterActivity.class);
+                startActivity(i);
+
+            }
+        });
+    }
+
+    private void initialization() {
+        logIn=findViewById(R.id.LogInButton);
+        Register=findViewById(R.id.RegisterButton);
+        database = FirebaseDatabase.getInstance();
+        accountRef = database.getReference("accounts");
+        alphabetsRef = database.getReference("alphabets");
+        digitsRef = database.getReference("digits");
     }
 
 }

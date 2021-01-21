@@ -17,7 +17,7 @@
         android:textColor="#FFFFFF"
         android:textSize="22sp"
         android:textStyle="bold"
-        app:backgroundTint="#f6bd60"
+        app:backgroundTint="@color/red"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,10 +27,10 @@
         android:id="@+id/imageView2"
         android:layout_width="332dp"
         android:layout_height="191dp"
-        android:layout_marginTop="52dp"
-        android:src="@mipmap/pic1"
+        android:layout_marginTop="84dp"
+        android:src="@mipmap/child_blue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,7 +38,7 @@
         android:id="@+id/constraintLayoutl"
         android:layout_width="233dp"
         android:layout_height="55dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="68dp"
         android:background="@drawable/card"
         android:backgroundTint="@color/white"
         android:elevation="@dimen/default_shadow_radius"
@@ -48,14 +48,14 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
         <EditText
-            android:id="@+id/editTextTextPersonName4"
+            android:id="@+id/EnterName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/round_button"
             android:backgroundTint="#41FFFFFF"
             android:ems="10"
-            android:gravity="center"
-            android:hint="الرقم السري"
+            android:gravity="right"
+            android:hint="اسم المستخدم"
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -80,9 +80,9 @@
 
 
         <EditText
-            android:id="@+id/editTextTextPersonName3"
+            android:id="@+id/EnterPassword"
             android:layout_width="wrap_content"
-            android:layout_height="44dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:layout_marginEnd="11dp"
             android:layout_marginRight="11dp"
@@ -90,8 +90,8 @@
             android:background="@drawable/round_button"
             android:backgroundTint="#FFFFFF"
             android:ems="10"
-            android:gravity="center"
-            android:hint="الإسم"
+            android:gravity="right"
+            android:hint="كلمة المرور"
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
