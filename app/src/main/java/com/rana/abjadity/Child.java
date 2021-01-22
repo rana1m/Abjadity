@@ -6,6 +6,7 @@ public class Child {
     private String type;
     private String character;
     private String name;
+    private String age;
     private String email;
     private String password;
     private String level;
@@ -22,6 +23,11 @@ public class Child {
         this.level = level;
         this.score = score;
         this.alarm = alarm;
+    }
+
+    public Child(String name,String age) {
+        this.name = name;
+        this.age = age;
     }
 
     public Child(String type, String character, String name, String email, String password, String level, String score, String alarm) {
@@ -73,6 +79,14 @@ public class Child {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
     }
 
     public void setEmail(String email) {

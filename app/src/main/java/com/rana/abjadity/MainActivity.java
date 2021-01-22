@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference accountRef,alphabetsRef,digitsRef;
     Button logIn,Register;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +32,9 @@ public class MainActivity extends AppCompatActivity {
 
         initialization();
 
-        accountRef.setValue("s");
+        //accountRef.setValue("s");
+        alphabetsRef.setValue("hello");
+        digitsRef.setValue("hello");
 
 //        ArrayList<Child> childs = new ArrayList<Child>();
 //        childs.add(new Child("id","type", "character", "name","email",  "password",  "level",  "score",  "alarm"));

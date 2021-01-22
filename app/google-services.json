@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "16042912649",
-    "project_id": "abjadity",
-    "storage_bucket": "abjadity.appspot.com"
+    "project_number": "227057261245",
+    "project_id": "abjadity-507d7",
+    "storage_bucket": "abjadity-507d7.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:16042912649:android:6e8cba7c05a36a254a0f58",
+        "mobilesdk_app_id": "1:227057261245:android:ebca318e51192d74c5b5d4",
         "android_client_info": {
           "package_name": "com.rana.abjadity"
         }
       },
       "oauth_client": [
         {
-          "client_id": "16042912649-di8i7gb0vsddk75rqsrscr2t22j4rqv6.apps.googleusercontent.com",
+          "client_id": "227057261245-nhhpf8h4919tk5k9166tfk3pc6nlrnqm.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAQwOUsWYOcPPPlOfGp4eBlZSC549wGQSo"
+          "current_key": "AIzaSyBSFNnbr3v5tJ0cH4t46Qv_lmc-g724utg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "16042912649-di8i7gb0vsddk75rqsrscr2t22j4rqv6.apps.googleusercontent.com",
+              "client_id": "227057261245-nhhpf8h4919tk5k9166tfk3pc6nlrnqm.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
