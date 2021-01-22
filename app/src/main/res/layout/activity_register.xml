@@ -30,7 +30,7 @@
         android:textColor="#FFFFFF"
         android:textSize="22sp"
         android:textStyle="bold"
-        app:backgroundTint="@color/red"
+        app:backgroundTint="@color/yellow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
@@ -167,7 +167,7 @@
         android:layout_marginRight="110dp"
         android:layout_marginBottom="4dp"
         android:text="ادخل"
-        android:textColor="@color/red"
+        android:textColor="@color/yellow"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayoutl"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -180,7 +180,7 @@
         android:layout_marginRight="110dp"
         android:layout_marginBottom="4dp"
         android:text="ادخل"
-        android:textColor="@color/red"
+        android:textColor="@color/yellow"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayoutel"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -193,7 +193,7 @@
         android:layout_marginRight="110dp"
         android:layout_marginBottom="4dp"
         android:text="ادخل"
-        android:textColor="@color/red"
+        android:textColor="@color/yellow"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -206,7 +206,7 @@
         android:layout_marginRight="110dp"
         android:layout_marginBottom="4dp"
         android:text="ادخل"
-        android:textColor="@color/red"
+        android:textColor="@color/yellow"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/constraintLazyout"
         app:layout_constraintEnd_toEndOf="parent" />

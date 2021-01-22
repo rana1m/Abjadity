@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Abjadity">
-        <activity android:name=".ParentHomePageActivity"></activity>
+        <activity android:name=".MapActicity"></activity>
+        <activity android:name=".ParentHomePageActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LogInActivity" />
         <activity

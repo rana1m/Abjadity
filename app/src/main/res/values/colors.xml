@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="red">#e63946</color>
-    <color name="offWhite">#f1faee</color>
+    <color name="yellow">#FFD15D</color>
+    <color name="pink">#F26A76</color>
     <color name="babyBlue">#a8dadc</color>
-    <color name="green">#C9E4DE</color>
-    <color name="Blue">#457b9d</color>
-    <color name="darkBlue">#1d3557</color>
+    <color name="green">#77A260</color>
+    <color name="Blue">#5FA4A4</color>
+    <color name="purple">#563A7B</color>
 
 
     <color name="purple_200">#FFBB86FC</color>
