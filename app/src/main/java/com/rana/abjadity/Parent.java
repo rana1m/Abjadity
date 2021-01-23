@@ -6,7 +6,7 @@ public class Parent {
 
     public String id;
     public String type;
-    public ArrayList<Child> childs;
+    public ArrayList<Child> children;
     public String character;
     public String name;
     public String email;
@@ -16,19 +16,19 @@ public class Parent {
     }
 
 
-    public Parent(String id, String type, ArrayList<Child> childs, String character, String name, String email, String password) {
+    public Parent(String id, String type, ArrayList<Child> children, String character, String name, String email, String password) {
         this.id = id;
         this.type = type;
-        this.childs = childs;
+        this.children = children;
         this.character = character;
         this.name = name;
         this.email = email;
         this.password = password;
     }
 
-    public Parent(String type, ArrayList<Child> childs, String character, String name, String email, String password) {
+    public Parent(String type, ArrayList<Child> children, String character, String name, String email, String password) {
         this.type = type;
-        this.childs = childs;
+        this.children = children;
         this.character = character;
         this.name = name;
         this.email = email;
@@ -51,8 +51,8 @@ public class Parent {
         return type;
     }
 
-    public ArrayList<Child> getChilds() {
-        return childs;
+    public ArrayList<Child> getChildren() {
+        return children;
     }
 
     public String getCharacter() {
@@ -79,8 +79,8 @@ public class Parent {
         this.type = type;
     }
 
-    public void setChilds(ArrayList<Child> childs) {
-        this.childs = childs;
+    public void setChildren(ArrayList<Child> children) {
+        this.children = children;
     }
 
     public void setCharacter(String character) {

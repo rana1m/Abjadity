@@ -2,6 +2,8 @@ package com.rana.abjadity;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -27,6 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class ParentHomePageActivity extends AppCompatActivity {
+
     private static final String TAG = "ParentHomePageActivity";
 
     FloatingActionButton AddChildFloatButton;
@@ -36,20 +39,23 @@ public class ParentHomePageActivity extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference accountRef;
     String childName,childAge,parentId;
-    ListView listView;
-    ArrayList<String> childrenNames;
-    ArrayAdapter arrayAdapter;
+    ArrayList<Child> children;
+    RecyclerView recyclerView;
+    ChildsAdapter childsAdapter;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_home_page);
-
         AddChildFloatButton=findViewById(R.id.AddChild);
-        childrenNames=new ArrayList<>();
+        initialization();
 
+        //retrieveChildrenFromDB
+        retrieveChildrenFromDB();
 
+        //Add child
         AddChildFloatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,7 +66,7 @@ public class ParentHomePageActivity extends AppCompatActivity {
                 builder.setView(dialogView);
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
-                initialization();
+                initializationForDialog();
 
 
                 AddButton.setOnClickListener(new View.OnClickListener() {
@@ -84,12 +90,46 @@ public class ParentHomePageActivity extends AppCompatActivity {
         });
     }
 
+    private void retrieveChildrenFromDB() {
+        accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //loop through accounts to find the parent with that id
+                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
+
+                    //loop through parent children to add them to adapter ArrayList
+                    for (DataSnapshot userchildren: userSnapshot.child("children").getChildren()) {
+                        Child child = userchildren.getValue(Child.class);
+                        children.add(child);
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
+
+        children.add(new Child("سارة",childAge,"0"));
+        recyclerView.setAdapter(childsAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    private void initializationForDialog() {
+        AddButton = dialogView.findViewById(R.id.buttonOk);
+        CancelButton = dialogView.findViewById(R.id.buttonCancle);
+        ChildName = dialogView.findViewById(R.id.EnterChildName);
+        ChildAge = dialogView.findViewById(R.id.EnterChildAge);
+    }
+
     private void addChildToParent() {
         accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
-                    Log.e(TAG, String.valueOf(userSnapshot.getRef().child("children").push().setValue(new Child(childName,childAge))));
+                    Log.e(TAG, String.valueOf(userSnapshot.getRef().child("children").push().setValue(new Child(childName,childAge,"0"))));
 
                 }
             }
@@ -104,21 +144,16 @@ public class ParentHomePageActivity extends AppCompatActivity {
     private void fetchInformation() {
         childName=ChildName.getText().toString();
         childAge=ChildAge.getText().toString();
-        //add child to names list
-        childrenNames.add(childName);
     }
 
     private void initialization() {
-        AddButton = dialogView.findViewById(R.id.buttonOk);
-        CancelButton = dialogView.findViewById(R.id.buttonCancle);
-        ChildName = dialogView.findViewById(R.id.EnterChildName);
-        ChildAge = dialogView.findViewById(R.id.EnterChildAge);
         parentId = getIntent().getStringExtra("parentId");
         database = FirebaseDatabase.getInstance();
         accountRef = database.getReference("accounts");
-        listView=findViewById(R.id.ListView);
-        arrayAdapter=new ArrayAdapter(this,R.layout.child_item,childrenNames);
-        listView.setAdapter(arrayAdapter);
+        recyclerView=findViewById(R.id.ListView);
+        children=new ArrayList<>();
+        childsAdapter=new ChildsAdapter(this,children);
+
     }
 
 }

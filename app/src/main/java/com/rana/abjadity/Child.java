@@ -25,8 +25,9 @@ public class Child {
         this.alarm = alarm;
     }
 
-    public Child(String name,String age) {
+    public Child(String name,String age,String level) {
         this.name = name;
+        this.level = level;
         this.age = age;
     }
 

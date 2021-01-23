@@ -32,50 +32,10 @@ public class MainActivity extends AppCompatActivity {
 
         initialization();
 
-        //accountRef.setValue("s");
+        accountRef.setValue("s");
         alphabetsRef.setValue("hello");
         digitsRef.setValue("hello");
 
-//        ArrayList<Child> childs = new ArrayList<Child>();
-//        childs.add(new Child("id","type", "character", "name","email",  "password",  "level",  "score",  "alarm"));
-
-        // Read from the database
-       // accountRef.push().setValue(new Parent("id","d","f","ff","f","f"));
-
-
-        // Read from the database
-        accountRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                for(DataSnapshot data : dataSnapshot.getChildren()){
-                    Parent parent = data.getValue(Parent.class);
-                    Log.e(TAG, "Value is: " + parent.getEmail());
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.e(TAG, "Failed to read value.", error.toException());
-            }
-        });
-
-//        accountRef.child("ID").setValue("1");
-//        accountRef.child("type").setValue("1");
-//        accountRef.child("child").setValue("1");
-//        accountRef.child("character").setValue("1");
-//        accountRef.child("name").setValue("1");
-//        accountRef.child("email").setValue("1");
-//        accountRef.child("password").setValue("1");
-
-
-
-//        DatabaseReference myReff = database.getReference("sec");
-//        myReff.setValue("l");
-//        myReff.push().setValue("o");
 
     logIn.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -86,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         }
     });
 
-        Register.setOnClickListener(new View.OnClickListener() {
+    Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this,RegisterActivity.class);
@@ -94,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
     private void initialization() {
