@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -73,8 +74,8 @@ public class ParentHomePageActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         fetchInformation();
-                        addChildToParent();
-                        alertDialog.dismiss();
+                       // addChildToParent();
+                        //alertDialog.dismiss();
                     }
                 });
 
@@ -142,9 +143,28 @@ public class ParentHomePageActivity extends AppCompatActivity {
     }
 
     private void fetchInformation() {
-        childName=ChildName.getText().toString();
-        childAge=ChildAge.getText().toString();
-    }
+
+        // to check the age and name if empty or not
+        if(!ChildName.getText().toString().equals("") &&
+           !ChildAge.getText().toString().equals("")) {
+
+            double chcekAge = Double.parseDouble(ChildAge.getText().toString());
+
+           if(chcekAge>=3 && chcekAge<=6){ // to check the age
+             childName=ChildName.getText().toString();
+             childAge=ChildAge.getText().toString();
+             addChildToParent();// to add child
+           }else{
+                Toast.makeText(this,"من فضلك أدخل عمر مابين 3 الى 6 سنوات",Toast.LENGTH_SHORT).show();
+           }
+
+     }else{
+     Toast.makeText(this,"من فضلك أدخل جميع الحقول",Toast.LENGTH_SHORT).show();
+
+     } // end check
+
+
+    } // end
 
     private void initialization() {
         parentId = getIntent().getStringExtra("parentId");
