@@ -67,7 +67,7 @@ public class ParentHomePageActivity extends AppCompatActivity {
 
                 builder.setView(dialogView);
                 AlertDialog alertDialog = builder.create();
-                alertDialog.show();
+                alertDialog.show();//ll
                 initializationForDialog();
 
 
