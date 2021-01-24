@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -18,7 +19,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -43,6 +43,7 @@ public class ParentHomePageActivity extends AppCompatActivity {
     ArrayList<Child> children;
     RecyclerView recyclerView;
     ChildsAdapter childsAdapter;
+    TextView ErrorName,ErrorAge;
 
 
 
@@ -74,8 +75,9 @@ public class ParentHomePageActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         fetchInformation();
-                       // addChildToParent();
-                        //alertDialog.dismiss();
+                        addChildToParent();
+                        if(CheckForfileds()){
+                        alertDialog.dismiss();}
                     }
                 });
 
@@ -92,6 +94,7 @@ public class ParentHomePageActivity extends AppCompatActivity {
     }
 
     private void retrieveChildrenFromDB() {
+        children.clear();
         accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -102,6 +105,9 @@ public class ParentHomePageActivity extends AppCompatActivity {
                     for (DataSnapshot userchildren: userSnapshot.child("children").getChildren()) {
                         Child child = userchildren.getValue(Child.class);
                         children.add(child);
+                        childsAdapter.notifyDataSetChanged();
+//                        childsAdapter.notifyItemRangeChanged(0, children.size());
+//                        recyclerView.invalidate();
                     }
 
                 }
@@ -113,7 +119,6 @@ public class ParentHomePageActivity extends AppCompatActivity {
             }
         });
 
-        children.add(new Child("سارة",childAge,"0"));
         recyclerView.setAdapter(childsAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -123,6 +128,8 @@ public class ParentHomePageActivity extends AppCompatActivity {
         CancelButton = dialogView.findViewById(R.id.buttonCancle);
         ChildName = dialogView.findViewById(R.id.EnterChildName);
         ChildAge = dialogView.findViewById(R.id.EnterChildAge);
+        ErrorName=dialogView.findViewById(R.id.ErrorChildName);
+        ErrorAge=dialogView.findViewById(R.id.ErrorChildAge);
     }
 
     private void addChildToParent() {
@@ -130,8 +137,9 @@ public class ParentHomePageActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
-                    Log.e(TAG, String.valueOf(userSnapshot.getRef().child("children").push().setValue(new Child(childName,childAge,"0"))));
-
+                    if(CheckForfileds()) {
+                        Log.e(TAG, String.valueOf(userSnapshot.getRef().child("children").push().setValue(new Child(childName, childAge, "0"))));
+                    }
                 }
             }
 
@@ -142,29 +150,39 @@ public class ParentHomePageActivity extends AppCompatActivity {
         });
     }
 
+    private boolean CheckForfileds() {
+        if (childName.equals("")){
+            ErrorName.setText("* يرجى إدخال الاسم");
+            ErrorName.setVisibility(View.VISIBLE);
+            ErrorAge.setVisibility(View.GONE);
+            return false;}
+
+        if (childAge.equals("")){
+            ErrorAge.setText("* يرجى إدخال العمر");
+            ErrorAge.setVisibility(View.VISIBLE);
+            ErrorName.setVisibility(View.GONE);
+            return false;}
+
+        if(!onlyDigits(childAge,childAge.length())){
+            ErrorAge.setText("* يرجى إدخال رقم فقط");
+            ErrorAge.setVisibility(View.VISIBLE);
+            ErrorName.setVisibility(View.GONE);
+            return false;
+        }
+
+        ErrorName.setVisibility(View.GONE);
+        ErrorAge.setVisibility(View.GONE);
+
+        return true;
+    }
+
     private void fetchInformation() {
-
-        // to check the age and name if empty or not
-        if(!ChildName.getText().toString().equals("") &&
-           !ChildAge.getText().toString().equals("")) {
-
-            double chcekAge = Double.parseDouble(ChildAge.getText().toString());
-
-           if(chcekAge>=3 && chcekAge<=6){ // to check the age
-             childName=ChildName.getText().toString();
-             childAge=ChildAge.getText().toString();
-             addChildToParent();// to add child
-           }else{
-                Toast.makeText(this,"من فضلك أدخل عمر مابين 3 الى 6 سنوات",Toast.LENGTH_SHORT).show();
-           }
-
-     }else{
-     Toast.makeText(this,"من فضلك أدخل جميع الحقول",Toast.LENGTH_SHORT).show();
-
-     } // end check
+        childName=ChildName.getText().toString();
+        childAge=ChildAge.getText().toString();
+        children.add(new Child(childName,childAge,"0"));
 
 
-    } // end
+    }
 
     private void initialization() {
         parentId = getIntent().getStringExtra("parentId");
@@ -176,4 +194,18 @@ public class ParentHomePageActivity extends AppCompatActivity {
 
     }
 
+    private boolean onlyDigits(String str, int n) {
+
+        for (int i = 0; i < n; i++) {
+
+            if (str.charAt(i) >= '0'
+                    && str.charAt(i) <= '9') {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        return false;
+    }
 }
