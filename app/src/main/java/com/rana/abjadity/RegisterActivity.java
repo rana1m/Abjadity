@@ -101,8 +101,6 @@ public class RegisterActivity extends AppCompatActivity {
         ErrorPass.setVisibility(View.GONE);
         ErrorPassConf.setVisibility(View.GONE);
 
-
-
         return true;
     }
 

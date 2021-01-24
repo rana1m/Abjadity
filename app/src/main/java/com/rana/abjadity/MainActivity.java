@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         initialization();
 
-        accountRef.setValue("s");
+//        accountRef.setValue("s");
         alphabetsRef.setValue("hello");
         digitsRef.setValue("hello");
 
