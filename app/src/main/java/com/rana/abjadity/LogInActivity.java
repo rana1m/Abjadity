@@ -51,6 +51,10 @@ public class LogInActivity extends AppCompatActivity {
      accountRef.orderByChild("name").equalTo(_nmae).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                if(!dataSnapshot.exists()){
+                    errorMsg.setText("* الاسم و/أو كلمة المرور خاطئة");
+                    errorMsg.setVisibility(View.VISIBLE);
+                }
                 List<Parent> parents = new ArrayList<>();
 
                 for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
@@ -59,8 +63,7 @@ public class LogInActivity extends AppCompatActivity {
                         Intent i = new Intent(LogInActivity.this,ParentHomePageActivity.class);
                         i.putExtra("parentId",userSnapshot.child("id").getValue().toString());
                         startActivity(i);
-                        return;
-
+                        break;
                     } else {
                         errorMsg.setText("* الاسم و/أو كلمة المرور خاطئة");
                         errorMsg.setVisibility(View.VISIBLE);
@@ -75,9 +78,7 @@ public class LogInActivity extends AppCompatActivity {
             }
         });
 
-//        if(dataSnapshot)
-        errorMsg.setText("* الاسم و/أو كلمة المرور خاطئة");
-        errorMsg.setVisibility(View.VISIBLE);
+
 
     }
 

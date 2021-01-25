@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -28,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ParentHomePageActivity extends AppCompatActivity {
 
@@ -39,13 +41,18 @@ public class ParentHomePageActivity extends AppCompatActivity {
     View dialogView;
     FirebaseDatabase database;
     DatabaseReference accountRef;
-    String childName,childAge,parentId;
+    String childName,childAge,parentId,id;
     ArrayList<Child> children;
     RecyclerView recyclerView;
     ChildsAdapter childsAdapter;
     TextView ErrorName,ErrorAge;
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        retrieveChildrenFromDB();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +62,7 @@ public class ParentHomePageActivity extends AppCompatActivity {
         initialization();
 
         //retrieveChildrenFromDB
-        retrieveChildrenFromDB();
+//        retrieveChildrenFromDB();
 
         //Add child
         AddChildFloatButton.setOnClickListener(new View.OnClickListener() {
@@ -87,13 +94,11 @@ public class ParentHomePageActivity extends AppCompatActivity {
                         alertDialog.dismiss();
                     }
                 });
-
-
             }
         });
     }
 
-    private void retrieveChildrenFromDB() {
+    public void retrieveChildrenFromDB() {
         children.clear();
         accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -107,9 +112,8 @@ public class ParentHomePageActivity extends AppCompatActivity {
                         children.add(child);
                         childsAdapter.notifyDataSetChanged();
 //                        childsAdapter.notifyItemRangeChanged(0, children.size());
-//                        recyclerView.invalidate();
+                        recyclerView.invalidate();
                     }
-
                 }
             }
 
@@ -133,12 +137,18 @@ public class ParentHomePageActivity extends AppCompatActivity {
     }
 
     private void addChildToParent() {
+        id=new Date().getTime()+"";
         accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
                     if(CheckForfileds()) {
-                        Log.e(TAG, String.valueOf(userSnapshot.getRef().child("children").push().setValue(new Child(childName, childAge, "0"))));
+                        Log.e(TAG, String.valueOf(userSnapshot.getRef().child("children").push()
+                                .setValue(new Child(parentId,id,childAge, "0",childName,
+                                      "0","0", "0"))));
+                        children.add(new Child(parentId,id,childAge, "0",childName,
+                                "0","0", "0"));
+                        childsAdapter.notifyDataSetChanged();
                     }
                 }
             }
@@ -179,9 +189,6 @@ public class ParentHomePageActivity extends AppCompatActivity {
     private void fetchInformation() {
         childName=ChildName.getText().toString();
         childAge=ChildAge.getText().toString();
-        children.add(new Child(childName,childAge,"0"));
-
-
     }
 
     private void initialization() {
