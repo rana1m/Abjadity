@@ -24,6 +24,17 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
     <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="492dp"
+        android:layout_height="407dp"
+        android:layout_marginTop="428dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/background1" />
+
+    <ImageView
         android:id="@+id/imageView2"
         android:layout_width="332dp"
         android:layout_height="191dp"

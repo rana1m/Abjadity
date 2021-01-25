@@ -8,10 +8,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.util.Date;
+import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -81,13 +83,23 @@ public class RegisterActivity extends AppCompatActivity {
             return false;}
 
         if (_passwordConf.equals("")){
-            ErrorPassConf.setText("* يرجى تأكيد كلمة المرور");
-            ErrorPassConf.setVisibility(View.VISIBLE);
+            ErrorEmail.setText("* يرجى تأكيد كلمة المرور");
+            ErrorEmail.setVisibility(View.VISIBLE);
             ErrorName.setVisibility(View.GONE);
-            ErrorEmail.setVisibility(View.GONE);
+            ErrorPass.setVisibility(View.GONE);
             ErrorPass.setVisibility(View.GONE);
             return false;}
+        //
+        if(!isValidEmailId(_email.toString().trim())){
+            ErrorEmail.setText("* يرجى كتابة البريد الالكتروني بشكل صحيح");
+            ErrorEmail.setVisibility(View.VISIBLE);
+            ErrorName.setVisibility(View.GONE);
+            ErrorPass.setVisibility(View.GONE);
+            ErrorPassConf.setVisibility(View.GONE);
+            return false;
+        }
 
+        //
         if (!_password.equals(_passwordConf)){
             ErrorPassConf.setText("* كلمة المرور غير متطابقة");
         ErrorPassConf.setVisibility(View.VISIBLE);
@@ -103,7 +115,19 @@ public class RegisterActivity extends AppCompatActivity {
 
         return true;
     }
+    //
+    private boolean isValidEmailId(String email){
 
+        return Pattern.compile("^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
+                + "((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
+                + "([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+                + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$").matcher(email).matches();
+    }
+
+
+    //
     private void fetchInformation() {
         _name = name.getText().toString();
         _password = password.getText().toString();
