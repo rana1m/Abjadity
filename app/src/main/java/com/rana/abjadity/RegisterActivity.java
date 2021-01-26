@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.util.Date;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -66,6 +67,14 @@ public class RegisterActivity extends AppCompatActivity {
             ErrorPassConf.setVisibility(View.GONE);
         return false;}
 
+        if(_name.length() == 1){
+            ErrorName.setText("* يرجى إدخال الاسم بشكل صحيح");
+            ErrorName.setVisibility(View.VISIBLE);
+            ErrorEmail.setVisibility(View.GONE);
+            ErrorPass.setVisibility(View.GONE);
+            ErrorPassConf.setVisibility(View.GONE);
+            return false;}
+
         if (_email.equals("")){
             ErrorEmail.setText("* يرجى إدخال البريد الإلكتروني");
             ErrorEmail.setVisibility(View.VISIBLE);
@@ -83,13 +92,23 @@ public class RegisterActivity extends AppCompatActivity {
             return false;}
 
         if (_passwordConf.equals("")){
-            ErrorEmail.setText("* يرجى تأكيد كلمة المرور");
-            ErrorEmail.setVisibility(View.VISIBLE);
+            ErrorPassConf.setText("* يرجى تأكيد كلمة المرور");
+            ErrorPassConf.setVisibility(View.VISIBLE);
             ErrorName.setVisibility(View.GONE);
-            ErrorPass.setVisibility(View.GONE);
+            ErrorEmail.setVisibility(View.GONE);
             ErrorPass.setVisibility(View.GONE);
             return false;}
         //
+
+        if(_password.toString().length()<8 &&!isValidPassword(_password.toString())){
+            ErrorPass.setText("* يرجى إدخال على الأقل حرف ورقم ورمز ولا يقل عن ٨ خانة");
+            ErrorPass.setVisibility(View.VISIBLE);
+            ErrorName.setVisibility(View.GONE);
+            ErrorEmail.setVisibility(View.GONE);
+            ErrorPassConf.setVisibility(View.GONE);
+            return false; }
+
+
         if(!isValidEmailId(_email.toString().trim())){
             ErrorEmail.setText("* يرجى كتابة البريد الالكتروني بشكل صحيح");
             ErrorEmail.setVisibility(View.VISIBLE);
@@ -124,6 +143,17 @@ public class RegisterActivity extends AppCompatActivity {
                 + "([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
                 + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
                 + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$").matcher(email).matches();
+    }
+    public static boolean isValidPassword(final String password) {
+
+        Pattern pattern;
+        Matcher matcher;
+        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{4,}$";
+        pattern = Pattern.compile(PASSWORD_PATTERN);
+        matcher = pattern.matcher(password);
+
+        return matcher.matches();
+
     }
 
 
