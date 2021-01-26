@@ -9,7 +9,7 @@
         android:layout_gravity="right"
         android:layout_margin="5dp"
         android:gravity="right"
-        android:backgroundTint="@color/Blue"
+        android:backgroundTint="#DC5FA4A4"
         android:orientation="horizontal">
 
         <LinearLayout

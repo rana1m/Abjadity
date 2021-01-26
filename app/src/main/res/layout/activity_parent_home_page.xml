@@ -8,6 +8,7 @@
     tools:context=".ParentHomePageActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -65,18 +66,22 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/AddChild"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginBottom="32dp"
-        android:clickable="true"
-        android:backgroundTint="@color/yellow"
+
+    <com.luseen.spacenavigation.SpaceNavigationView
+        android:id="@+id/space"
+        android:layout_width="411dp"
+        android:layout_height="61dp"
+        android:layout_gravity="bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/add_button" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:active_item_color="#937A39"
+        app:centre_button_color="@color/yellow"
+        app:inactive_item_color="#9A9A9A"
+        app:space_background_color="#FCE9BA"
+        app:centre_button_icon="@drawable/add_button"
+        app:space_item_icon_size="@dimen/space_item_icon_default_size"
+        app:space_item_icon_only_size="@dimen/space_item_icon_only_size"
+        app:space_item_text_size="@dimen/space_item_text_default_size"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

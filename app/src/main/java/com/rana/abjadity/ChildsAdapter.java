@@ -51,12 +51,27 @@ public class ChildsAdapter extends RecyclerView.Adapter<ChildsAdapter.ViewHolder
                 Intent i = new Intent(context, ChildProfileActivity.class);
                 i.putExtra("childId", child.getId());
                 i.putExtra("parentId", child.getParentId());
+                i.putExtra("childPosition",position);
+                notifyDataSetChanged();
+                notifyItemChanged(position);
                 context.startActivity(i);
 
 //                Log.e(TAG,child.getName()+"---"+child.getParentId()+"---"+child.getId());
             }
         });
 
+    }
+
+    public void removeItem(int position){
+        children.remove(position);
+        notifyItemRemoved(position);
+        notifyDataSetChanged();
+        notifyItemRangeChanged(position, children.size());
+    }
+
+    public void addItem(Child c){
+        children.add(c);
+        notifyDataSetChanged();
     }
 
     @Override

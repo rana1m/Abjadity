@@ -29,6 +29,7 @@ public class ChildProfileActivity extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference accountRef;
     Child desiredChild;
+    int childPosition;
     EditText ChildNewName,ChildNewAge;
     String childNewName,childNewAge;
     TextView childName,childAge,childLevel,childScore;
@@ -90,11 +91,46 @@ public class ChildProfileActivity extends AppCompatActivity {
         deleteChildAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                deleteChild();
+
+                Log.e(TAG,childPosition+"");
+//                ParentHomePageActivity.recyclerView.getAdapter().notifyItemRemoved(childPosition+1);
+                ParentHomePageActivity.childsAdapter.removeItem(childPosition);
+//                ParentHomePageActivity.recyclerView.invalidate();
+//                ParentHomePageActivity.recyclerView.getAdapter().notifyDataSetChanged();
+
+
+                finish();
 
             }
         });
     }
 
+    private void deleteChild() {
+
+        accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //loop through accounts to find the parent with that id
+                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
+
+                    //loop through parent children to add them to adapter ArrayList
+                    for (DataSnapshot theChild: userSnapshot.child("children").getChildren()) {
+                        Child child = theChild.getValue(Child.class);
+                        if(child.getId().equals(childId)){
+
+                                theChild.getRef().removeValue();
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
+    }
     private void UpdateChildInfo() {
         accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -174,6 +210,7 @@ public class ChildProfileActivity extends AppCompatActivity {
     private void initialization() {
         childId = getIntent().getStringExtra("childId");
         parentId = getIntent().getStringExtra("parentId");
+        childPosition = getIntent().getIntExtra("childPosition",-1);
         database = FirebaseDatabase.getInstance();
         accountRef = database.getReference("accounts");
         childName=findViewById(R.id.childName);
@@ -187,7 +224,7 @@ public class ChildProfileActivity extends AppCompatActivity {
         editInfo=findViewById(R.id.editInfo);
         addAlarm=findViewById(R.id.addAlarm);
         GoToChildAccount=findViewById(R.id.GoToChildPage);
-        deleteChildAccount=findViewById(R.id.DeletChildPage);
+        deleteChildAccount=findViewById(R.id.DeleteChildPage);
 
 
 

@@ -2,6 +2,7 @@ package com.rana.abjadity;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,6 +28,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.luseen.spacenavigation.SpaceItem;
+import com.luseen.spacenavigation.SpaceNavigationView;
+import com.luseen.spacenavigation.SpaceOnClickListener;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,42 +39,52 @@ public class ParentHomePageActivity extends AppCompatActivity {
 
     private static final String TAG = "ParentHomePageActivity";
 
-    FloatingActionButton AddChildFloatButton;
     EditText ChildName,ChildAge;
     Button AddButton,CancelButton;
     View dialogView;
     FirebaseDatabase database;
     DatabaseReference accountRef;
     String childName,childAge,parentId,id;
+    int childPosition;
     ArrayList<Child> children;
-    RecyclerView recyclerView;
-    ChildsAdapter childsAdapter;
+    static RecyclerView recyclerView;
+    static ChildsAdapter childsAdapter;
     TextView ErrorName,ErrorAge;
+    SpaceNavigationView spaceNavigationView;
 
 
     @Override
     protected void onResume() {
         super.onResume();
-        retrieveChildrenFromDB();
+        spaceNavigationView.changeCurrentItem(0);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_home_page);
-        AddChildFloatButton=findViewById(R.id.AddChild);
+
         initialization();
+        retrieveChildrenFromDB();
+        spaceNavigationView(savedInstanceState);
 
-        //retrieveChildrenFromDB
-//        retrieveChildrenFromDB();
+    }
 
-        //Add child
-        AddChildFloatButton.setOnClickListener(new View.OnClickListener() {
+    private void spaceNavigationView(Bundle savedInstanceState) {
+
+        spaceNavigationView = (SpaceNavigationView) findViewById(R.id.space);
+        spaceNavigationView.initWithSaveInstanceState(savedInstanceState);
+        spaceNavigationView.addSpaceItem(new SpaceItem("Home", R.drawable.home_icon));
+        spaceNavigationView.addSpaceItem(new SpaceItem("Settings", R.drawable.settings_icon));
+        spaceNavigationView.showIconOnly();
+
+
+        spaceNavigationView.setSpaceOnClickListener(new SpaceOnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onCentreButtonClick() {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ParentHomePageActivity.this);
                 ViewGroup viewGroup = findViewById(android.R.id.content);
-                dialogView = LayoutInflater.from(v.getContext()).inflate(R.layout.add_child_dialog, viewGroup, false);
+                dialogView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.add_child_dialog, viewGroup, false);
 
                 builder.setView(dialogView);
                 AlertDialog alertDialog = builder.create();
@@ -84,7 +98,7 @@ public class ParentHomePageActivity extends AppCompatActivity {
                         fetchInformation();
                         addChildToParent();
                         if(CheckForfileds()){
-                        alertDialog.dismiss();}
+                            alertDialog.dismiss();}
                     }
                 });
 
@@ -93,13 +107,35 @@ public class ParentHomePageActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         alertDialog.dismiss();
                     }
-                });
+                });            }
+
+            @Override
+            public void onItemClick(int itemIndex, String itemName) {
+                if(itemName.equals("Home")){
+//                    Intent i = new Intent(ParentHomePageActivity.this,ParentHomePageActivity.class);
+//                    startActivity(i);
+
+                }
+                if(itemName.equals("Settings")){
+                    Intent i = new Intent(ParentHomePageActivity.this,ParentSettingsActivity.class);
+                    startActivity(i);
+
+                }
+            }
+
+            @Override
+            public void onItemReselected(int itemIndex, String itemName) {
             }
         });
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        spaceNavigationView.onSaveInstanceState(outState);
+    }
+
     public void retrieveChildrenFromDB() {
-        children.clear();
         accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -109,10 +145,10 @@ public class ParentHomePageActivity extends AppCompatActivity {
                     //loop through parent children to add them to adapter ArrayList
                     for (DataSnapshot userchildren: userSnapshot.child("children").getChildren()) {
                         Child child = userchildren.getValue(Child.class);
+
                         children.add(child);
                         childsAdapter.notifyDataSetChanged();
-//                        childsAdapter.notifyItemRangeChanged(0, children.size());
-                        recyclerView.invalidate();
+
                     }
                 }
             }
@@ -143,12 +179,15 @@ public class ParentHomePageActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
                     if(CheckForfileds()) {
-                        Log.e(TAG, String.valueOf(userSnapshot.getRef().child("children").push()
-                                .setValue(new Child(parentId,id,childAge, "0",childName,
-                                      "0","0", "0"))));
-                        children.add(new Child(parentId,id,childAge, "0",childName,
-                                "0","0", "0"));
+
+                        Child newChild =new Child(parentId,id,childAge, "0",childName,
+                                "0","0", "0");
+                        userSnapshot.getRef().child("children").push()
+                                .setValue(newChild);
+
+                        childsAdapter.addItem(newChild);
                         childsAdapter.notifyDataSetChanged();
+
                     }
                 }
             }
@@ -193,6 +232,7 @@ public class ParentHomePageActivity extends AppCompatActivity {
 
     private void initialization() {
         parentId = getIntent().getStringExtra("parentId");
+        childPosition = getIntent().getIntExtra("childPosition",-1);
         database = FirebaseDatabase.getInstance();
         accountRef = database.getReference("accounts");
         recyclerView=findViewById(R.id.ListView);
