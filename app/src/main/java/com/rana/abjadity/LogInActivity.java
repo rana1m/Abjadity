@@ -23,7 +23,7 @@ import java.util.List;
 public class LogInActivity extends AppCompatActivity {
 
     private static final String TAG = "LogInActivity";
-    EditText name,password;
+    EditText email,password;
     Button logInButton;
     FirebaseDatabase database;
     DatabaseReference accountRef;
@@ -41,18 +41,18 @@ public class LogInActivity extends AppCompatActivity {
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CheckUserAndPassword(name.getText().toString(),password.getText().toString());
+                CheckUserAndPassword(email.getText().toString(),password.getText().toString());
             }
         });
 
     }
 
-    private void CheckUserAndPassword(String _nmae, String _password) {
-     accountRef.orderByChild("name").equalTo(_nmae).addListenerForSingleValueEvent(new ValueEventListener() {
+    private void CheckUserAndPassword(String _email, String _password) {
+     accountRef.orderByChild("email").equalTo(_email).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(!dataSnapshot.exists()){
-                    errorMsg.setText("* الاسم و/أو كلمة المرور خاطئة");
+                    errorMsg.setText("* البريد الاكتروني و/أو كلمة المرور خاطئة");
                     errorMsg.setVisibility(View.VISIBLE);
                 }
                 List<Parent> parents = new ArrayList<>();
@@ -65,7 +65,7 @@ public class LogInActivity extends AppCompatActivity {
                         startActivity(i);
                         break;
                     } else {
-                        errorMsg.setText("* الاسم و/أو كلمة المرور خاطئة");
+                        errorMsg.setText("* البريد الاكتروني و/أو كلمة المرور خاطئة");
                         errorMsg.setVisibility(View.VISIBLE);
                     }
 
@@ -83,7 +83,7 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     private void initialization() {
-        name=findViewById(R.id.EnterName);
+        email=findViewById(R.id.EnterEmail);
         password=findViewById(R.id.EnterPassword);
         logInButton=findViewById(R.id.logInButton);
         database = FirebaseDatabase.getInstance();
