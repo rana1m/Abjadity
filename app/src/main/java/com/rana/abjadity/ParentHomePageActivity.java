@@ -218,6 +218,12 @@ public class ParentHomePageActivity extends AppCompatActivity {
             ErrorName.setVisibility(View.GONE);
             return false;
         }
+        int i = Integer.parseInt(childAge);
+        if (i < 3 || i > 6){
+            ErrorAge.setText("* العمر المسموح من ٣ إلى ٦");
+            ErrorAge.setVisibility(View.VISIBLE);
+            ErrorName.setVisibility(View.GONE);
+            return false;}
 
         ErrorName.setVisibility(View.GONE);
         ErrorAge.setVisibility(View.GONE);
