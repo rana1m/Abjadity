@@ -117,7 +117,7 @@
             android:ems="10"
             android:gravity="right"
             android:hint="كلمة المرور"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
