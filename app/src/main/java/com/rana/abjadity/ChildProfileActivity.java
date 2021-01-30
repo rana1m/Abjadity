@@ -42,6 +42,7 @@ public class ChildProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_child_profile);
 
+
         initialization();
         retrieveChildInfo();
 
@@ -85,6 +86,14 @@ public class ChildProfileActivity extends AppCompatActivity {
                 Intent i = new Intent(ChildProfileActivity.this,MapActicity.class);
                 startActivity(i);
 
+            }
+        });
+
+        changeImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ChildProfileActivity.this,CharacterActivity.class);
+                startActivity(i);
             }
         });
 
