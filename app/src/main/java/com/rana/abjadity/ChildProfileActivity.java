@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -36,12 +35,7 @@ public class ChildProfileActivity extends AppCompatActivity {
     MaterialSpinner spinner;
     Button changeImg,editInfo,addAlarm,SaveButton,CancelButton,GoToChildAccount,deleteChildAccount;
     View dialogView,dialogViewPass;
-    ImageView profileImg;
-    Bundle bundle;
     Switch timeSwitch;
-
-
-    final int REQUSET_CODE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +45,6 @@ public class ChildProfileActivity extends AppCompatActivity {
 
         initialization();
         retrieveChildInfo();
-
 
         editInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,7 +75,6 @@ public class ChildProfileActivity extends AppCompatActivity {
                         alertDialog.dismiss();
                     }
                 });
-
 
             }
         });
@@ -150,7 +142,6 @@ public class ChildProfileActivity extends AppCompatActivity {
             }
         });
 
-        /////////////////////////////////////////////////////////////////////////////////////////////
         changeImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,21 +149,13 @@ public class ChildProfileActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        if(bundle!= null){
-            UpdateProfileImg();
-            retrieveChildInfo();}
 
         deleteChildAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 deleteChild();
 
-                Log.e(TAG,childPosition+"");
-//                ParentHomePageActivity.recyclerView.getAdapter().notifyItemRemoved(childPosition+1);
                 ParentHomePageActivity.childsAdapter.removeItem(childPosition);
-//                ParentHomePageActivity.recyclerView.invalidate();
-//                ParentHomePageActivity.recyclerView.getAdapter().notifyDataSetChanged();
-
 
                 finish();
 
@@ -185,8 +168,9 @@ public class ChildProfileActivity extends AppCompatActivity {
                 addAlarm();
             }
         });
-    }
 
+
+    }
 
     private void addAlarm() {
 
@@ -233,7 +217,7 @@ public class ChildProfileActivity extends AppCompatActivity {
                         Child child = theChild.getValue(Child.class);
                         if(child.getId().equals(childId)){
 
-                                theChild.getRef().removeValue();
+                            theChild.getRef().removeValue();
                         }
                     }
                 }
@@ -258,17 +242,20 @@ public class ChildProfileActivity extends AppCompatActivity {
                         if(child.getId().equals(childId)){
 
                             if(!childNewName.equals("")){
-                            theChild.getRef().child("name").setValue(childNewName);
-                            retrieveChildInfo();}
+                                theChild.getRef().child("name").setValue(childNewName);
+                                desiredChild.setName(childNewName);
+                                retrieveChildInfo();}
 
                             if(!childNewAge.equals("")){
                                 theChild.getRef().child("age").setValue(childNewAge);
+                                desiredChild.setAge(childNewAge);
                                 retrieveChildInfo();}
+
 
                             ParentHomePageActivity.childsAdapter.removeItem(childPosition);
                             ParentHomePageActivity.childsAdapter.addItem(desiredChild);
 
-                        Log.e(TAG,child.getName()+"---"+childNewName);
+                            Log.e(TAG,child.getName()+"---"+childNewName);
 
                         }
                     }
@@ -324,44 +311,6 @@ public class ChildProfileActivity extends AppCompatActivity {
 
 
     }
-
-    private void UpdateProfileImg(){
-        if(bundle!= null){
-            int res_image = bundle.getInt("char");
-            if(res_image != 0){
-                profileImg.setImageResource(res_image); }}
-//        accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                //loop through accounts to find the parent with that id
-//                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
-//
-//                    //loop through parent children to add them to adapter ArrayList
-//                    for (DataSnapshot theChild: userSnapshot.child("children").getChildren()) {
-//                        Child child = theChild.getValue(Child.class);
-//                        if(child.getId().equals(childId)){
-//
-//                            if(bundle!= null){
-//                                int res_image = bundle.getInt("char");
-//                                if(res_image != 0){
-//                                   profileImg.setImageResource(res_image);
-//                                   theChild.getRef().child("character").setValue(profileImg);
-//                                   retrieveChildInfo();
-//                                }
-//                            }
-//
-//                        }
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                throw databaseError.toException();
-//            }
-//        });
-    }
-
     private void initialization() {
         childId = getIntent().getStringExtra("childId");
         parentId = getIntent().getStringExtra("parentId");
@@ -378,10 +327,10 @@ public class ChildProfileActivity extends AppCompatActivity {
         changeImg=findViewById(R.id.changeImg);
         editInfo=findViewById(R.id.editInfo);
         addAlarm=findViewById(R.id.addAlarm);
+        timeSwitch=findViewById(R.id.switch1);
         GoToChildAccount=findViewById(R.id.GoToChildPage);
         deleteChildAccount=findViewById(R.id.DeleteChildPage);
-        profileImg = findViewById(R.id.profileImg);
-        bundle = getIntent().getExtras();
+
 
 
 
