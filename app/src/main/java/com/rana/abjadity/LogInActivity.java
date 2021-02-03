@@ -48,7 +48,7 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     private void CheckUserAndPassword(String _email, String _password) {
-     accountRef.orderByChild("email").equalTo(_email).addListenerForSingleValueEvent(new ValueEventListener() {
+     accountRef.orderByChild("name").equalTo(_email).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(!dataSnapshot.exists()){

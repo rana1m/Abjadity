@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Abjadity">
-        <activity android:name=".CharacterActivity"></activity>
+        <activity android:name=".MapActivity"></activity>
+        <activity android:name=".CharacterActivity" />
         <activity android:name=".ParentSettingsActivity" />
         <activity android:name=".ChildProfileActivity" />
         <activity android:name=".MapActicity" />
