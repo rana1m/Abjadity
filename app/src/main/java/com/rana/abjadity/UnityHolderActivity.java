@@ -15,6 +15,6 @@ public class UnityHolderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_unity_holder);
 
         Intent i = new Intent(UnityHolderActivity.this, UnityPlayerActivity.class);
-//        startActivity(i);
+        startActivity(i);
     }
 }

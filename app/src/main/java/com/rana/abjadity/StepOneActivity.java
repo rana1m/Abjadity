@@ -34,9 +34,9 @@ public class StepOneActivity extends AppCompatActivity {
         setContentView(R.layout.activity_step_one);
 
         initialization();
-//
-//        Intent i = new Intent(StepOneActivity.this,UnityHolderActivity.class);
-//        startActivity(i);
+
+        Intent i = new Intent(StepOneActivity.this,UnityHolderActivity.class);
+        startActivity(i);
 
 
 
