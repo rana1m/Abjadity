@@ -25,45 +25,98 @@
         app:layout_constraintVertical_bias="0.432"
         app:srcCompat="@drawable/abc_vector_test" />
 
-    <ScrollView
-        android:id="@+id/charScroll"
-        android:layout_width="match_parent"
-        android:layout_height="6960dp"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="391dp"
+        android:layout_height="155dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include">
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:layout_constraintVertical_bias="0.055">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="151dp"
+            android:layout_weight="50"
+            android:weightSum="100">
+
 
             <ImageView
                 android:id="@+id/char1"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                app:srcCompat="@drawable/char1st" />
+                android:layout_width="198dp"
+                android:layout_height="150dp"
+                android:layout_weight="9"
+                android:baselineAlignBottom="false"
+                app:srcCompat="@drawable/char1" />
 
             <ImageView
                 android:id="@+id/char2"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                app:srcCompat="@drawable/char2nd" />
+                android:layout_width="203dp"
+                android:layout_height="150dp"
+                android:layout_weight="9"
+                android:baselineAlignBottom="true"
+                app:srcCompat="@drawable/char2" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="414dp"
+        android:layout_height="165dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.237">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="50"
+            android:weightSum="100">
 
             <ImageView
                 android:id="@+id/char3"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                app:srcCompat="@drawable/char3rd" />
+                android:layout_width="203dp"
+                android:layout_height="124dp"
+                android:layout_weight="9"
+                android:baselineAlignBottom="false"
+                app:srcCompat="@drawable/char3" />
 
             <ImageView
                 android:id="@+id/char4"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                app:srcCompat="@drawable/char4th" />
+                android:layout_width="188dp"
+                android:layout_height="129dp"
+                android:layout_weight="9"
+                app:srcCompat="@drawable/char4" />
         </LinearLayout>
+    </LinearLayout>
 
-    </ScrollView>
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="235dp"
+        android:layout_height="199dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.612">
+
+
+        <ImageView
+            android:id="@+id/char5"
+            android:layout_width="218dp"
+            android:layout_height="136dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/char5" />
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

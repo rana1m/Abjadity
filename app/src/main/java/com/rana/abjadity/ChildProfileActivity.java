@@ -1,9 +1,11 @@
 package com.rana.abjadity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,8 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,6 +40,10 @@ public class ChildProfileActivity extends AppCompatActivity {
     MaterialSpinner spinner;
     Button changeImg,editInfo,addAlarm,SaveButton,CancelButton,GoToChildAccount,deleteChildAccount;
     View dialogView;
+    ImageView profileImg;
+    Bundle bundle;
+
+    final int REQUSET_CODE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +53,7 @@ public class ChildProfileActivity extends AppCompatActivity {
 
         initialization();
         retrieveChildInfo();
+
 
         editInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +98,7 @@ public class ChildProfileActivity extends AppCompatActivity {
             }
         });
 
+        /////////////////////////////////////////////////////////////////////////////////////////////
         changeImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,6 +106,9 @@ public class ChildProfileActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        if(bundle!= null){
+            UpdateProfileImg();
+            retrieveChildInfo();}
 
         deleteChildAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -216,6 +229,44 @@ public class ChildProfileActivity extends AppCompatActivity {
 
 
     }
+
+    private void UpdateProfileImg(){
+        if(bundle!= null){
+            int res_image = bundle.getInt("char");
+            if(res_image != 0){
+                profileImg.setImageResource(res_image); }}
+//        accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                //loop through accounts to find the parent with that id
+//                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
+//
+//                    //loop through parent children to add them to adapter ArrayList
+//                    for (DataSnapshot theChild: userSnapshot.child("children").getChildren()) {
+//                        Child child = theChild.getValue(Child.class);
+//                        if(child.getId().equals(childId)){
+//
+//                            if(bundle!= null){
+//                                int res_image = bundle.getInt("char");
+//                                if(res_image != 0){
+//                                   profileImg.setImageResource(res_image);
+//                                   theChild.getRef().child("character").setValue(profileImg);
+//                                   retrieveChildInfo();
+//                                }
+//                            }
+//
+//                        }
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                throw databaseError.toException();
+//            }
+//        });
+    }
+
     private void initialization() {
         childId = getIntent().getStringExtra("childId");
         parentId = getIntent().getStringExtra("parentId");
@@ -234,7 +285,8 @@ public class ChildProfileActivity extends AppCompatActivity {
         addAlarm=findViewById(R.id.addAlarm);
         GoToChildAccount=findViewById(R.id.GoToChildPage);
         deleteChildAccount=findViewById(R.id.DeleteChildPage);
-
+        profileImg = findViewById(R.id.profileImg);
+        bundle = getIntent().getExtras();
 
 
 
