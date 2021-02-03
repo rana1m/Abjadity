@@ -31,6 +31,8 @@ public class CharacterActivity extends AppCompatActivity implements View.OnClick
 //                finish();
 //            }
 //        });
+
+        ////ghkjmjcjcvbchcgcg
         char1.setOnClickListener(this);
         char2.setOnClickListener(this);
         char3.setOnClickListener(this);
