@@ -2,6 +2,8 @@ package com.rana.abjadity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +19,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         alphabetsRef.setValue("hello");
         digitsRef.setValue("hello");
 
+        //        myAlarm();
 
     logIn.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -65,6 +70,28 @@ public class MainActivity extends AppCompatActivity {
         accountRef = database.getReference("accounts");
         alphabetsRef = database.getReference("alphabets");
         digitsRef = database.getReference("digits");
+    }
+
+
+    public void myAlarm() {
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 6);
+        calendar.set(Calendar.MINUTE, 25);
+        calendar.set(Calendar.SECOND, 0);
+
+        if (calendar.getTime().compareTo(new Date()) < 0)
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+
+        Intent intent = new Intent(getApplicationContext(), NotificationReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+        if (alarmManager != null) {
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+
+        }
+
     }
 
 }

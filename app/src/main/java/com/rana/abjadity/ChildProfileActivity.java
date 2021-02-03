@@ -38,6 +38,8 @@ public class ChildProfileActivity extends AppCompatActivity {
     View dialogView,dialogViewPass;
     ImageView profileImg;
     Bundle bundle;
+    Switch timeSwitch;
+
 
     final int REQUSET_CODE = 2;
 
@@ -176,6 +178,46 @@ public class ChildProfileActivity extends AppCompatActivity {
 
             }
         });
+
+        addAlarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addAlarm();
+            }
+        });
+    }
+
+
+    private void addAlarm() {
+
+        accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //loop through accounts to find the parent with that id
+                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
+
+                    //loop through parent children to add them to adapter ArrayList
+                    for (DataSnapshot theChild: userSnapshot.child("children").getChildren()) {
+                        Child child = theChild.getValue(Child.class);
+                        if(child.getId().equals(childId)){
+
+                            if(timeSwitch.isChecked()) {
+                                theChild.getRef().child("alarm").setValue(spinner.getText().toString());
+                                theChild.getRef().child("time").setValue("AM");
+                            }else {
+                                theChild.getRef().child("alarm").setValue(spinner.getText().toString());
+                                theChild.getRef().child("time").setValue("PM");
+
+                            }
+                        }
+                    } }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
     }
 
     private void deleteChild() {
@@ -222,6 +264,9 @@ public class ChildProfileActivity extends AppCompatActivity {
                             if(!childNewAge.equals("")){
                                 theChild.getRef().child("age").setValue(childNewAge);
                                 retrieveChildInfo();}
+
+                            ParentHomePageActivity.childsAdapter.removeItem(childPosition);
+                            ParentHomePageActivity.childsAdapter.addItem(desiredChild);
 
                         Log.e(TAG,child.getName()+"---"+childNewName);
 
