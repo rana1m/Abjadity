@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.rana.abjadity"
-        minSdkVersion 16
+        minSdkVersion 29
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -55,4 +55,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.github.dmytrodanylyk.shadow-layout:library:1.0.1'
+    implementation project(':unityAlphabit1')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
+

@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         alphabetsRef.setValue("hello");
         digitsRef.setValue("hello");
 
-        //        myAlarm();
+                myAlarm();
 
     logIn.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -76,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
     public void myAlarm() {
 
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 6);
-        calendar.set(Calendar.MINUTE, 25);
+        calendar.set(Calendar.HOUR_OF_DAY, 22);
+        calendar.set(Calendar.MINUTE, 1);
         calendar.set(Calendar.SECOND, 0);
 
         if (calendar.getTime().compareTo(new Date()) < 0)
