@@ -14,6 +14,9 @@ android {
         versionCode 1
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
+        ndk {
+            abiFilters 'armeabi-v7a', 'x86'
+        }
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -31,6 +34,24 @@ android {
 
     repositories {
         maven { url 'https://jitpack.io' }
+    }
+
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'x86', 'armeabi-v7a'
+            universalApk true
+        }
+    }
+
+    packagingOptions {
+        exclude "lib/armeabi/libadcolony.so"
+        exclude "lib/armeabi/libjs.so"
+        exclude "lib/arm64-v8a/libadcolony.so"
+        exclude "lib/arm64-v8a/libjs.so"
+        exclude "lib/x86_64/libadcolony.so"
+        exclude "lib/x86_64/libjs.so"
     }
 }
 
@@ -58,4 +79,6 @@ dependencies {
     implementation project(':unityAlphabit1')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
+
+
 
