@@ -9,13 +9,12 @@ android {
 
     defaultConfig {
         applicationId "com.rana.abjadity"
-        minSdkVersion 29
+        minSdkVersion 27
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-        vectorDrawables.useSupportLibrary = true
         ndk {
-            abiFilters 'armeabi-v7a', 'x86'
+            abiFilters 'armeabi-v7a', 'arm64-v8a','x86'
         }
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -26,6 +25,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+            clean
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -35,24 +37,14 @@ android {
     repositories {
         maven { url 'https://jitpack.io' }
     }
-
-    splits {
-        abi {
-            enable true
-            reset()
-            include 'x86', 'armeabi-v7a'
-            universalApk true
-        }
-    }
-
-    packagingOptions {
-        exclude "lib/armeabi/libadcolony.so"
-        exclude "lib/armeabi/libjs.so"
-        exclude "lib/arm64-v8a/libadcolony.so"
-        exclude "lib/arm64-v8a/libjs.so"
-        exclude "lib/x86_64/libadcolony.so"
-        exclude "lib/x86_64/libjs.so"
-    }
+//    splits {
+//        abi {
+//            enable true
+//            reset()
+////            include 'x86', 'x86_64'
+//            universalApk true
+//        }
+//    }
 }
 
 dependencies {
@@ -76,8 +68,11 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.github.dmytrodanylyk.shadow-layout:library:1.0.1'
-    implementation project(':unityAlphabit1')
+    implementation project(':unityLibrary-debug')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.google.android.exoplayer:exoplayer:2.7.2'
+
+
 }
 
 

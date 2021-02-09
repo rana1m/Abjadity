@@ -3,270 +3,281 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:backgroundTint="@color/pink"
+    android:background="@mipmap/wall"
     android:layout_height="match_parent"
     tools:context=".ParentHomePageActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/card"
-        android:backgroundTint="@color/white"
-        android:elevation="@dimen/cardview_default_elevation"
-        android:padding="13dp"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.043">
+        app:layout_constraintTop_toTopOf="parent">
 
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/profileImg"
-                android:layout_width="200dp"
-                android:layout_height="150dp"
-                app:srcCompat="@mipmap/child_blue"
-                tools:layout_editor_absoluteX="127dp" />
 
-            <Button
-                android:id="@+id/changeImg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:background="@drawable/round_button"
-                android:backgroundTint="@color/yellow"
-                android:text="تغيير الصورة الرمزية" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout2"
+                android:layout_width="383dp"
+                android:layout_height="635dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="49dp"
+                android:layout_marginEnd="24dp"
                 android:background="@drawable/card"
-                android:backgroundTint="#CFEBEB"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingLeft="20dp"
-                android:paddingTop="25dp"
-                android:paddingRight="30dp"
-                android:paddingBottom="10dp">
+                android:backgroundTint="@color/white"
+                android:elevation="@dimen/cardview_default_elevation"
+                android:padding="13dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:orientation="horizontal"
-                    android:padding="3dp">
-
-                    <TextView
-                        android:id="@+id/childName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="" />
-
-                    <TextView
-                        android:id="@+id/textName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="الاسم:  " />
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="right"
-                    android:orientation="horizontal"
-                    android:padding="3dp">
-
-                    <TextView
-                        android:id="@+id/childAge"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="" />
-
-                    <TextView
-                        android:id="@+id/textName1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="العمر:  " />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="right"
-                    android:orientation="horizontal"
-                    android:padding="3dp">
-
-                    <TextView
-                        android:id="@+id/childLevel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="" />
-
-                    <TextView
-                        android:id="@+id/textName2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="المستوى:  " />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="right"
-                    android:orientation="horizontal"
-                    android:padding="3dp">
-
-                    <TextView
-                        android:id="@+id/childScore"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="" />
-
-                    <TextView
-                        android:id="@+id/textName3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="عدد النقاط:  " />
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/editInfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="9dp"
-                    android:background="@drawable/round_button"
-                    android:backgroundTint="@color/yellow"
-                    android:text="تعديل البيانات" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/card"
-                android:backgroundTint="#C5E6E7"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingLeft="0dp"
-                android:paddingTop="10dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="10dp">
-
-
-                <Button
-                    android:id="@+id/addAlarm"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="6dp"
-                    android:background="@drawable/round_button"
-                    android:backgroundTint="@color/yellow"
-                    android:text="إضافة منبة" />
-
-
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="5dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:text="PM" />
-
-                <Switch
-                    android:id="@+id/switch1"
-                    android:layout_width="6dp"
-                    android:layout_height="49dp"
-                    android:layout_weight="1"
                     android:gravity="center"
-                    android:textOff="OFF"
-                    android:textOn="ON" />
+                    android:orientation="vertical"
+                    android:padding="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="5dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="AM" />
+                    <ImageView
+                        android:id="@+id/profileImg"
+                        android:layout_width="200dp"
+                        android:layout_height="150dp"
+                        app:srcCompat="@mipmap/child_blue"
+                        tools:layout_editor_absoluteX="127dp" />
 
-                <com.jaredrummler.materialspinner.MaterialSpinner
-                    android:id="@+id/spinnerr"
-                    android:layout_width="34dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:backgroundTint="#00E63946"
-                    android:drawSelectorOnTop="true"
-                    android:dropDownWidth="40dp"
-                    android:gravity="center"
-                    app:ms_dropdown_max_height="140dp" />
+                    <Button
+                        android:id="@+id/changeImg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:background="@drawable/round_button"
+                        android:backgroundTint="@color/yellow"
+                        android:text="تغيير الصورة الرمزية" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/card"
+                        android:backgroundTint="#CFEBEB"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="25dp"
+                        android:paddingRight="30dp"
+                        android:paddingBottom="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:orientation="horizontal"
+                            android:padding="3dp">
+
+                            <TextView
+                                android:id="@+id/childName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="" />
+
+                            <TextView
+                                android:id="@+id/textName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="الاسم:  " />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="right"
+                            android:orientation="horizontal"
+                            android:padding="3dp">
+
+                            <TextView
+                                android:id="@+id/childAge"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="" />
+
+                            <TextView
+                                android:id="@+id/textName1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="العمر:  " />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="right"
+                            android:orientation="horizontal"
+                            android:padding="3dp">
+
+                            <TextView
+                                android:id="@+id/childLevel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="" />
+
+                            <TextView
+                                android:id="@+id/textName2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="المستوى:  " />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="right"
+                            android:orientation="horizontal"
+                            android:padding="3dp">
+
+                            <TextView
+                                android:id="@+id/childScore"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="" />
+
+                            <TextView
+                                android:id="@+id/textName3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="عدد النقاط:  " />
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/editInfo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="9dp"
+                            android:background="@drawable/round_button"
+                            android:backgroundTint="@color/yellow"
+                            android:text="تعديل البيانات" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/card"
+                        android:backgroundTint="#C5E6E7"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="10dp">
 
 
-            </LinearLayout>
+                        <Button
+                            android:id="@+id/addAlarm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="6dp"
+                            android:background="@drawable/round_button"
+                            android:backgroundTint="@color/yellow"
+                            android:text="إضافة منبة" />
 
 
-        </LinearLayout>
+                        <TextView
+                            android:id="@+id/textView5"
+                            android:layout_width="5dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:text="PM" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                        <Switch
+                            android:id="@+id/switch1"
+                            android:layout_width="6dp"
+                            android:layout_height="49dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textOff="OFF"
+                            android:textOn="ON" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="53dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+                        <TextView
+                            android:id="@+id/textView4"
+                            android:layout_width="5dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="AM" />
 
-
-        <Button
-            android:id="@+id/DeleteChildPage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/round_button"
-            android:backgroundTint="@color/red"
-            android:padding="15dp"
-            android:text="حذف الحساب"
-            android:textSize="19dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.062"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
-
-        <Button
-            android:id="@+id/GoToChildPage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/round_button"
-            android:backgroundTint="@color/yellow"
-            android:padding="15dp"
-            android:text="الذهاب إلى حساب"
-            android:textSize="19dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.844"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
-
-    </LinearLayout>
+                        <com.jaredrummler.materialspinner.MaterialSpinner
+                            android:id="@+id/spinnerr"
+                            android:layout_width="34dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:backgroundTint="#00E63946"
+                            android:drawSelectorOnTop="true"
+                            android:dropDownWidth="40dp"
+                            android:gravity="center"
+                            app:ms_dropdown_max_height="140dp" />
 
 
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="53dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+
+
+                        <Button
+                            android:id="@+id/DeleteChildPage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/round_button"
+                            android:backgroundTint="@color/pink"
+                            android:padding="15dp"
+                            android:text="حذف الحساب"
+                            android:textSize="19dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.062"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+
+                        <Button
+                            android:id="@+id/GoToChildPage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/round_button"
+                            android:backgroundTint="@color/yellow"
+                            android:padding="15dp"
+                            android:text="الذهاب إلى حساب"
+                            android:textSize="19dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.844"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

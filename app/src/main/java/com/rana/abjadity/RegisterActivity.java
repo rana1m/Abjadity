@@ -51,7 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         if(CheckForfileds()) {
             id=new Date().getTime()+"";
-            accountRef.push().setValue(new Parent( id + "", "parent", "0", _name, _email, _password));
+            accountRef.push().setValue(new Parent( id , "parent", "0", _name, _email, _password));
             Intent i = new Intent(RegisterActivity.this,ParentHomePageActivity.class);
             i.putExtra("parentId",id);
             startActivity(i);

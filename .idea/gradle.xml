@@ -12,7 +12,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/unityAlphabit1" />
+            <option value="$PROJECT_DIR$/unityLibrary-debug" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

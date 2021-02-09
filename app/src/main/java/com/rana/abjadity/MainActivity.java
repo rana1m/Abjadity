@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
         initialization();
 
 //        accountRef.setValue("s");
-        alphabetsRef.setValue("hello");
-        digitsRef.setValue("hello");
+//        alphabetsRef.setValue("hello");
+//        digitsRef.setValue("hello");
 
                 myAlarm();
 

@@ -1,19 +1,26 @@
 package com.rana.abjadity;
 
+import java.util.ArrayList;
+
 public class AlphabetsStage {
 
     String id;
-    AlphabetsStep step;
+    public ArrayList<AlphabetsStep> steps;
     int TotalScore;
     Letter letter;
 
     AlphabetsStage(){
-
     }
 
-    public AlphabetsStage(String id, AlphabetsStep step, int totalScore, Letter letter) {
+    public AlphabetsStage(String id, ArrayList<AlphabetsStep> steps, int totalScore, Letter letter) {
         this.id = id;
-        this.step = step;
+        this.steps = steps;
+        TotalScore = totalScore;
+        this.letter = letter;
+    }
+
+    public AlphabetsStage(String id, int totalScore, Letter letter) {
+        this.id = id;
         TotalScore = totalScore;
         this.letter = letter;
     }
@@ -26,12 +33,12 @@ public class AlphabetsStage {
         this.id = id;
     }
 
-    public AlphabetsStep getStep() {
-        return step;
+    public ArrayList<AlphabetsStep> getSteps() {
+        return steps;
     }
 
-    public void setStep(AlphabetsStep step) {
-        this.step = step;
+    public void setSteps(ArrayList<AlphabetsStep> steps) {
+        this.steps = steps;
     }
 
     public int getTotalScore() {
