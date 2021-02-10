@@ -1,8 +1,11 @@
 package com.rana.abjadity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,8 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Switch;
+import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,13 +34,16 @@ public class ChildProfileActivity extends AppCompatActivity {
     DatabaseReference accountRef;
     Child desiredChild;
     int childPosition;
-    EditText ChildNewName,ChildNewAge,EnterPass;
+    EditText ChildNewName,ChildNewAge;
     String childNewName,childNewAge;
-    TextView childName,childAge,childLevel,childScore,errorMsg;
+    TextView childName,childAge,childLevel,childScore;
     MaterialSpinner spinner;
     Button changeImg,editInfo,addAlarm,SaveButton,CancelButton,GoToChildAccount,deleteChildAccount;
-    View dialogView,dialogViewPass;
-    Switch timeSwitch;
+    View dialogView;
+    ImageView profileImg;
+    Bundle bundle;
+
+    final int REQUSET_CODE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +53,7 @@ public class ChildProfileActivity extends AppCompatActivity {
 
         initialization();
         retrieveChildInfo();
+
 
         editInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,72 +85,20 @@ public class ChildProfileActivity extends AppCompatActivity {
                     }
                 });
 
+
             }
         });
 
         GoToChildAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(ChildProfileActivity.this);
-                ViewGroup viewGroup = findViewById(android.R.id.content);
-                dialogViewPass = LayoutInflater.from(v.getContext()).inflate(R.layout.confirm_password_dialog, viewGroup, false);
-
-                builder.setView(dialogViewPass);
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
-
-                SaveButton = dialogViewPass.findViewById(R.id.buttonOk);
-                CancelButton = dialogViewPass.findViewById(R.id.buttonCancle);
-                EnterPass = dialogViewPass.findViewById(R.id.EnterPassword);
-                errorMsg = dialogViewPass.findViewById(R.id.ErrorPass);
-
-
-                SaveButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        checkPassword();
-                    }
-
-                    private void checkPassword() {
-                        accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
-
-                                    if (userSnapshot.child("password").getValue().toString().equals(EnterPass.getText().toString())){
-                                        Intent i = new Intent(ChildProfileActivity.this, MapActivity.class);
-                                        i.putExtra("childId",childId);
-                                        i.putExtra("parentId",parentId);
-                                        startActivity(i);
-                                        break;
-                                    } else {
-                                        errorMsg.setVisibility(View.VISIBLE);
-                                    }
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-                                throw databaseError.toException();
-                            }
-                        });
-                    }
-
-                });
-
-                CancelButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        alertDialog.dismiss();
-                    }
-                });
-
+                Intent i = new Intent(ChildProfileActivity.this,MapActivity.class);
+                startActivity(i);
 
             }
         });
 
+        /////////////////////////////////////////////////////////////////////////////////////////////
         changeImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,57 +106,24 @@ public class ChildProfileActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        if(bundle!= null){
+            UpdateProfileImg();
+            retrieveChildInfo();}
 
         deleteChildAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 deleteChild();
 
+                Log.e(TAG,childPosition+"");
+//                ParentHomePageActivity.recyclerView.getAdapter().notifyItemRemoved(childPosition+1);
                 ParentHomePageActivity.childsAdapter.removeItem(childPosition);
+//                ParentHomePageActivity.recyclerView.invalidate();
+//                ParentHomePageActivity.recyclerView.getAdapter().notifyDataSetChanged();
+
 
                 finish();
 
-            }
-        });
-
-        addAlarm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addAlarm();
-            }
-        });
-
-
-    }
-
-    private void addAlarm() {
-
-        accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                //loop through accounts to find the parent with that id
-                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
-
-                    //loop through parent children to add them to adapter ArrayList
-                    for (DataSnapshot theChild: userSnapshot.child("children").getChildren()) {
-                        Child child = theChild.getValue(Child.class);
-                        if(child.getId().equals(childId)){
-
-                            if(timeSwitch.isChecked()) {
-                                theChild.getRef().child("alarm").setValue(spinner.getText().toString());
-                                theChild.getRef().child("time").setValue("AM");
-                            }else {
-                                theChild.getRef().child("alarm").setValue(spinner.getText().toString());
-                                theChild.getRef().child("time").setValue("PM");
-
-                            }
-                        }
-                    } }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                throw databaseError.toException();
             }
         });
     }
@@ -217,7 +141,7 @@ public class ChildProfileActivity extends AppCompatActivity {
                         Child child = theChild.getValue(Child.class);
                         if(child.getId().equals(childId)){
 
-                            theChild.getRef().removeValue();
+                                theChild.getRef().removeValue();
                         }
                     }
                 }
@@ -242,20 +166,14 @@ public class ChildProfileActivity extends AppCompatActivity {
                         if(child.getId().equals(childId)){
 
                             if(!childNewName.equals("")){
-                                theChild.getRef().child("name").setValue(childNewName);
-                                desiredChild.setName(childNewName);
-                                retrieveChildInfo();}
+                            theChild.getRef().child("name").setValue(childNewName);
+                            retrieveChildInfo();}
 
                             if(!childNewAge.equals("")){
                                 theChild.getRef().child("age").setValue(childNewAge);
-                                desiredChild.setAge(childNewAge);
                                 retrieveChildInfo();}
 
-
-                            ParentHomePageActivity.childsAdapter.removeItem(childPosition);
-                            ParentHomePageActivity.childsAdapter.addItem(desiredChild);
-
-                            Log.e(TAG,child.getName()+"---"+childNewName);
+                        Log.e(TAG,child.getName()+"---"+childNewName);
 
                         }
                     }
@@ -311,6 +229,44 @@ public class ChildProfileActivity extends AppCompatActivity {
 
 
     }
+
+    private void UpdateProfileImg(){
+        if(bundle!= null){
+            int res_image = bundle.getInt("char");
+            if(res_image != 0){
+                profileImg.setImageResource(res_image); }}
+//        accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                //loop through accounts to find the parent with that id
+//                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
+//
+//                    //loop through parent children to add them to adapter ArrayList
+//                    for (DataSnapshot theChild: userSnapshot.child("children").getChildren()) {
+//                        Child child = theChild.getValue(Child.class);
+//                        if(child.getId().equals(childId)){
+//
+//                            if(bundle!= null){
+//                                int res_image = bundle.getInt("char");
+//                                if(res_image != 0){
+//                                   profileImg.setImageResource(res_image);
+//                                   theChild.getRef().child("character").setValue(profileImg);
+//                                   retrieveChildInfo();
+//                                }
+//                            }
+//
+//                        }
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                throw databaseError.toException();
+//            }
+//        });
+    }
+
     private void initialization() {
         childId = getIntent().getStringExtra("childId");
         parentId = getIntent().getStringExtra("parentId");
@@ -327,10 +283,10 @@ public class ChildProfileActivity extends AppCompatActivity {
         changeImg=findViewById(R.id.changeImg);
         editInfo=findViewById(R.id.editInfo);
         addAlarm=findViewById(R.id.addAlarm);
-        timeSwitch=findViewById(R.id.switch1);
         GoToChildAccount=findViewById(R.id.GoToChildPage);
         deleteChildAccount=findViewById(R.id.DeleteChildPage);
-
+        profileImg = findViewById(R.id.profileImg);
+        bundle = getIntent().getExtras();
 
 
 
