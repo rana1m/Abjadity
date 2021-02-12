@@ -6,4 +6,69 @@
     android:layout_height="match_parent"
     tools:context=".ParentSettingsActivity">
 
+    <TextView
+        android:layout_width="64dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="172dp"
+        android:layout_marginEnd="55dp"
+        android:orientation="horizontal"
+        android:text="الأسم"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Pname"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/Pname"
+        android:layout_width="206dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="175dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginBottom="524dp"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.317"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="122dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="272dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="432dp"
+        android:orientation="horizontal"
+        android:text="البريد الألكتروني"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/Pemail"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_editor_absoluteX="28dp"
+        app:layout_editor_absoluteY="273dp" />
+
+    <TextView
+        android:id="@+id/Pemail"
+        android:layout_width="174dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="65dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginBottom="432dp"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textView6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Pname"
+        app:layout_editor_absoluteX="156dp"
+        app:layout_editor_absoluteY="432dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
