@@ -1,7 +1,10 @@
 package com.rana.abjadity;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +14,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,7 +33,9 @@ public class LogInActivity extends AppCompatActivity {
     Button logInButton;
     FirebaseDatabase database;
     DatabaseReference accountRef;
-    TextView errorMsg;
+    TextView errorMsg,forgetPasswordLink;
+    FirebaseAuth fAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +45,7 @@ public class LogInActivity extends AppCompatActivity {
 
 
         initialization();
+        forgetPassword();
 
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,5 +98,53 @@ public class LogInActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         accountRef = database.getReference("accounts");
         errorMsg=findViewById(R.id.ErrorNameOrPassword);
+        forgetPasswordLink=findViewById(R.id.forgetpassword);
+        fAuth=FirebaseAuth.getInstance();
+
+    }
+    private void forgetPassword(){
+
+        forgetPasswordLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText resetMail=new EditText(view.getContext());
+                AlertDialog.Builder forgetPasswordDialog=new AlertDialog.Builder(view.getContext());
+                forgetPasswordDialog.setTitle("تغيير كلمة المرور؟");
+                forgetPasswordDialog.setMessage("أدخل بريدك الألكتروني لكي يرسل اليك رابط تغيير كلمة المرور  ");
+                forgetPasswordDialog.setView(resetMail);
+
+
+                forgetPasswordDialog.setPositiveButton("نعم", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        String mail=resetMail.getText().toString();
+                        fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(LogInActivity.this,"تم آرسال رابط تغيير كلمة المرور الى بريدك الألكتروني",Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(LogInActivity.this,"حصل خطأ! لم يتم أرسال الرابط الى بريدك الألكتروني",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                    }
+                });
+
+                forgetPasswordDialog.setNegativeButton("لا", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+
+
+                forgetPasswordDialog.create().show();
+            }
+        });
+
     }
 }

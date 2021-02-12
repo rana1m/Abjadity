@@ -23,6 +23,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
+
+    <TextView
+        android:id="@+id/forgetpassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:text=" 🔒نسيت كلمة المرور؟"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.019" />
+
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="492dp"
@@ -34,7 +49,10 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/background1" />
 
+
+
     <ImageView
+
         android:id="@+id/imageView2"
         android:layout_width="332dp"
         android:layout_height="191dp"
@@ -47,10 +65,9 @@
 
     <TextView
         android:id="@+id/ErrorNameOrPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="81dp"
         android:layout_marginEnd="110dp"
-        android:layout_marginRight="110dp"
         android:layout_marginBottom="4dp"
         android:text="ادخل"
         android:textColor="@color/red"
@@ -121,6 +138,11 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
