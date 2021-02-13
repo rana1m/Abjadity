@@ -14,6 +14,7 @@
         android:backgroundTint="@color/yellow"
         android:padding="15dp"
         android:text="تسجيل الخروج"
+        android:textColor="@color/white"
         android:textSize="19sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

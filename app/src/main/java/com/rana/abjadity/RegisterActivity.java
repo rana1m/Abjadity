@@ -132,7 +132,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     public static boolean isValidPassword(final String password) {
 
-        return Pattern.compile("^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!_-])(?=\\S+$).{8,}$").matcher(password).matches();
+        return Pattern.compile("^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[@#$%^&+=!_-])(?=\\S+$).{8,}$").matcher(password).matches();
 
 
     }
