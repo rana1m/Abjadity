@@ -8,12 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.Date;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -39,7 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 fetchInformation();
-                addParentToDatabase();
+                CheckEmail(_email);
 
             }
         });
@@ -49,9 +51,9 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void addParentToDatabase() {
 
-        if(CheckForfileds()) {
+        if(CheckForfileds() ) {
             id=new Date().getTime()+"";
-            accountRef.push().setValue(new Parent( id , "parent", "0", _name, _email, _password));
+            accountRef.push().setValue(new Parent( id + "", "parent", "0", _name, _email, _password));
             Intent i = new Intent(RegisterActivity.this,ParentHomePageActivity.class);
             i.putExtra("parentId",id);
             startActivity(i);
@@ -61,25 +63,17 @@ public class RegisterActivity extends AppCompatActivity {
 
     private boolean CheckForfileds() {
         if (_name.equals("")){
-        ErrorName.setText("* يرجى إدخال الاسم");
-        ErrorName.setVisibility(View.VISIBLE);
-            ErrorEmail.setVisibility(View.GONE);
-            ErrorPass.setVisibility(View.GONE);
-            ErrorPassConf.setVisibility(View.GONE);
-        return false;}
-
-        if(_name.length() == 1){
-            ErrorName.setText("* يرجى إدخال الاسم بشكل صحيح");
+            ErrorName.setText("* يرجى إدخال الاسم");
             ErrorName.setVisibility(View.VISIBLE);
             ErrorEmail.setVisibility(View.GONE);
             ErrorPass.setVisibility(View.GONE);
             ErrorPassConf.setVisibility(View.GONE);
             return false;}
 
-        if (_email.equals("")){
-            ErrorEmail.setText("* يرجى إدخال البريد الإلكتروني");
-            ErrorEmail.setVisibility(View.VISIBLE);
-            ErrorName.setVisibility(View.GONE);
+        if(_name.length() == 1){
+            ErrorName.setText("* يرجى إدخال الاسم بشكل صحيح");
+            ErrorName.setVisibility(View.VISIBLE);
+            ErrorEmail.setVisibility(View.GONE);
             ErrorPass.setVisibility(View.GONE);
             ErrorPassConf.setVisibility(View.GONE);
             return false;}
@@ -101,28 +95,18 @@ public class RegisterActivity extends AppCompatActivity {
             return false;}
         //
 
-        if(_password.toString().length()<8 &&!isValidPassword(_password.toString())){
-            ErrorPass.setText("* يرجى إدخال على الأقل حرف ورقم ورمز ولا يقل عن ٨ خانة");
+        if(!isValidPassword(_password.toString())){
+            ErrorPass.setText("* يرجى إدخال حرف كبير وصغير ورقم ورمز");
             ErrorPass.setVisibility(View.VISIBLE);
             ErrorName.setVisibility(View.GONE);
             ErrorEmail.setVisibility(View.GONE);
             ErrorPassConf.setVisibility(View.GONE);
             return false; }
 
-
-        if(!isValidEmailId(_email.toString().trim())){
-            ErrorEmail.setText("* يرجى كتابة البريد الالكتروني بشكل صحيح");
-            ErrorEmail.setVisibility(View.VISIBLE);
-            ErrorName.setVisibility(View.GONE);
-            ErrorPass.setVisibility(View.GONE);
-            ErrorPassConf.setVisibility(View.GONE);
-            return false;
-        }
-
         //
         if (!_password.equals(_passwordConf)){
             ErrorPassConf.setText("* كلمة المرور غير متطابقة");
-        ErrorPassConf.setVisibility(View.VISIBLE);
+            ErrorPassConf.setVisibility(View.VISIBLE);
             ErrorName.setVisibility(View.GONE);
             ErrorEmail.setVisibility(View.GONE);
             ErrorPass.setVisibility(View.GONE);
@@ -145,15 +129,11 @@ public class RegisterActivity extends AppCompatActivity {
                 + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
                 + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$").matcher(email).matches();
     }
+
     public static boolean isValidPassword(final String password) {
 
-        Pattern pattern;
-        Matcher matcher;
-        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{4,}$";
-        pattern = Pattern.compile(PASSWORD_PATTERN);
-        matcher = pattern.matcher(password);
+        return Pattern.compile("^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!_-])(?=\\S+$).{8,}$").matcher(password).matches();
 
-        return matcher.matches();
 
     }
 
@@ -180,4 +160,50 @@ public class RegisterActivity extends AppCompatActivity {
         ErrorPassConf=findViewById(R.id.ErrorPassConf);
 
     }
+
+    private boolean CheckEmail(String _email) {
+        if (_email.equals("")){
+            ErrorEmail.setText("* يرجى إدخال البريد الإلكتروني");
+            ErrorEmail.setVisibility(View.VISIBLE);
+            ErrorName.setVisibility(View.GONE);
+            ErrorPass.setVisibility(View.GONE);
+            ErrorPassConf.setVisibility(View.GONE);
+            return false;}
+        if(!isValidEmailId(_email.toString().trim())){
+            ErrorEmail.setText("* يرجى كتابة البريد الالكتروني بشكل صحيح");
+            ErrorEmail.setVisibility(View.VISIBLE);
+            ErrorName.setVisibility(View.GONE);
+            ErrorPass.setVisibility(View.GONE);
+            ErrorPassConf.setVisibility(View.GONE);
+            return false;
+        }
+        accountRef.orderByChild("email").equalTo(_email).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if(!dataSnapshot.exists()){
+                    addParentToDatabase();
+                }
+                else{
+                    ErrorEmail.setText("* البريد الإلكتروني موجود مسبقاً");
+                    ErrorEmail.setVisibility(View.VISIBLE);
+                    ErrorName.setVisibility(View.GONE);
+                    ErrorPass.setVisibility(View.GONE);
+                    ErrorPassConf.setVisibility(View.GONE);
+                    return;
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
+        return true;
+
+    }
+
+
+
 }
