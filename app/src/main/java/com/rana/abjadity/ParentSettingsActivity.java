@@ -4,6 +4,7 @@ package com.rana.abjadity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -45,6 +46,7 @@ public class ParentSettingsActivity extends AppCompatActivity {
         Name = (TextView) findViewById(R.id.Pname);
         Email = (TextView) findViewById(R.id.Pemail);
         getUserData();
+        goToChildrenAccounts();
 
       /*  firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
@@ -100,6 +102,17 @@ public class ParentSettingsActivity extends AppCompatActivity {
    }*/
 
 
-    }
 
+    }
+    private void goToChildrenAccounts(){
+
+        final Button goToChildrenAccounts=findViewById(R.id.myChildrenButton);
+        goToChildrenAccounts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(view.getContext(),ParentHomePageActivity.class);
+                startActivityForResult(intent,0);
+            }
+        });
+    }
 }
