@@ -206,6 +206,12 @@ public class ParentHomePageActivity extends AppCompatActivity {
             ErrorAge.setVisibility(View.GONE);
             return false;}
 
+        if(childName.length() == 1){
+            ErrorName.setText("* يرجى إدخال الاسم بشكل صحيح");
+            ErrorName.setVisibility(View.VISIBLE);
+            ErrorAge.setVisibility(View.GONE);
+            return false;}
+
         if (childAge.equals("")){
             ErrorAge.setText("* يرجى إدخال العمر");
             ErrorAge.setVisibility(View.VISIBLE);
