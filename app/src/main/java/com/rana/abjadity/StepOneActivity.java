@@ -11,28 +11,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
 
-import com.google.android.exoplayer2.ExoPlayer;
-import com.google.android.exoplayer2.ExoPlayerFactory;
-import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
-import com.google.android.exoplayer2.extractor.ExtractorsFactory;
-import com.google.android.exoplayer2.source.ExtractorMediaSource;
-import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
-import com.google.android.exoplayer2.trackselection.TrackSelection;
-import com.google.android.exoplayer2.trackselection.TrackSelector;
-import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
-import com.google.android.exoplayer2.upstream.BandwidthMeter;
-import com.google.android.exoplayer2.upstream.DataSource;
-import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
-import com.google.android.exoplayer2.util.Util;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -46,11 +29,11 @@ public class StepOneActivity extends AppCompatActivity {
 
     private static final String TAG = "StepOneActivity";
     FirebaseDatabase database;
-    DatabaseReference accountRef,alphabetsRef,digitsRef;
+    DatabaseReference alphabetsRef;
     String childId,parentId,childLevel,button;
-    Child desiredChild;
-    VideoView letterChat,character;
-    FloatingActionButton back,forward;
+    VideoView letterChant,character;
+    FloatingActionButton back,forward,play;
+    FrameLayout letterChantFrame;
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -59,17 +42,58 @@ public class StepOneActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_one);
 
+
+
         initialization();
-        retrieveLetter();
-        letterChatInitialization();
+
+        alphabetsRef.orderByChild("id").equalTo(button).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                //loop through letters to
+                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
+                    Letter letter = userSnapshot.getValue(Letter.class);
+                    Log.e(TAG,letter.getName());
+                    letterChatInitialization(letter.getVideo_URL());
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
+
+
         characterInitialization();
+
+
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.setVisibility(View.GONE);
+                letterChantFrame.setVisibility(View.VISIBLE);
+            }
+        });
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(StepOneActivity.this,MapActivity.class);
+                startActivity(i);
+            }
+        });
+
+        forward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(StepOneActivity.this,StepTowActivity.class);
                 i.putExtra("childId",childId);
                 i.putExtra("parentId",parentId);
+                i.putExtra("childLevel",childLevel);
+                i.putExtra("button",button);
                 startActivity(i);
             }
         });
@@ -92,53 +116,33 @@ public class StepOneActivity extends AppCompatActivity {
         });
     }
 
-    private void letterChatInitialization() {
-        Uri uri =Uri.parse("https://o.top4top.io/m_18659gd3l1.mp4");
-        letterChat.setVideoURI(uri);
-        letterChat.setZOrderOnTop(true);
-        letterChat.start();
+    private void letterChatInitialization(String url) {
+        Uri uri =Uri.parse(url);
+        letterChant.setVideoURI(uri);
+        letterChant.setZOrderOnTop(true);
+        letterChant.start();
         MediaController mediaController = new MediaController(this);
-        letterChat.setMediaController(mediaController);
-        mediaController.setAnchorView(letterChat);
+        letterChant.setMediaController(mediaController);
+        mediaController.setAnchorView(letterChant);
 
     }
 
-
-    private void retrieveLetter() {
-
-        alphabetsRef.orderByChild("id").equalTo(childLevel).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                //loop through letters to
-                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
-                    Log.e(TAG,userSnapshot.child("name").getValue().toString());
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                throw databaseError.toException();
-            }
-        });
-
-
-    }
 
     private void initialization () {
         database = FirebaseDatabase.getInstance();
-        accountRef = database.getReference("accounts");
         alphabetsRef = database.getReference("alphabets");
-        digitsRef = database.getReference("digits");
+
         childId = getIntent().getStringExtra("childId");
         parentId = getIntent().getStringExtra("parentId");
         childLevel = getIntent().getStringExtra("childLevel");
         button = getIntent().getStringExtra("button");
-        letterChat=findViewById(R.id.letterChat);
+
+        letterChant=findViewById(R.id.letterChant);
         character=findViewById(R.id.character);
         back=findViewById(R.id.back);
         forward=findViewById(R.id.forward);
-
+        play=findViewById(R.id.playIcon);
+        letterChantFrame=findViewById(R.id.letterChatFrame);
 
     }
 

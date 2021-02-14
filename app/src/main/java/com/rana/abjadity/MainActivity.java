@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 //        alphabetsRef.setValue("hello");
 //        digitsRef.setValue("hello");
 
-                myAlarm();
+         myAlarm();
 
     logIn.setOnClickListener(new View.OnClickListener() {
         @Override

@@ -114,6 +114,8 @@ public class ChildProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(ChildProfileActivity.this,MapActivity.class);
+                i.putExtra("childId", desiredChild.getId());
+                i.putExtra("parentId", desiredChild.getParentId());
                 startActivity(i);
 
             }

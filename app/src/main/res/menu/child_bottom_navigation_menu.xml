@@ -7,8 +7,16 @@
         android:title="" />
 
     <item
+        android:id="@+id/gameActivity"
+        android:enabled="true"
+        android:icon="@drawable/game"
+        android:title=""/>
+
+    <item
         android:id="@+id/profileActivity"
         android:enabled="true"
         android:icon="@drawable/person"
         android:title=""/>
+
+
 </menu>

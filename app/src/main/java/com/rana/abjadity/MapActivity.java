@@ -99,6 +99,7 @@ public class MapActivity extends AppCompatActivity {
         buttonGray3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                i.putExtra("button","3");
                 startActivity(i);
             }
         });
@@ -373,8 +374,39 @@ public class MapActivity extends AppCompatActivity {
 
     private void addLettersToDatabase() {
         id=new Date().getTime()+"";
-       // alphabetsRef.push().setValue(new Letter( 1+"", "ألف"));
-      //  alphabetsRef.push().setValue(new Letter( 2+"", "باء"));
+        alphabetsRef.child(1+"").setValue(new Letter(1+"", "أ",  "ألف", "أرنب", "إنسان","إناء","ألوان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
+        alphabetsRef.child(2+"").setValue(new Letter(2+"", "ب",  "باء", "بطة", "بيت","بئر","بستان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
+        alphabetsRef.child(3+"").setValue(new Letter(3+"", "ت",  "تاء", "تمساح", "تاج","تفاح","توت", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
+//
+//        alphabetsRef.child(4+"").setValue(new Letter(4+"", "ث",  "ثوب", "ثعلب", "ثعبان","إناء","ألوان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
+//        alphabetsRef.child(5+"").setValue(new Letter(5+"", "ج",  "جيم", "بطة", "بيت","بئر","بستان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
+//        alphabetsRef.child(6+"").setValue(new Letter(6+"", "ح",  "حاء", "بطة", "بيت","بئر","بستان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
+//        alphabetsRef.child(7+"").setValue(new Letter(7+"", "خ",  "خاء", "أرنب", "إنسان","إناء","ألوان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
+//        alphabetsRef.child(8+"").setValue(new Letter(8+"", "د",  "دال", "بطة", "بيت","بئر","بستان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
+//
+//        alphabetsRef.child(9+"").setValue(new Letter(9+"", "ذ",  "ذال", "بطة", "بيت","بئر","بستان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
+//        alphabetsRef.child(10+"").setValue(new Letter(10+"", "ر",  "راء", "أرنب", "إنسان","إناء","ألوان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
+//        alphabetsRef.child(11+"").setValue(new Letter(11+"", "ز",  "زاء", "بطة", "بيت","بئر","بستان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
+//        alphabetsRef.child(12+"").setValue(new Letter(12+"", "س",  "سين", "بطة", "بيت","بئر","بستان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
+//        alphabetsRef.child(13+"").setValue(new Letter(13+"", "ش",  "شين", "أرنب", "إنسان","إناء","ألوان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
+//
+//        alphabetsRef.child(14+"").setValue(new Letter(14+"", "ص",  "صاد", "بطة", "بيت","بئر","بستان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
+//        alphabetsRef.child(15+"").setValue(new Letter(15+"", "ض",  "ضاد", "بطة", "بيت","بئر","بستان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
+//        alphabetsRef.child(16+"").setValue(new Letter(16+"", "ط",  "طاء", "أرنب", "إنسان","إناء","ألوان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
+//        alphabetsRef.child(17+"").setValue(new Letter(17+"", "ظ",  "'ظاء'", "بطة", "بيت","بئر","بستان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
+//
+//        alphabetsRef.child(18+"").setValue(new Letter(18+"", "ع",  "عين", "بطة", "بيت","بئر","بستان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
+//        alphabetsRef.child(19+"").setValue(new Letter(19+"", "غ",  "غين", "أرنب", "إنسان","إناء","ألوان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
+//        alphabetsRef.child(20+"").setValue(new Letter(20+"", "ف",  "فاء", "بطة", "بيت","بئر","بستان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
+//        alphabetsRef.child(21+"").setValue(new Letter(21+"", "ق",  "قاف", "بطة", "بيت","بئر","بستان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
+//        alphabetsRef.child(22+"").setValue(new Letter(22+"", "ك",  "كاف", "بطة", "بيت","بئر","بستان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
+//
+//        alphabetsRef.child(23+"").setValue(new Letter(23+"", "ل",  "لام", "بطة", "بيت","بئر","بستان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
+//        alphabetsRef.child(24+"").setValue(new Letter(24+"", "م",  "ميم", "بطة", "بيت","بئر","بستان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
+//        alphabetsRef.child(25+"").setValue(new Letter(25+"", "ن",  "نون", "بطة", "بيت","بئر","بستان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
+//        alphabetsRef.child(26+"").setValue(new Letter(26+"", "ه",  "هاء", "بطة", "بيت","بئر","بستان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
+//        alphabetsRef.child(27+"").setValue(new Letter(27+"", "و",  "واو", "بطة", "بيت","بئر","بستان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
+//        alphabetsRef.child(28+"").setValue(new Letter(28+"", "ي",  "ياء", "بطة", "بيت","بئر","بستان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
 
 
     }
@@ -421,7 +453,6 @@ public class MapActivity extends AppCompatActivity {
                     }
                 }
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 throw databaseError.toException();
@@ -429,8 +460,6 @@ public class MapActivity extends AppCompatActivity {
         });
 
     }
-
-
 
 
         private void initialization() {

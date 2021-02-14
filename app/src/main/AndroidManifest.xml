@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:allowBackup="true"
@@ -18,9 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Abjadity"
         android:usesCleartextTraffic="true">
-        <activity android:name=".StepOneNumActivity"></activity>
-        <activity android:name=".NumbersStep" />
-        <activity android:name=".NumbersStage" />
+        <activity android:name=".StepFourActivity"></activity>
+        <activity android:name=".StepThreeActivity" />
+        <activity android:name=".StepTowActivity" />
         <activity
             android:name=".CustomActivity"
             android:launchMode="singleTask"
