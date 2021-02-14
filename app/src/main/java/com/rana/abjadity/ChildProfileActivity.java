@@ -10,8 +10,10 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,8 +27,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,6 +42,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.jaredrummler.materialspinner.MaterialSpinner;
+
+import java.io.ByteArrayOutputStream;
 
 public class ChildProfileActivity extends AppCompatActivity {
     private static final String TAG = "ChildProfileActivity";
@@ -111,13 +119,13 @@ public class ChildProfileActivity extends AppCompatActivity {
             }
         });
 
-        /////////////////////////////////////////////////////////////////////////////////////////////
         changeImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(ChildProfileActivity.this,CharacterActivity.class);
                 startActivity(i);
-            }
+
+                }
         });
         if(bundle!= null){
             UpdateProfileImg();
@@ -244,41 +252,13 @@ public class ChildProfileActivity extends AppCompatActivity {
     }
 
     private void UpdateProfileImg(){
+        retrieveChildInfo();
         if(bundle!= null){
             int res_image = bundle.getInt("char");
             if(res_image != 0){
                 profileImg.setImageResource(res_image); }}
-//        accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                //loop through accounts to find the parent with that id
-//                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
-//
-//                    //loop through parent children to add them to adapter ArrayList
-//                    for (DataSnapshot theChild: userSnapshot.child("children").getChildren()) {
-//                        Child child = theChild.getValue(Child.class);
-//                        if(child.getId().equals(childId)){
-//
-//                            if(bundle!= null){
-//                                int res_image = bundle.getInt("char");
-//                                if(res_image != 0){
-//                                   profileImg.setImageResource(res_image);
-//                                   theChild.getRef().child("character").setValue(profileImg);
-//                                   retrieveChildInfo();
-//                                }
-//                            }
-//
-//                        }
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                throw databaseError.toException();
-//            }
-//        });
     }
+
 
     private void initialization() {
         childId = getIntent().getStringExtra("childId");

@@ -37,8 +37,10 @@ public class MapActivity extends AppCompatActivity {
     Child desiredChild;
     String level,id;
     Intent i;
+    Intent i2;
     Button buttonGray1,buttonGray2,buttonGray3,buttonGray4,buttonGray5,buttonGray6,buttonGray7,buttonGray8,buttonGray9,buttonGray10,buttonGray11,buttonGray12,buttonGray13,buttonGray14,
-    buttonGray15,buttonGray16,buttonGray17,buttonGray18,buttonGray19,buttonGray20,buttonGray21,buttonGray22,buttonGray23,buttonGray24,buttonGray25,buttonGray26,buttonGray27,buttonGray28;
+    buttonGray15,buttonGray16,buttonGray17,buttonGray18,buttonGray19,buttonGray20,buttonGray21,buttonGray22,buttonGray23,buttonGray24,buttonGray25,buttonGray26,buttonGray27,buttonGray28,
+            buttonGray29,buttonGray30,buttonGray31,buttonGray32,buttonGray33,buttonGray34,buttonGray35,buttonGray36,buttonGray37,buttonGray38;
     BottomNavigationView bottomNavigationView;
 
     @Override
@@ -83,6 +85,7 @@ public class MapActivity extends AppCompatActivity {
                 i.putExtra("button","1");
                 i.putExtra("childId",childId);
                 i.putExtra("parentId",parentId);
+
                 startActivity(i);
             }
         });
@@ -264,6 +267,108 @@ public class MapActivity extends AppCompatActivity {
             }
         });
 
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        buttonGray29.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                i.putExtra("button","1");
+                i.putExtra("childId",childId);
+                i.putExtra("parentId",parentId);
+
+                startActivity(i2);
+            }
+        });
+        buttonGray30.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                i.putExtra("button","2");
+                i.putExtra("childId",childId);
+                i.putExtra("parentId",parentId);
+
+                startActivity(i2);
+            }
+        });
+        buttonGray31.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                i.putExtra("button","3");
+                i.putExtra("childId",childId);
+                i.putExtra("parentId",parentId);
+
+                startActivity(i2);
+            }
+        });
+        buttonGray32.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                i.putExtra("button","4");
+                i.putExtra("childId",childId);
+                i.putExtra("parentId",parentId);
+
+                startActivity(i2);
+            }
+        });
+        buttonGray33.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                i.putExtra("button","5");
+                i.putExtra("childId",childId);
+                i.putExtra("parentId",parentId);
+
+                startActivity(i2);
+            }
+        });
+        buttonGray34.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                i.putExtra("button","6");
+                i.putExtra("childId",childId);
+                i.putExtra("parentId",parentId);
+
+                startActivity(i2);
+            }
+        });
+        buttonGray35.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                i.putExtra("button","7");
+                i.putExtra("childId",childId);
+                i.putExtra("parentId",parentId);
+
+                startActivity(i2);
+            }
+        });
+        buttonGray36.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                i.putExtra("button","8");
+                i.putExtra("childId",childId);
+                i.putExtra("parentId",parentId);
+
+                startActivity(i2);
+            }
+        });
+        buttonGray37.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                i.putExtra("button","9");
+                i.putExtra("childId",childId);
+                i.putExtra("parentId",parentId);
+
+                startActivity(i2);
+            }
+        });
+        buttonGray38.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                i.putExtra("button","10");
+                i.putExtra("childId",childId);
+                i.putExtra("parentId",parentId);
+
+                startActivity(i2);
+            }
+        });
+
     }
 
     private void addLettersToDatabase() {
@@ -357,6 +462,17 @@ public class MapActivity extends AppCompatActivity {
         buttonGray26=findViewById(R.id.buttonGray26);
         buttonGray27=findViewById(R.id.buttonGray27);
         buttonGray28=findViewById(R.id.buttonGray28);
+            buttonGray29=findViewById(R.id.buttonGray29);
+            buttonGray30=findViewById(R.id.buttonGray30);
+            buttonGray31=findViewById(R.id.buttonGray31);
+            buttonGray32=findViewById(R.id.buttonGray32);
+            buttonGray33=findViewById(R.id.buttonGray33);
+            buttonGray34=findViewById(R.id.buttonGray34);
+            buttonGray35=findViewById(R.id.buttonGray35);
+            buttonGray36=findViewById(R.id.buttonGray36);
+            buttonGray37=findViewById(R.id.buttonGray37);
+            buttonGray38=findViewById(R.id.buttonGray38);
+
 
 
         database = FirebaseDatabase.getInstance();
@@ -368,6 +484,7 @@ public class MapActivity extends AppCompatActivity {
         desiredChild=new Child();
         bottomNavigationView=findViewById(R.id.bottom_navigation);
         i = new Intent(MapActivity.this, StepOneActivity.class);
+        i2 = new Intent(MapActivity.this, StepOneNumActivity.class);
 
     }
 }
