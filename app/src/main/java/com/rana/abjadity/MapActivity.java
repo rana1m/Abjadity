@@ -271,9 +271,9 @@ public class MapActivity extends AppCompatActivity {
         buttonGray29.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                i.putExtra("button","1");
-                i.putExtra("childId",childId);
-                i.putExtra("parentId",parentId);
+                i2.putExtra("button","1");
+                i2.putExtra("childId",childId);
+                i2.putExtra("parentId",parentId);
 
                 startActivity(i2);
             }
@@ -281,9 +281,9 @@ public class MapActivity extends AppCompatActivity {
         buttonGray30.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                i.putExtra("button","2");
-                i.putExtra("childId",childId);
-                i.putExtra("parentId",parentId);
+                i2.putExtra("button","2");
+                i2.putExtra("childId",childId);
+                i2.putExtra("parentId",parentId);
 
                 startActivity(i2);
             }
@@ -291,9 +291,9 @@ public class MapActivity extends AppCompatActivity {
         buttonGray31.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                i.putExtra("button","3");
-                i.putExtra("childId",childId);
-                i.putExtra("parentId",parentId);
+                i2.putExtra("button","3");
+                i2.putExtra("childId",childId);
+                i2.putExtra("parentId",parentId);
 
                 startActivity(i2);
             }
@@ -301,9 +301,9 @@ public class MapActivity extends AppCompatActivity {
         buttonGray32.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                i.putExtra("button","4");
-                i.putExtra("childId",childId);
-                i.putExtra("parentId",parentId);
+                i2.putExtra("button","4");
+                i2.putExtra("childId",childId);
+                i2.putExtra("parentId",parentId);
 
                 startActivity(i2);
             }
@@ -311,9 +311,9 @@ public class MapActivity extends AppCompatActivity {
         buttonGray33.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                i.putExtra("button","5");
-                i.putExtra("childId",childId);
-                i.putExtra("parentId",parentId);
+                i2.putExtra("button","5");
+                i2.putExtra("childId",childId);
+                i2.putExtra("parentId",parentId);
 
                 startActivity(i2);
             }
@@ -321,9 +321,9 @@ public class MapActivity extends AppCompatActivity {
         buttonGray34.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                i.putExtra("button","6");
-                i.putExtra("childId",childId);
-                i.putExtra("parentId",parentId);
+                i2.putExtra("button","6");
+                i2.putExtra("childId",childId);
+                i2.putExtra("parentId",parentId);
 
                 startActivity(i2);
             }
@@ -331,9 +331,9 @@ public class MapActivity extends AppCompatActivity {
         buttonGray35.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                i.putExtra("button","7");
-                i.putExtra("childId",childId);
-                i.putExtra("parentId",parentId);
+                i2.putExtra("button","7");
+                i2.putExtra("childId",childId);
+                i2.putExtra("parentId",parentId);
 
                 startActivity(i2);
             }
@@ -341,9 +341,9 @@ public class MapActivity extends AppCompatActivity {
         buttonGray36.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                i.putExtra("button","8");
-                i.putExtra("childId",childId);
-                i.putExtra("parentId",parentId);
+                i2.putExtra("button","8");
+                i2.putExtra("childId",childId);
+                i2.putExtra("parentId",parentId);
 
                 startActivity(i2);
             }
@@ -351,9 +351,9 @@ public class MapActivity extends AppCompatActivity {
         buttonGray37.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                i.putExtra("button","9");
-                i.putExtra("childId",childId);
-                i.putExtra("parentId",parentId);
+                i2.putExtra("button","9");
+                i2.putExtra("childId",childId);
+                i2.putExtra("parentId",parentId);
 
                 startActivity(i2);
             }
@@ -361,9 +361,9 @@ public class MapActivity extends AppCompatActivity {
         buttonGray38.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                i.putExtra("button","10");
-                i.putExtra("childId",childId);
-                i.putExtra("parentId",parentId);
+                i2.putExtra("button","10");
+                i2.putExtra("childId",childId);
+                i2.putExtra("parentId",parentId);
 
                 startActivity(i2);
             }
