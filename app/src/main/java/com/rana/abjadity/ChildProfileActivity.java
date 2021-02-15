@@ -53,12 +53,12 @@ public class ChildProfileActivity extends AppCompatActivity {
     DatabaseReference accountRef;
     Child desiredChild;
     int childPosition;
-    EditText ChildNewName,ChildNewAge;
+    EditText ChildNewName,ChildNewAge,EnterPass;
     String childNewName,childNewAge;
-    TextView childName,childAge,childLevel,childScore;
+    TextView childName,childAge,childLevel,childScore,errorMsg;
     MaterialSpinner spinner;
     Button changeImg,editInfo,addAlarm,SaveButton,CancelButton,GoToChildAccount,deleteChildAccount;
-    View dialogView;
+    View dialogView,dialogViewPass;
     ImageView profileImg;
     Bundle bundle;
 
@@ -113,13 +113,66 @@ public class ChildProfileActivity extends AppCompatActivity {
         GoToChildAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ChildProfileActivity.this,MapActivity.class);
-                i.putExtra("childId", desiredChild.getId());
-                i.putExtra("parentId", desiredChild.getParentId());
-                startActivity(i);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(ChildProfileActivity.this);
+                ViewGroup viewGroup = findViewById(android.R.id.content);
+                dialogViewPass = LayoutInflater.from(v.getContext()).inflate(R.layout.confirm_password_dialog, viewGroup, false);
+
+                builder.setView(dialogViewPass);
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
+                SaveButton = dialogViewPass.findViewById(R.id.buttonOk);
+                CancelButton = dialogViewPass.findViewById(R.id.buttonCancle);
+                EnterPass = dialogViewPass.findViewById(R.id.EnterPassword);
+                errorMsg = dialogViewPass.findViewById(R.id.ErrorPass);
+
+
+                SaveButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        checkPassword();
+                    }
+
+                    private void checkPassword() {
+                        accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
+
+                                    if (userSnapshot.child("password").getValue().toString().equals(EnterPass.getText().toString())){
+                                        Intent i = new Intent(ChildProfileActivity.this, MapActivity.class);
+                                        i.putExtra("childId",childId);
+                                        i.putExtra("parentId",parentId);
+                                        startActivity(i);
+                                        break;
+                                    } else {
+                                        errorMsg.setVisibility(View.VISIBLE);
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                                throw databaseError.toException();
+                            }
+                        });
+                    }
+
+                });
+
+                CancelButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                    }
+                });
+
 
             }
         });
+
 
         changeImg.setOnClickListener(new View.OnClickListener() {
             @Override

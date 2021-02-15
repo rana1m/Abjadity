@@ -373,11 +373,11 @@ public class MapActivity extends AppCompatActivity {
     }
 
     private void addLettersToDatabase() {
-        id=new Date().getTime()+"";
-        alphabetsRef.child(1+"").setValue(new Letter(1+"", "أ",  "ألف", "أرنب", "إنسان","إناء","ألوان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
-        alphabetsRef.child(2+"").setValue(new Letter(2+"", "ب",  "باء", "بطة", "بيت","بئر","بستان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
-        alphabetsRef.child(3+"").setValue(new Letter(3+"", "ت",  "تاء", "تمساح", "تاج","تفاح","توت", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
-//
+//        id=new Date().getTime()+"";
+//        alphabetsRef.child(1+"").setValue(new Letter(1+"", "أ",  "ألف", "أرنب", "إنسان","إناء","ألوان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
+//        alphabetsRef.child(2+"").setValue(new Letter(2+"", "ب",  "باء", "بطة", "بيت","بئر","بستان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
+//        alphabetsRef.child(3+"").setValue(new Letter(3+"", "ت",  "تاء", "تمساح", "تاج","تفاح","توت", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
+////
 //        alphabetsRef.child(4+"").setValue(new Letter(4+"", "ث",  "ثوب", "ثعلب", "ثعبان","إناء","ألوان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
 //        alphabetsRef.child(5+"").setValue(new Letter(5+"", "ج",  "جيم", "بطة", "بيت","بئر","بستان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
 //        alphabetsRef.child(6+"").setValue(new Letter(6+"", "ح",  "حاء", "بطة", "بيت","بئر","بستان", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a"));
