@@ -5,8 +5,8 @@ public class Letter {
     String id,name,chant,word1,word2,word3,word4,video_URL,voice_URL;
 
     public Letter() {
-
     }
+
     public Letter(Letter l) {
         this.id = l.id;
         this.name = l.name;

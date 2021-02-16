@@ -1,3 +1,4 @@
-include ':unityLibrary-debug'
 include ':app'
 rootProject.name = "Abjadity"
+include ':unityLibrary-debug'
+
