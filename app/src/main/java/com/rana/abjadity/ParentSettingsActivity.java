@@ -4,6 +4,7 @@ package com.rana.abjadity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,7 +35,7 @@ public class ParentSettingsActivity extends AppCompatActivity {
     private FirebaseUser user;
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference("accounts");
-
+    private Button logout;
     private TextView Email, Name;
     String uId;
 
@@ -43,10 +44,53 @@ public class ParentSettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_settings);
 
+        logout = findViewById(R.id.logouts);
         Name = (TextView) findViewById(R.id.Pname);
         Email = (TextView) findViewById(R.id.Pemail);
         getUserData();
         goToChildrenAccounts();
+
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                android.app.AlertDialog.Builder alertDialogBilder = new android.app.AlertDialog.Builder(ParentSettingsActivity.this);
+                alertDialogBilder.setTitle("تسجيل الخروج");
+                alertDialogBilder.setMessage("هل أنت متأكد من تسجيل الخروج؟")
+                        .setNegativeButton("إلغاء", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // close the dialog
+                            }
+                        })
+                        .setPositiveButton("نعم", new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int id) {
+
+                                FirebaseAuth.getInstance().signOut();
+                                Intent logout = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(logout);
+                                finish();
+                            }
+                        });
+
+
+                android.app.AlertDialog alertDialog = alertDialogBilder.create();
+                alertDialog.show();
+
+            }
+        });
+
+
+
+
+
+
+
+
+
+
 
       /*  firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
