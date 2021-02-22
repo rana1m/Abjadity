@@ -84,7 +84,7 @@ public class ParentProfileActivity extends AppCompatActivity {
         backIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent parentBack = new Intent(getApplicationContext(), ParentHomePageActivity.class);
+                Intent parentBack = new Intent(getApplicationContext(), ParentSettingsActivity.class);
                 startActivity(parentBack);
             }
         });
