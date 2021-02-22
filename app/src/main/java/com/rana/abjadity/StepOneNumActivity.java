@@ -108,7 +108,7 @@ public class StepOneNumActivity extends AppCompatActivity {
         button = getIntent().getStringExtra("button");
         numberChant = findViewById(R.id.numberChant);
         character = findViewById(R.id.character2);
-        back = findViewById(R.id.back2);
+        back = findViewById(R.id.backIcon);
         forward = findViewById(R.id.forward2);
     }
 }
