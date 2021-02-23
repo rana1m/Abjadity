@@ -4,24 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,8 +21,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.regex.Pattern;
 
 import static com.rana.abjadity.RegisterActivity.isValidPassword;
@@ -75,7 +64,7 @@ public class ParentProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ParentProfileActivity.this);
                 ViewGroup viewGroup = findViewById(android.R.id.content);
-                dialogView = LayoutInflater.from(v.getContext()).inflate(R.layout.ghada, viewGroup, false);
+                dialogView = LayoutInflater.from(v.getContext()).inflate(R.layout.edit_parent_info, viewGroup, false);
 
                 builder.setView(dialogView);
                 AlertDialog alertDialog = builder.create();
@@ -87,11 +76,11 @@ public class ParentProfileActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         fetchInformation();
-                        CheckEmail(parentNewEmail);
-                        edit();
-                       // UserData();
-                        getUserData();
-                        alertDialog.dismiss();
+                        if(checkName(parentNewName)&&CheckEmail(parentNewEmail)){
+                            edit();
+                            getUserData();
+                            alertDialog.dismiss();
+                        }
                     }
 
                 });

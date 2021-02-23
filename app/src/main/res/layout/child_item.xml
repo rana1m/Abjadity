@@ -9,7 +9,7 @@
         android:layout_gravity="right"
         android:layout_margin="5dp"
         android:gravity="right"
-        android:backgroundTint="#DC5FA4A4"
+        android:backgroundTint="#FBE19E"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -24,7 +24,7 @@
                 android:id="@+id/childName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:textColor="#876A22"
                 android:gravity="right"
                 android:textSize="20dp"
                 android:layout_gravity="right"

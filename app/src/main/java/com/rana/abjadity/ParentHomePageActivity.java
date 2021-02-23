@@ -137,9 +137,11 @@ public class ParentHomePageActivity extends AppCompatActivity {
     }
 
     public void retrieveChildrenFromDB() {
-        accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
+        accountRef.orderByChild("id").equalTo(parentId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                children.clear();
+
                 //loop through accounts to find the parent with that id
                 for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
 

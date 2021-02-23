@@ -4,211 +4,215 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@drawable/image2"
     tools:context=".RegisterActivity">
 
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="492dp"
-        android:layout_height="407dp"
-        android:layout_marginTop="18dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.481"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLazyout"
-        app:srcCompat="@mipmap/background1" />
-
-    <Button
-        android:id="@+id/RegisterButton"
-        android:layout_width="205dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="224dp"
-        android:background="@drawable/round_button"
-        android:text="تسجيل"
-        android:textColor="#FFFFFF"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        app:backgroundTint="@color/yellow"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constracintLayoutl"
+        android:layout_width="360dp"
+        android:layout_height="633dp"
+        android:background="@drawable/card_register"
+        android:elevation="@dimen/default_shadow_radius"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLazyout" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.704">
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayoutl"
-        android:layout_width="233dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="90dp"
-        android:background="@drawable/card"
-        android:backgroundTint="@color/white"
-        android:elevation="@dimen/default_shadow_radius"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        <Button
+            android:id="@+id/RegisterButton"
+            android:layout_width="283dp"
+            android:layout_height="57dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/round_button"
+            android:text="تسجيل"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/yellow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.519"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLazyout" />
 
-        <EditText
-            android:id="@+id/EnterName"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayoutl"
+            android:layout_width="233dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="256dp"
+            android:background="@drawable/card"
+            android:backgroundTint="@color/white"
+            android:elevation="@dimen/default_shadow_radius"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.511"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/EnterName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_button"
+                android:backgroundTint="#41FFFFFF"
+                android:ems="10"
+                android:gravity="right"
+                android:hint="الإسم"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.512"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.215" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="233dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/card"
+            android:backgroundTint="@color/white"
+            android:elevation="@dimen/default_shadow_radius"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.511"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayoutel">
+
+
+            <EditText
+                android:id="@+id/EnterPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_button"
+                android:backgroundTint="#FFFFFF"
+                android:ems="10"
+                android:gravity="right"
+                android:hint="كلمة المرور"
+                android:inputType="textPassword"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayoutel"
+            android:layout_width="233dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/card"
+            android:backgroundTint="@color/white"
+            android:elevation="@dimen/default_shadow_radius"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.511"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayoutl">
+
+            <EditText
+                android:id="@+id/EnterEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_button"
+                android:backgroundTint="#41FFFFFF"
+                android:ems="10"
+                android:gravity="right"
+                android:hint="البريد الإلكتروني"
+                android:inputType="textEmailAddress"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.6"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLazyout"
+            android:layout_width="233dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/card"
+            android:backgroundTint="@color/white"
+            android:elevation="@dimen/default_shadow_radius"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.511"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+
+            <EditText
+                android:id="@+id/EnterPasswordConf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_button"
+                android:backgroundTint="#FFFFFF"
+                android:ems="10"
+                android:gravity="right"
+                android:hint="تأكيد كلمة المرور"
+                android:inputType="textPassword"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/ErrorName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/round_button"
-            android:backgroundTint="#41FFFFFF"
-            android:ems="10"
-            android:gravity="right"
-            android:hint="الإسم"
-            android:inputType="textPersonName"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.512"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.215" />
+            android:layout_marginEnd="110dp"
+            android:layout_marginRight="110dp"
+            android:layout_marginBottom="4dp"
+            android:text="ادخل"
+            android:textColor="@color/red"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayoutl"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="233dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="26dp"
-        android:background="@drawable/card"
-        android:backgroundTint="@color/white"
-        android:elevation="@dimen/default_shadow_radius"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutel">
-
-
-        <EditText
-            android:id="@+id/EnterPassword"
+        <TextView
+            android:id="@+id/ErrorEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/round_button"
-            android:backgroundTint="#FFFFFF"
-            android:ems="10"
-            android:gravity="right"
-            android:hint="كلمة المرور"
-            android:inputType="textPassword"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginEnd="110dp"
+            android:layout_marginRight="110dp"
+            android:layout_marginBottom="4dp"
+            android:text="ادخل"
+            android:textColor="@color/red"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayoutel"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayoutel"
-        android:layout_width="233dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="26dp"
-        android:background="@drawable/card"
-        android:backgroundTint="@color/white"
-        android:elevation="@dimen/default_shadow_radius"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.511"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutl">
-
-        <EditText
-            android:id="@+id/EnterEmail"
+        <TextView
+            android:id="@+id/ErrorPass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/round_button"
-            android:backgroundTint="#41FFFFFF"
-            android:ems="10"
-            android:gravity="right"
-            android:hint="البريد الإلكتروني"
-            android:inputType="textEmailAddress"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.6"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginEnd="110dp"
+            android:layout_marginRight="110dp"
+            android:layout_marginBottom="4dp"
+            android:text="ادخل"
+            android:textColor="@color/red"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLazyout"
-        android:layout_width="233dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="26dp"
-        android:background="@drawable/card"
-        android:backgroundTint="@color/white"
-        android:elevation="@dimen/default_shadow_radius"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
-
-
-        <EditText
-            android:id="@+id/EnterPasswordConf"
+        <TextView
+            android:id="@+id/ErrorPassConf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/round_button"
-            android:backgroundTint="#FFFFFF"
-            android:ems="10"
-            android:gravity="right"
-            android:hint="تأكيد كلمة المرور"
-            android:inputType="textPassword"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginEnd="110dp"
+            android:layout_marginRight="110dp"
+            android:layout_marginBottom="4dp"
+            android:text="ادخل"
+            android:textColor="@color/red"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLazyout"
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/ErrorName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="110dp"
-        android:layout_marginRight="110dp"
-        android:layout_marginBottom="4dp"
-        android:text="ادخل"
-        android:textColor="@color/red"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayoutl"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/ErrorEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="110dp"
-        android:layout_marginRight="110dp"
-        android:layout_marginBottom="4dp"
-        android:text="ادخل"
-        android:textColor="@color/red"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayoutel"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/ErrorPass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="110dp"
-        android:layout_marginRight="110dp"
-        android:layout_marginBottom="4dp"
-        android:text="ادخل"
-        android:textColor="@color/red"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/ErrorPassConf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="110dp"
-        android:layout_marginRight="110dp"
-        android:layout_marginBottom="4dp"
-        android:text="ادخل"
-        android:textColor="@color/red"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLazyout"
-        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

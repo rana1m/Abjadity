@@ -75,6 +75,9 @@ public class ArActivity extends AppCompatActivity implements SampleRender.Render
 
     private static final String TAG = ArActivity.class.getSimpleName();
 
+    String button ;
+
+
     private static final String SEARCHING_PLANE_MESSAGE = "Searching for surfaces...";
     private static final String WAITING_FOR_TAP_MESSAGE = "Tap on a surface to place an object.";
 
@@ -155,6 +158,9 @@ public class ArActivity extends AppCompatActivity implements SampleRender.Render
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_);
         surfaceView = findViewById(R.id.surfaceview);
+        button = getIntent().getStringExtra("button");
+        Log.e(TAG,button+"");
+
         try {
             displayRotationHelper = new DisplayRotationHelper(/*context=*/ this);
 
@@ -377,17 +383,19 @@ public class ArActivity extends AppCompatActivity implements SampleRender.Render
                     Texture.createFromAsset(
                             render,
 //              "models/pawn_albedo.png",
-                            "models/model.jpg",
+                            "models/model.png",
                             Texture.WrapMode.CLAMP_TO_EDGE,
                             Texture.ColorFormat.SRGB);
             Texture virtualObjectPbrTexture =
                     Texture.createFromAsset(
                             render,
-                            "models/model.jpg",
+                            "models/model.png",
                             Texture.WrapMode.CLAMP_TO_EDGE,
                             Texture.ColorFormat.LINEAR);
-//      virtualObjectMesh = Mesh.createFromAsset(render, "models/pawn.obj");
-            virtualObjectMesh = Mesh.createFromAsset(render, "models/model.obj");
+
+
+                virtualObjectMesh = Mesh.createFromAsset(render, "models/"+button+".obj");
+
             virtualObjectShader =
                     Shader.createFromAssets(
                             render,

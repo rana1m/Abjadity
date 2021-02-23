@@ -2,9 +2,12 @@ package com.rana.abjadity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -14,6 +17,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.IOException;
+
 public class StepTowActivity extends AppCompatActivity {
 
     private static final String TAG = "StepTowActivity";
@@ -21,7 +26,9 @@ public class StepTowActivity extends AppCompatActivity {
     DatabaseReference accountRef,alphabetsRef,digitsRef;
     String childId,parentId,childLevel,button;
     VideoView character;
-    FloatingActionButton back,forward;
+    FloatingActionButton back,forward,play;
+    FrameLayout frameLayout;
+    MediaPlayer mediaPlayer;
 
 
 
@@ -30,8 +37,29 @@ public class StepTowActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_tow);
 
-        initialization();
+        try {
+            initialization();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         characterInitialization();
+
+        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.start();
+            }
+        });
+
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(StepTowActivity.this,ArActivity.class);
+                i.putExtra("button",button);
+                startActivity(i);
+            }
+        });
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +89,7 @@ public class StepTowActivity extends AppCompatActivity {
         Uri uri =Uri.parse(path);
         character.setVideoURI(uri);
         character.setZOrderOnTop(true);
-        character.start();
+        //character.start();
         character.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View sv, MotionEvent event) {
@@ -71,7 +99,7 @@ public class StepTowActivity extends AppCompatActivity {
         });
     }
 
-    private void initialization () {
+    private void initialization () throws IOException {
         database = FirebaseDatabase.getInstance();
         alphabetsRef = database.getReference("alphabets");
 
@@ -83,8 +111,14 @@ public class StepTowActivity extends AppCompatActivity {
         character=findViewById(R.id.character);
         back=findViewById(R.id.back);
         forward=findViewById(R.id.forward);
-
+        play=findViewById(R.id.playIcon);
+        mediaPlayer=new MediaPlayer();
+        String path = "https://f.top4top.io/m_1877uwe3c1.m4a";
+        Uri uri =Uri.parse(path);
+        mediaPlayer.setDataSource(this,uri);
+        mediaPlayer.prepareAsync();
 
     }
+
 
 }

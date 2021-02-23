@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@mipmap/wall"
+    android:background="@drawable/image2"
     android:layout_height="match_parent"
     tools:context=".ParentHomePageActivity">
 
@@ -24,11 +24,9 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout2"
-                android:layout_width="383dp"
-                android:layout_height="635dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="49dp"
-                android:layout_marginEnd="24dp"
+                android:layout_width="386dp"
+                android:layout_height="353dp"
+                android:layout_marginTop="200dp"
                 android:background="@drawable/card"
                 android:backgroundTint="@color/white"
                 android:elevation="@dimen/cardview_default_elevation"
@@ -36,9 +34,10 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -49,30 +48,29 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
+                        android:id="@+id/textView8"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="6dp"
                         android:gravity="center"
                         android:text="الملف الشخصي"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
-
-                    <ImageView
-                        android:id="@+id/imageView6"
-                        android:layout_width="129dp"
-                        android:layout_height="124dp"
-                        app:srcCompat="@drawable/mmm" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:layout_editor_absoluteX="8dp" />
 
                     <LinearLayout
+                        android:id="@+id/linearLayout4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="56dp"
                         android:background="@drawable/card"
                         android:backgroundTint="#CFEBEB"
                         android:gravity="center"
                         android:orientation="vertical"
-                        android:paddingLeft="20dp"
-                        android:paddingTop="25dp"
-                        android:paddingRight="30dp"
-                        android:paddingBottom="10dp">
+                        android:padding="30dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView8">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -92,7 +90,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="الاسم:  "
-                                android:textSize="15dp"/>
+                                android:textSize="15dp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -116,32 +114,35 @@
                                 android:textSize="15dp" />
                         </LinearLayout>
 
-                        <Button
-                            android:id="@+id/editInfo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="9dp"
-                            android:background="@drawable/round_button"
-                            android:backgroundTint="@color/yellow"
-                            android:text="تعديل البيانات" />
-
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="53dp"
-                        android:gravity="center"
-                        android:orientation="horizontal"
+                    <Button
+                        android:id="@+id/editInfo"
+                        android:layout_width="130dp"
+                        android:layout_height="46dp"
+                        android:layout_marginTop="32dp"
+                        android:background="@drawable/round_button"
+                        android:backgroundTint="@color/yellow"
+                        android:text="تعديل البيانات"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"/>
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
 
-                </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="371dp"
+                android:layout_height="348dp"
+                android:layout_marginTop="488dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/children" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

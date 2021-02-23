@@ -43,8 +43,8 @@ public class StepOneActivity extends AppCompatActivity {
         setContentView(R.layout.activity_step_one);
 
 
-
         initialization();
+        Log.e(TAG,button+"");
 
         alphabetsRef.orderByChild("id").equalTo(button).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -55,8 +55,6 @@ public class StepOneActivity extends AppCompatActivity {
                     Letter letter = userSnapshot.getValue(Letter.class);
                     Log.e(TAG,letter.getName());
                     letterChatInitialization(letter.getVideo_URL());
-
-
                 }
             }
 
@@ -89,7 +87,7 @@ public class StepOneActivity extends AppCompatActivity {
         forward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(StepOneActivity.this,ArActivity.class);
+                Intent i = new Intent(StepOneActivity.this,StepTowActivity.class);
                 i.putExtra("childId",childId);
                 i.putExtra("parentId",parentId);
                 i.putExtra("childLevel",childLevel);
