@@ -43,7 +43,7 @@ public class ParentSettingsActivity extends AppCompatActivity {
     FloatingActionButton backIcon;
     private TextView Email, Name;
     View dialogView;
-    String uId;
+    String uId, parentId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,18 +96,12 @@ public class ParentSettingsActivity extends AppCompatActivity {
         accountInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent parentPro = new Intent(getApplicationContext(), ParentProfileActivity.class);
+                Intent parentPro = new Intent(ParentSettingsActivity.this, ParentProfileActivity.class);
+                parentPro.putExtra("parentId",parentId);
                 startActivity(parentPro);
             }
         });
 
-        backIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent parentBack = new Intent(getApplicationContext(), ParentHomePageActivity.class);
-                startActivity(parentBack);
-            }
-        });
 
         goToChildrenAccounts();
 
@@ -171,6 +165,7 @@ public class ParentSettingsActivity extends AppCompatActivity {
 
   //  }
   private void initialization() {
+      parentId = getIntent().getStringExtra("parentId");
       backIcon = findViewById(R.id.backIcon);
       logout = findViewById(R.id.logouts);
       accountInfo = findViewById(R.id.accountInfo);
@@ -187,8 +182,9 @@ public class ParentSettingsActivity extends AppCompatActivity {
         goToChildrenAccounts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(view.getContext(),ParentHomePageActivity.class);
-                startActivityForResult(intent,0);
+                Intent parentPro = new Intent(ParentSettingsActivity.this, ParentHomePageActivity.class);
+                parentPro.putExtra("parentId",parentId);
+                startActivity(parentPro);
             }
         });
     }

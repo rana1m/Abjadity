@@ -118,6 +118,7 @@ public class ParentHomePageActivity extends AppCompatActivity {
                 }
                 if(itemName.equals("Settings")){
                     Intent i = new Intent(ParentHomePageActivity.this,ParentSettingsActivity.class);
+                    i.putExtra("parentId",parentId);
                     startActivity(i);
 
                 }

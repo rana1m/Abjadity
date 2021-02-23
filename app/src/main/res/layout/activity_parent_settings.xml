@@ -7,20 +7,6 @@
     tools:context=".ParentSettingsActivity">
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/backIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/yellow"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.028"
-        app:srcCompat="@drawable/back" />
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="117dp"
@@ -38,7 +24,7 @@
         android:background="@drawable/round_button"
         android:backgroundTint="@color/yellow"
         android:padding="15dp"
-        android:text="معلومات الحساب"
+        android:text="الملف الشخصي"
         android:textColor="@color/white"
         android:textSize="22sp"
         android:textStyle="bold"
