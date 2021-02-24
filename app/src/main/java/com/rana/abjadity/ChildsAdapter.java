@@ -55,8 +55,6 @@ public class ChildsAdapter extends RecyclerView.Adapter<ChildsAdapter.ViewHolder
                 notifyDataSetChanged();
                 notifyItemChanged(position);
                 context.startActivity(i);
-
-//                Log.e(TAG,child.getName()+"---"+child.getParentId()+"---"+child.getId());
             }
         });
 
