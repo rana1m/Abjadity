@@ -93,8 +93,6 @@ public class ChildsAdapter extends RecyclerView.Adapter<ChildsAdapter.ViewHolder
             childIcon=itemView.findViewById(R.id.childIcon);
             card=itemView.findViewById(R.id.card);
 
-
-
         }
     }
 }
