@@ -151,7 +151,6 @@ public class ParentHomePageActivity extends AppCompatActivity {
 
                         children.add(child);
                         childsAdapter.notifyDataSetChanged();
-
                     }
                 }
             }

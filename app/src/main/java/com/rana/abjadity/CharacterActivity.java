@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -11,10 +12,21 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class CharacterActivity extends AppCompatActivity implements View.OnClickListener{
+    private static final String TAG = "CharacterActivity";
+
 
     ImageButton back;
+    String childId,parentId;
     ImageView char1, char2, char3, char4, char5;
+    FirebaseDatabase database;
+    DatabaseReference accountRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +44,7 @@ public class CharacterActivity extends AppCompatActivity implements View.OnClick
 //            }
 //        });
 
-        ////ghkjmjcjcvbchcgcg
+
         char1.setOnClickListener(this);
         char2.setOnClickListener(this);
         char3.setOnClickListener(this);
@@ -45,37 +57,52 @@ public class CharacterActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.char1:
-                Intent char1 = new Intent(CharacterActivity.this,ChildProfileActivity.class);
-                char1.putExtra("char",R.drawable.char1);
-                startActivity(char1);
+                uploadImage("https://c.top4top.io/p_1881k9zpm1.png");
                 finish();
                 break;
             case R.id.char2:
-                Intent char2 = new Intent(CharacterActivity.this,ChildProfileActivity.class);
-                char2.putExtra("char",R.drawable.char2);
-                startActivity(char2);
+                uploadImage("https://e.top4top.io/p_1881grkb51.png");
                 finish();
                 break;
             case R.id.char3:
-                Intent char3 = new Intent(CharacterActivity.this,ChildProfileActivity.class);
-                char3.putExtra("char",R.drawable.char3);
-                startActivity(char3);
+                uploadImage("https://f.top4top.io/p_18812ewki2.png");
                 finish();
                 break;
             case R.id.char4:
-                Intent char4 = new Intent(CharacterActivity.this,ChildProfileActivity.class);
-                char4.putExtra("char",R.drawable.char4);
-                startActivity(char4);
+                uploadImage("https://g.top4top.io/p_1881ipfcz3.png");
                 finish();
                 break;
             case R.id.char5:
-                Intent char5 = new Intent(CharacterActivity.this,ChildProfileActivity.class);
-                char5.putExtra("char",R.drawable.char5);
-                startActivity(char5);
+                uploadImage("https://h.top4top.io/p_188108vyl4.png");
                 finish();
                 break;
 
         }
+    }
+
+    private void uploadImage(String s) {
+        accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //loop through accounts to find the parent with that id
+                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
+
+                    //loop through parent children to add them to adapter ArrayList
+                    for (DataSnapshot theChild: userSnapshot.child("children").getChildren()) {
+                        Child child = theChild.getValue(Child.class);
+                        if(child.getId().equals(childId)){
+                            theChild.getRef().child("character").setValue(s);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
+
     }
 
     private void initialization(){
@@ -85,6 +112,10 @@ public class CharacterActivity extends AppCompatActivity implements View.OnClick
         char3 = findViewById(R.id.char3);
         char4 = findViewById(R.id.char4);
         char5 = findViewById(R.id.char5);
+        childId = getIntent().getStringExtra("childId");
+        parentId = getIntent().getStringExtra("parentId");
+        database = FirebaseDatabase.getInstance();
+        accountRef = database.getReference("accounts");
     }
 
 }

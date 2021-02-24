@@ -42,6 +42,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.jaredrummler.materialspinner.MaterialSpinner;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 
@@ -178,6 +179,8 @@ public class ChildProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(ChildProfileActivity.this,CharacterActivity.class);
+                i.putExtra("childId",childId);
+                i.putExtra("parentId",parentId);
                 startActivity(i);
 
                 }
@@ -274,7 +277,7 @@ public class ChildProfileActivity extends AppCompatActivity {
         ChildNewAge = dialogView.findViewById(R.id.EnterChildAge);
     }
     private void retrieveChildInfo() {
-        accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
+        accountRef.orderByChild("id").equalTo(parentId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //loop through accounts to find the parent with that id
@@ -290,6 +293,7 @@ public class ChildProfileActivity extends AppCompatActivity {
                             childAge.setText(desiredChild.getAge());
                             childLevel.setText(desiredChild.getLevel());
                             childScore.setText(desiredChild.getScore());
+                            Picasso.get().load(desiredChild.getCharacter()).into(profileImg);
                             GoToChildAccount.setText("الذهاب إلى حساب "+desiredChild.getName().toLowerCase());
                         }
 

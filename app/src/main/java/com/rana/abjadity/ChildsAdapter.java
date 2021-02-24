@@ -42,7 +42,7 @@ public class ChildsAdapter extends RecyclerView.Adapter<ChildsAdapter.ViewHolder
         Child child =children.get(position);
         holder.childName.setText(child.getName());
         holder.childLevel.setText("المستوى "+child.getLevel());
-        Picasso.get().load(R.mipmap.child_blue).into(holder.childIcon);
+        Picasso.get().load(child.getCharacter()).into(holder.childIcon);
 
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
