@@ -55,9 +55,9 @@ public class StepTowActivity extends AppCompatActivity {
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(StepTowActivity.this,ArActivity.class);
-                i.putExtra("button",button);
-                startActivity(i);
+//                Intent i = new Intent(StepTowActivity.this,ArActivity.class);
+//                i.putExtra("button",button);
+//                startActivity(i);
             }
         });
 

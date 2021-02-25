@@ -51,8 +51,8 @@
 
                     <ImageView
                         android:id="@+id/profileImg"
-                        android:layout_width="200dp"
-                        android:layout_height="150dp"
+                        android:layout_width="222dp"
+                        android:layout_height="169dp"
                         app:srcCompat="@mipmap/child_blue"
                         tools:layout_editor_absoluteX="127dp" />
 
