@@ -11,6 +11,7 @@ import android.graphics.PixelFormat;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -21,12 +22,15 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Switch;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.luseen.spacenavigation.SpaceItem;
 import com.luseen.spacenavigation.SpaceNavigationView;
 import com.luseen.spacenavigation.SpaceOnClickListener;
@@ -403,8 +407,8 @@ public class MapActivity extends AppCompatActivity {
 
     private void addLettersToDatabase() {
 //        id=new Date().getTime()+"";
-        alphabetsRef.child(1+"").setValue(new Letter(1+"", "أ",  "ألف", "إبرة", "أرنب","أناناس","أسد", "https://i.top4top.io/p_1877vn91q1.png","https://j.top4top.io/p_1877xiztz2.png","https://k.top4top.io/p_1877rdeww3.png","https://l.top4top.io/p_1877vyhhd4.png","https://h.top4top.io/m_1876o1nnx1.mp4","https://h.top4top.io/m_1871mcaee1.m4a","https://h.top4top.io/m_1871mcaee1.m4a","https://h.top4top.io/m_1871mcaee1.m4a","https://h.top4top.io/m_1871mcaee1.m4a"));
-        alphabetsRef.child(2+"").setValue(new Letter(2+"", "ب",  "باء", "بطة", "برتقال","بطيخ","بحر", "https://a.top4top.io/p_1877rbbne1.png","https://b.top4top.io/p_1877t4exd2.png","https://e.top4top.io/p_18776muyf1.png","https://d.top4top.io/p_18774vb444.png", "https://g.top4top.io/m_1876got4b1.mp4","https://h.top4top.io/m_1871mcaee1.m4a","https://h.top4top.io/m_1871mcaee1.m4a","https://h.top4top.io/m_1871mcaee1.m4a","https://h.top4top.io/m_1871mcaee1.m4a"));
+        alphabetsRef.child(1+"").setValue(new Letter(1+"", "أ",  "الف", "إبرة", "أرنب","أناناس","أسد", "https://firebasestorage.googleapis.com/v0/b/abjadity-507d7.appspot.com/o/a1.png?alt=media&token=74440768-6f29-48a6-8628-ea279091c602","https://firebasestorage.googleapis.com/v0/b/abjadity-507d7.appspot.com/o/a2.png?alt=media&token=728ecb2a-b05d-4c42-9019-ec205c68ac30","https://firebasestorage.googleapis.com/v0/b/abjadity-507d7.appspot.com/o/a3.png?alt=media&token=b37cf0a8-babe-4338-9565-277bdba78946","https://firebasestorage.googleapis.com/v0/b/abjadity-507d7.appspot.com/o/a4.png?alt=media&token=aaccad27-9ad9-4741-af40-a037f5f91756","https://firebasestorage.googleapis.com/v0/b/abjadity-507d7.appspot.com/o/lettersChant%2F1.mp4?alt=media&token=0b22c6d3-d25a-4bdd-8563-e52b1317a14f","https://h.top4top.io/m_1871mcaee1.m4a","https://h.top4top.io/m_1871mcaee1.m4a","https://h.top4top.io/m_1871mcaee1.m4a","https://h.top4top.io/m_1871mcaee1.m4a"));
+        alphabetsRef.child(2+"").setValue(new Letter(2+"", "ب",  "باء", "بطة", "برتقال","بطيخ","بحر", "https://firebasestorage.googleapis.com/v0/b/abjadity-507d7.appspot.com/o/b2.png?alt=media&token=76080664-b34d-49d5-962d-3b0a93540026","https://firebasestorage.googleapis.com/v0/b/abjadity-507d7.appspot.com/o/b1.png?alt=media&token=d87113dd-83fc-4df1-bdf0-7c41780e1f73","https://firebasestorage.googleapis.com/v0/b/abjadity-507d7.appspot.com/o/b3.png?alt=media&token=2c54c0bf-61fe-4bf2-a311-0364c2c482a7","https://firebasestorage.googleapis.com/v0/b/abjadity-507d7.appspot.com/o/b4.png?alt=media&token=c52a1bab-5a93-4502-82cd-f60507e4feb6", "https://g.top4top.io/m_1876got4b1.mp4","https://h.top4top.io/m_1871mcaee1.m4a","https://h.top4top.io/m_1871mcaee1.m4a","https://h.top4top.io/m_1871mcaee1.m4a","https://h.top4top.io/m_1871mcaee1.m4a"));
         alphabetsRef.child(3+"").setValue(new Letter(3+"", "ت",  "تاء", "تمساح", "تاج","تفاح","توت", "https://k.top4top.io/p_1880bplz71.png","https://g.top4top.io/p_1880b9fld1.png","https://i.top4top.io/p_1880j5id11.png","https://b.top4top.io/p_1880o2ihn1.png", "https://c.top4top.io/m_1876kjntw1.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
 //
         alphabetsRef.child(4+"").setValue(new Letter(4+"", "ث",  "ثاء", "ثعلب", "ثلج","ثلاجة","ثمار",  "https://d.top4top.io/p_1880rx3pm2.png","https://h.top4top.io/p_1880pirgk1.png","https://e.top4top.io/p_18807gc2f3.png","https://c.top4top.io/p_1880wbyox1.png","https://e.top4top.io/m_1876pq5nm2.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
@@ -498,6 +502,8 @@ public class MapActivity extends AppCompatActivity {
         });
 
     }
+
+
 
 
         private void initialization() {

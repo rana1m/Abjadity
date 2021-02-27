@@ -14,9 +14,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,61 +38,48 @@ public class LogInActivity extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference accountRef;
     TextView errorMsg,forgetPasswordLink;
-    FirebaseAuth fAuth;
-
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-
-
-
+        
         initialization();
+        logIn();
         forgetPassword();
-
-        logInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CheckUserAndPassword(email.getText().toString(),password.getText().toString());
-            }
-        });
 
     }
 
-    private void CheckUserAndPassword(String _email, String _password) {
-     accountRef.orderByChild("name").equalTo(_email).addListenerForSingleValueEvent(new ValueEventListener() {
+    private void logIn() {
+        logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if(!dataSnapshot.exists()){
-                    errorMsg.setText("* البريد الاكتروني و/أو كلمة المرور خاطئة");
-                    errorMsg.setVisibility(View.VISIBLE);
-                }
-                List<Parent> parents = new ArrayList<>();
+            public void onClick(View v) {
+                mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+                        .addOnCompleteListener(LogInActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    // Sign in success, update UI with the signed-in user's information
+                                    Log.d(TAG, "signInWithEmail:success");
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    Intent i = new Intent(LogInActivity.this,ParentHomePageActivity.class);
+                                    i.putExtra("parentId",user.getUid());
+                                    startActivity(i);
 
-                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
+                                } else {
+                                    // If sign in fails, display a message to the user.
+                                    Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                    errorMsg.setText("* البريد الاكتروني و/أو كلمة المرور خاطئة");
+                                    errorMsg.setVisibility(View.VISIBLE);
+                                    Toast.makeText(LogInActivity.this, "Authentication failed.",
+                                            Toast.LENGTH_SHORT).show();
+                                }
 
-                    if (userSnapshot.child("password").getValue().toString().equals(_password)){
-                        Intent i = new Intent(LogInActivity.this,ParentHomePageActivity.class);
-                        i.putExtra("parentId",userSnapshot.child("id").getValue().toString());
-                        startActivity(i);
-                        break;
-                    } else {
-                        errorMsg.setText("* البريد الاكتروني و/أو كلمة المرور خاطئة");
-                        errorMsg.setVisibility(View.VISIBLE);
-                    }
-
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                throw databaseError.toException();
+                            }
+                        });
             }
         });
-
-
-
     }
 
     private void initialization() {
@@ -99,9 +90,9 @@ public class LogInActivity extends AppCompatActivity {
         accountRef = database.getReference("accounts");
         errorMsg=findViewById(R.id.ErrorNameOrPassword);
         forgetPasswordLink=findViewById(R.id.forgetpassword);
-        fAuth=FirebaseAuth.getInstance();
-
+        mAuth = FirebaseAuth.getInstance();
     }
+
     private void forgetPassword(){
 
         forgetPasswordLink.setOnClickListener(new View.OnClickListener() {
@@ -119,7 +110,7 @@ public class LogInActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
 
                         String mail=resetMail.getText().toString();
-                        fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        mAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 Toast.makeText(LogInActivity.this,"تم آرسال رابط تغيير كلمة المرور الى بريدك الألكتروني",Toast.LENGTH_SHORT).show();

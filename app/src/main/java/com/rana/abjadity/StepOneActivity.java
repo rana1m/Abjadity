@@ -12,16 +12,22 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 
 import java.io.IOException;
 
@@ -34,6 +40,7 @@ public class StepOneActivity extends AppCompatActivity {
     VideoView letterChant,character;
     FloatingActionButton back,forward,play;
     FrameLayout letterChantFrame;
+    ImageView imageView ;
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -95,9 +102,8 @@ public class StepOneActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-
     }
+
 
     private void characterInitialization() {
         String path = "android.resource://"+getPackageName()+"/"+ R.raw.v2;
@@ -141,6 +147,7 @@ public class StepOneActivity extends AppCompatActivity {
         forward=findViewById(R.id.forward);
         play=findViewById(R.id.playIcon);
         letterChantFrame=findViewById(R.id.letterChatFrame);
+
 
     }
 

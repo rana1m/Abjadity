@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/image2"
-    tools:context=".StepOneActivity">
+    tools:context=".StepFiveActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
@@ -20,24 +20,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <FrameLayout
-            android:id="@+id/letterChatFrame"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+        <ImageView
+            android:id="@+id/microphoneIcon"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="#285588"
+            android:clickable="true"
+            app:fabCustomSize="180dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <VideoView
-                android:id="@+id/letterChant"
-                android:layout_width="match_parent"
-                android:layout_height="247dp"
-                android:backgroundTint="@color/white"
-                android:clickable="true" />
-        </FrameLayout>
+            app:layout_constraintTop_toTopOf="parent"
+            app:maxImageSize="170dp"
+            app:srcCompat="@drawable/microphone" />
 
         <VideoView
             android:id="@+id/character"
@@ -72,20 +67,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/forward" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/playIcon"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
-            android:layout_marginTop="67dp"
-            android:clickable="true"
-            app:fabCustomSize="180dp"
-            app:maxImageSize="170dp"
-            android:backgroundTint="#285588"
+        <TextView
+            android:id="@+id/speechToText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="46dp"
+            android:text="انقر على المايكروفون ..."
+            android:textStyle="bold"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/play_foreground" />
-
+            app:layout_constraintTop_toBottomOf="@+id/microphoneIcon" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

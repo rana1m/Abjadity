@@ -120,7 +120,6 @@ public class ParentHomePageActivity extends AppCompatActivity {
                     Intent i = new Intent(ParentHomePageActivity.this,ParentSettingsActivity.class);
                     i.putExtra("parentId",parentId);
                     startActivity(i);
-
                 }
             }
 
@@ -137,7 +136,7 @@ public class ParentHomePageActivity extends AppCompatActivity {
     }
 
     public void retrieveChildrenFromDB() {
-        accountRef.orderByChild("id").equalTo(parentId).addValueEventListener(new ValueEventListener() {
+        accountRef.orderByKey().equalTo(parentId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 children.clear();
@@ -182,7 +181,7 @@ public class ParentHomePageActivity extends AppCompatActivity {
                 for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
                     if(CheckForfileds()) {
 
-                        Child newChild =new Child(parentId,id,childAge, "0",childName,
+                        Child newChild =new Child(parentId,id,childAge, "1",childName,
                                 "0","0", "0");
                         userSnapshot.getRef().child("children").push()
                                 .setValue(newChild);

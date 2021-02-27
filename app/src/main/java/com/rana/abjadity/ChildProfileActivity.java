@@ -1,50 +1,39 @@
 package com.rana.abjadity;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
+
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.squareup.picasso.Picasso;
 
-import java.io.ByteArrayOutputStream;
 
 public class ChildProfileActivity extends AppCompatActivity {
     private static final String TAG = "ChildProfileActivity";
@@ -62,10 +51,8 @@ public class ChildProfileActivity extends AppCompatActivity {
     View dialogView,dialogViewPass;
     ImageView profileImg;
     Bundle bundle;
+    StorageReference storageReference ;
 
-    Uri imageURI;
-
-    final int REQUSET_CODE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -193,14 +180,7 @@ public class ChildProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 deleteChild();
-
-                Log.e(TAG,childPosition+"");
-//                ParentHomePageActivity.recyclerView.getAdapter().notifyItemRemoved(childPosition+1);
                 ParentHomePageActivity.childsAdapter.removeItem(childPosition);
-//                ParentHomePageActivity.recyclerView.invalidate();
-//                ParentHomePageActivity.recyclerView.getAdapter().notifyDataSetChanged();
-
-
                 finish();
 
             }
@@ -293,10 +273,21 @@ public class ChildProfileActivity extends AppCompatActivity {
                             childAge.setText(desiredChild.getAge());
                             childLevel.setText(desiredChild.getLevel());
                             childScore.setText(desiredChild.getScore());
-                            Picasso.get().load(desiredChild.getCharacter()).into(profileImg);
+
+                            storageReference.child("characters/char"+child.getCharacter()+".png").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    Glide.with(getApplicationContext()).load(uri).into(profileImg);
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception exception) {
+                                    // Handle any errors
+                                }
+                            });
+
                             GoToChildAccount.setText("الذهاب إلى حساب "+desiredChild.getName().toLowerCase());
                         }
-
                     }
                 }
             }
@@ -306,7 +297,6 @@ public class ChildProfileActivity extends AppCompatActivity {
                 throw databaseError.toException();
             }
         });
-
 
     }
 
@@ -339,6 +329,8 @@ public class ChildProfileActivity extends AppCompatActivity {
         deleteChildAccount=findViewById(R.id.DeleteChildPage);
         profileImg = findViewById(R.id.profileImg);
         bundle = getIntent().getExtras();
+        storageReference = FirebaseStorage.getInstance().getReference();
+
 
 
 

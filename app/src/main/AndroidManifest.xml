@@ -28,7 +28,9 @@
         android:theme="@style/Theme.Abjadity"
         android:usesCleartextTraffic="false"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ParentProfileActivity"></activity>
+        <activity android:name=".StepSixActivity"></activity>
+        <activity android:name=".StepFiveActivity" />
+        <activity android:name=".ParentProfileActivity" />
         <activity android:name=".StepFourActivity" />
         <activity android:name=".StepThreeActivity" />
         <activity android:name=".StepTowActivity" />
@@ -52,13 +54,12 @@
         <activity android:name=".ParentHomePageActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LogInActivity" />
-        <activity android:name=".MainActivity2" />
         <activity
             android:name=".ArActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true"
             android:screenOrientation="locked"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -70,6 +71,9 @@
         <meta-data
             android:name="com.google.ar.core"
             android:value="required" />
+        <meta-data
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:value="label" />
     </application>
 
 </manifest>

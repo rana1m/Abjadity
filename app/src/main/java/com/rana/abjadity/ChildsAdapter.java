@@ -2,6 +2,7 @@ package com.rana.abjadity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -20,9 +27,9 @@ import java.util.ArrayList;
 public class ChildsAdapter extends RecyclerView.Adapter<ChildsAdapter.ViewHolder> {
     private static final String TAG = "ChildsAdapter";
 
-
     private Context context;
     private ArrayList<Child> children;
+    StorageReference storageReference ;
 
     public ChildsAdapter(Context c, ArrayList<Child> children) {
         this.context=c;
@@ -42,7 +49,18 @@ public class ChildsAdapter extends RecyclerView.Adapter<ChildsAdapter.ViewHolder
         Child child =children.get(position);
         holder.childName.setText(child.getName());
         holder.childLevel.setText("المستوى "+child.getLevel());
-        Picasso.get().load(child.getCharacter()).into(holder.childIcon);
+
+        storageReference.child("characters/char"+child.getCharacter()+".png").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Glide.with(context).load(uri).into(holder.childIcon);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
 
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +110,8 @@ public class ChildsAdapter extends RecyclerView.Adapter<ChildsAdapter.ViewHolder
             childLevel=itemView.findViewById(R.id.childLevel);
             childIcon=itemView.findViewById(R.id.childIcon);
             card=itemView.findViewById(R.id.card);
+            storageReference = FirebaseStorage.getInstance().getReference();
+
 
         }
     }

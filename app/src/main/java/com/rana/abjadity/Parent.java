@@ -9,38 +9,34 @@ public class Parent {
     public ArrayList<Child> children;
     public String character;
     public String name;
-    public String email;
-    public String password;
+
 
     public Parent() {
     }
 
 
-    public Parent(String id, String type, ArrayList<Child> children, String character, String name, String email, String password) {
+    public Parent(String id, String type, ArrayList<Child> children, String character, String name) {
         this.id = id;
         this.type = type;
         this.children = children;
         this.character = character;
         this.name = name;
-        this.email = email;
-        this.password = password;
+
     }
 
-    public Parent(String type, ArrayList<Child> children, String character, String name, String email, String password) {
+    public Parent(String type, ArrayList<Child> children, String character, String name) {
         this.type = type;
         this.children = children;
         this.character = character;
         this.name = name;
-        this.email = email;
-        this.password = password;
+
     }
-    public Parent(String id,String type,String character, String name, String email, String password) {
+    public Parent(String id,String type,String character, String name) {
         this.id = id;
         this.type = type;
         this.character = character;
         this.name = name;
-        this.email = email;
-        this.password = password;
+
     }
 
     public String getId() {
@@ -63,14 +59,6 @@ public class Parent {
         return name;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
     public void setId(String id) {
         this.id = id;
     }
@@ -91,12 +79,6 @@ public class Parent {
         this.name = name;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
 }

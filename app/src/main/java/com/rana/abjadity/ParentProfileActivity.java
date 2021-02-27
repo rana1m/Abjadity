@@ -10,8 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,17 +32,15 @@ public class ParentProfileActivity extends AppCompatActivity {
 
     FirebaseDatabase database;
     DatabaseReference myRef;
-    private FirebaseAuth firebaseAuth;
-    private FirebaseUser user;
-    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference databaseReference = firebaseDatabase.getReference("accounts");
-    private Button editProfile,SaveButton,CancelButton;
+    FirebaseAuth mAuth;
+    Button editProfile,SaveButton,CancelButton;
     FloatingActionButton backIcon;
-    EditText ParentNewName, ParentNewEmail, ParentNewPassword;
-    String parentNewName,parentNewEmail,parentNewPassword, parentId, pass;
+    EditText ParentNewName, ParentNewEmail;
+    String parentNewName,parentNewEmail, parentId;
     View dialogView;
-    private TextView Email, Name, ErrorName, ErrorEmail, ErrorPass;
-    String uId;
+    TextView Email, Name, ErrorName, ErrorEmail,dataUpdated;
+    FirebaseUser currentUser;
+    ProgressBar dataUpdateProgressBar;
 
 
 
@@ -79,7 +80,10 @@ public class ParentProfileActivity extends AppCompatActivity {
                         if(checkName(parentNewName)&&CheckEmail(parentNewEmail)){
                             edit();
                             getUserData();
+                            dataUpdated.setVisibility(View.GONE);
+                            dataUpdateProgressBar.setVisibility(View.VISIBLE);
                             alertDialog.dismiss();
+
                         }
                     }
 
@@ -101,69 +105,32 @@ public class ParentProfileActivity extends AppCompatActivity {
 
     }
 
-    private void initialization(){
+  private void initialization(){
         backIcon = findViewById(R.id.backIcon);
         Name = (TextView) findViewById(R.id.Pname);
         Email = (TextView) findViewById(R.id.Pemail);
         editProfile = findViewById(R.id.editInfo);
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        dataUpdateProgressBar= findViewById(R.id.dataUpdateProgressBar);
+        dataUpdated= findViewById(R.id.dataUpdated);
     }
 
-    private void initializationForDialog() {
+  private void initializationForDialog() {
         SaveButton = dialogView.findViewById(R.id.buttonOk);
         CancelButton = dialogView.findViewById(R.id.buttonCancle);
         ParentNewName = dialogView.findViewById(R.id.EnterParentName);
         ParentNewEmail = dialogView.findViewById(R.id.EnterParentEmail);
-        ParentNewPassword = dialogView.findViewById(R.id.EnterParentPassword);
         ErrorName = dialogView.findViewById(R.id.ErrorParentName);
         ErrorEmail = dialogView.findViewById(R.id.ErrorParentEmail);
-        ErrorPass = dialogView.findViewById(R.id.ErrorParentPassword);
     }
 
-    private void fetchInformation() {
+  private void fetchInformation() {
         parentNewName=ParentNewName.getText().toString();
         parentNewEmail=ParentNewEmail.getText().toString();
-        parentNewPassword = ParentNewPassword.getText().toString();
     }
 
-
-
-
-
-   /* private void UserData() {
-        DatabaseReference updateData = FirebaseDatabase.getInstance()
-                .getReference("accounts").child(parentId);
-        Map<String, Object> updates = new HashMap<String,Object>();
-
-        updates.put("name", parentNewName);
-        updates.put("Email", parentNewEmail);
-        updates.put("password", parentNewPassword);
-        updateData.updateChildren(updates);
-
-    }*/
-   /* private void setUserData() {
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("accounts");
-
-        myRef.orderByChild("id").equalTo(parentId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot datas : dataSnapshot.getChildren()) {
-                    datas.getRef().child("name").setValue(parentNewName);
-                    //datas.getRef().child("pasword").setValue(parentNewName);
-                   // Name.setText(name);
-                   // Email.setText(email);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }*/
-
-    private void getUserData() {
+  private void getUserData() {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("accounts");
 
@@ -172,8 +139,7 @@ public class ParentProfileActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot datas : dataSnapshot.getChildren()) {
                     String name = datas.child("name").getValue().toString();
-                    String email = datas.child("email").getValue().toString();
-                     pass = datas.child("password").getValue().toString();
+                    String email = currentUser.getEmail();
                     Name.setText(name);
                     Email.setText(email);
                 }
@@ -187,9 +153,6 @@ public class ParentProfileActivity extends AppCompatActivity {
         });
     }
 
-
-// ref.updateChildren()
-
   private void edit() {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("accounts");
@@ -200,15 +163,15 @@ public class ParentProfileActivity extends AppCompatActivity {
                 //loop through accounts to find the parent with that id
                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
 
-                    if(checkName(parentNewName)){
                         userSnapshot.getRef().child("name").setValue(parentNewName);
-                    }
-
-                    if(isValidPassword(parentNewPassword)){
-                        userSnapshot.getRef().child("password").setValue(parentNewPassword);
-                    }
-
-                    getUserData();
+                        currentUser.updateEmail(parentNewEmail).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                dataUpdateProgressBar.setVisibility(View.GONE);
+                                dataUpdated.setVisibility(View.VISIBLE);
+                                getUserData();
+                            }
+                        });
 
 
                 }
@@ -222,30 +185,25 @@ public class ParentProfileActivity extends AppCompatActivity {
 
     }
 
-
-
-
-    private boolean checkName(String name){
+  private boolean checkName(String name){
 
 
         if (name.equals("")){
             ErrorName.setText("* يرجى إدخال الاسم");
             ErrorName.setVisibility(View.VISIBLE);
-            ErrorPass.setVisibility(View.GONE);
             ErrorEmail.setVisibility(View.GONE);
             return false;}
 
         if(name.length() == 1){
             ErrorName.setText("* يرجى إدخال الاسم بشكل صحيح");
             ErrorName.setVisibility(View.VISIBLE);
-            ErrorPass.setVisibility(View.GONE);
             ErrorEmail.setVisibility(View.GONE);
             return false;}
 
         return true;
     }
 
-    private boolean isValidEmailId(String email){
+  private boolean isValidEmailId(String email){
 
         return Pattern.compile("^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
                 + "((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
@@ -255,49 +213,31 @@ public class ParentProfileActivity extends AppCompatActivity {
                 + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$").matcher(email).matches();
     }
 
-
-
-    private boolean CheckEmail(String _email) {
+  private boolean CheckEmail(String _email) {
 
         if (_email.equals("")){
             ErrorEmail.setText("* يرجى إدخال البريد الإلكتروني");
             ErrorEmail.setVisibility(View.VISIBLE);
             ErrorName.setVisibility(View.GONE);
-            ErrorPass.setVisibility(View.GONE);
             return false;}
         if(!isValidEmailId(_email.toString().trim())){
             ErrorEmail.setText("* يرجى كتابة البريد الالكتروني بشكل صحيح");
             ErrorEmail.setVisibility(View.VISIBLE);
             ErrorName.setVisibility(View.GONE);
-            ErrorPass.setVisibility(View.GONE);
             return false;
         }
-        myRef.orderByChild("email").equalTo(_email).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+        if(mAuth.getCurrentUser().getEmail().equals(_email)){
+            ErrorEmail.setText("* البريد الإلكتروني موجود مسبقاً");
+            ErrorEmail.setVisibility(View.VISIBLE);
+            ErrorName.setVisibility(View.GONE);
+        } else {
+            editEmail();
+        }
 
-                if(!dataSnapshot.exists()){
-                    editEmail();
-                }
-                else{
-                    ErrorEmail.setText("* البريد الإلكتروني موجود مسبقاً");
-                    ErrorEmail.setVisibility(View.VISIBLE);
-                    ErrorName.setVisibility(View.GONE);
-                    ErrorPass.setVisibility(View.GONE);
-                    return;
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                throw databaseError.toException();
-            }
-        });
         return true;
-
     }
-    private void editEmail() {
+
+  private void editEmail() {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("accounts");
         myRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -305,8 +245,8 @@ public class ParentProfileActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //loop through accounts to find the parent with that id
                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
-                        userSnapshot.getRef().child("email").setValue(parentNewEmail);
-                    getUserData();
+                        currentUser.updateEmail(parentNewEmail);
+                        getUserData();
                 }
             }
 

@@ -57,26 +57,25 @@ public class CharacterActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.char1:
-                uploadImage("https://g.top4top.io/p_1882egrhp1.png");
+                uploadImage("1");
                 finish();
                 break;
             case R.id.char2:
-                uploadImage("https://e.top4top.io/p_1881grkb51.png");
+                uploadImage("2");
                 finish();
                 break;
             case R.id.char3:
-                uploadImage("https://f.top4top.io/p_18812ewki2.png");
+                uploadImage("3");
                 finish();
                 break;
             case R.id.char4:
-                uploadImage("https://g.top4top.io/p_1881ipfcz3.png");
+                uploadImage("4");
                 finish();
                 break;
             case R.id.char5:
-                uploadImage("https://h.top4top.io/p_188108vyl4.png");
+                uploadImage("5");
                 finish();
                 break;
-
         }
     }
 
