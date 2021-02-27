@@ -84,7 +84,6 @@ public class MapActivity extends AppCompatActivity {
         });
 
         initialization();
-
         retrieveChildInfo();
         addLettersToDatabase();
 
@@ -406,7 +405,6 @@ public class MapActivity extends AppCompatActivity {
     }
 
     private void addLettersToDatabase() {
-//        id=new Date().getTime()+"";
         alphabetsRef.child(1+"").setValue(new Letter(1+"", "أ",  "الف", "إبرة", "أرنب","أناناس","أسد", "https://firebasestorage.googleapis.com/v0/b/abjadity-507d7.appspot.com/o/a1.png?alt=media&token=74440768-6f29-48a6-8628-ea279091c602","https://firebasestorage.googleapis.com/v0/b/abjadity-507d7.appspot.com/o/a2.png?alt=media&token=728ecb2a-b05d-4c42-9019-ec205c68ac30","https://firebasestorage.googleapis.com/v0/b/abjadity-507d7.appspot.com/o/a3.png?alt=media&token=b37cf0a8-babe-4338-9565-277bdba78946","https://firebasestorage.googleapis.com/v0/b/abjadity-507d7.appspot.com/o/a4.png?alt=media&token=aaccad27-9ad9-4741-af40-a037f5f91756","https://firebasestorage.googleapis.com/v0/b/abjadity-507d7.appspot.com/o/lettersChant%2F1.mp4?alt=media&token=0b22c6d3-d25a-4bdd-8563-e52b1317a14f","https://h.top4top.io/m_1871mcaee1.m4a","https://h.top4top.io/m_1871mcaee1.m4a","https://h.top4top.io/m_1871mcaee1.m4a","https://h.top4top.io/m_1871mcaee1.m4a"));
         alphabetsRef.child(2+"").setValue(new Letter(2+"", "ب",  "باء", "بطة", "برتقال","بطيخ","بحر", "https://firebasestorage.googleapis.com/v0/b/abjadity-507d7.appspot.com/o/b2.png?alt=media&token=76080664-b34d-49d5-962d-3b0a93540026","https://firebasestorage.googleapis.com/v0/b/abjadity-507d7.appspot.com/o/b1.png?alt=media&token=d87113dd-83fc-4df1-bdf0-7c41780e1f73","https://firebasestorage.googleapis.com/v0/b/abjadity-507d7.appspot.com/o/b3.png?alt=media&token=2c54c0bf-61fe-4bf2-a311-0364c2c482a7","https://firebasestorage.googleapis.com/v0/b/abjadity-507d7.appspot.com/o/b4.png?alt=media&token=c52a1bab-5a93-4502-82cd-f60507e4feb6", "https://g.top4top.io/m_1876got4b1.mp4","https://h.top4top.io/m_1871mcaee1.m4a","https://h.top4top.io/m_1871mcaee1.m4a","https://h.top4top.io/m_1871mcaee1.m4a","https://h.top4top.io/m_1871mcaee1.m4a"));
         alphabetsRef.child(3+"").setValue(new Letter(3+"", "ت",  "تاء", "تمساح", "تاج","تفاح","توت", "https://k.top4top.io/p_1880bplz71.png","https://g.top4top.io/p_1880b9fld1.png","https://i.top4top.io/p_1880j5id11.png","https://b.top4top.io/p_1880o2ihn1.png", "https://c.top4top.io/m_1876kjntw1.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
@@ -449,8 +447,6 @@ public class MapActivity extends AppCompatActivity {
         alphabetsRef.child(26+"").setValue(new Letter(26+"", "ه",  "هاء", "هرة", "هدية","هلال","هرم",  "","","","","https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
         alphabetsRef.child(27+"").setValue(new Letter(27+"", "و",  "واو", "وعاء", "ورقة","وزة","وردة",  "","","","","https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
         alphabetsRef.child(28+"").setValue(new Letter(28+"", "ي",  "ياء", "بطة", "بيت","بئر","بستان", "","","","", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
-
-
     }
 
     private void buttonsActivation() {
@@ -503,10 +499,7 @@ public class MapActivity extends AppCompatActivity {
 
     }
 
-
-
-
-        private void initialization() {
+    private void initialization() {
         buttonGray1=findViewById(R.id.buttonGray1);
         buttonGray2=findViewById(R.id.buttonGray2);
         buttonGray3=findViewById(R.id.buttonGray3);

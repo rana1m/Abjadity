@@ -21,8 +21,14 @@ import android.widget.TextView;
 
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -52,6 +58,7 @@ public class ChildProfileActivity extends AppCompatActivity {
     ImageView profileImg;
     Bundle bundle;
     StorageReference storageReference ;
+    FirebaseUser curretUser;
 
 
     @Override
@@ -129,15 +136,25 @@ public class ChildProfileActivity extends AppCompatActivity {
 
                                 for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
 
-                                    if (userSnapshot.child("password").getValue().toString().equals(EnterPass.getText().toString())){
-                                        Intent i = new Intent(ChildProfileActivity.this, MapActivity.class);
-                                        i.putExtra("childId",childId);
-                                        i.putExtra("parentId",parentId);
-                                        startActivity(i);
-                                        break;
-                                    } else {
-                                        errorMsg.setVisibility(View.VISIBLE);
-                                    }
+                                    AuthCredential credential = EmailAuthProvider
+                                            .getCredential(curretUser.getEmail(), EnterPass.getText().toString());
+                                    curretUser.reauthenticate(credential).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Intent i = new Intent(ChildProfileActivity.this, MapActivity.class);
+                                            i.putExtra("childId",childId);
+                                            i.putExtra("parentId",parentId);
+                                            startActivity(i);
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            errorMsg.setVisibility(View.VISIBLE);
+
+                                        }
+                                    });
+
+
                                 }
                             }
 
@@ -330,6 +347,7 @@ public class ChildProfileActivity extends AppCompatActivity {
         profileImg = findViewById(R.id.profileImg);
         bundle = getIntent().getExtras();
         storageReference = FirebaseStorage.getInstance().getReference();
+        curretUser= FirebaseAuth.getInstance().getCurrentUser();
 
 
 
