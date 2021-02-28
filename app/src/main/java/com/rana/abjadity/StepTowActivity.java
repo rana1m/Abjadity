@@ -16,6 +16,8 @@ import android.widget.VideoView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.IOException;
 
@@ -23,13 +25,11 @@ public class StepTowActivity extends AppCompatActivity {
 
     private static final String TAG = "StepTowActivity";
     FirebaseDatabase database;
-    DatabaseReference accountRef,alphabetsRef,digitsRef;
+    DatabaseReference alphabetsRef;
     String childId,parentId,childLevel,button;
     VideoView character;
     FloatingActionButton back,forward,play;
-    FrameLayout frameLayout;
     MediaPlayer mediaPlayer;
-
 
 
     @Override
@@ -55,9 +55,9 @@ public class StepTowActivity extends AppCompatActivity {
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent i = new Intent(StepTowActivity.this,ArActivity.class);
-//                i.putExtra("button",button);
-//                startActivity(i);
+                Intent i = new Intent(StepTowActivity.this,ArActivity.class);
+                i.putExtra("button",button);
+                startActivity(i);
             }
         });
 
@@ -89,7 +89,7 @@ public class StepTowActivity extends AppCompatActivity {
         Uri uri =Uri.parse(path);
         character.setVideoURI(uri);
         character.setZOrderOnTop(true);
-        //character.start();
+        character.start();
         character.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View sv, MotionEvent event) {

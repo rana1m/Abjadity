@@ -1,5 +1,6 @@
 package com.rana.abjadity;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,6 +20,8 @@ import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,7 +43,8 @@ public class StepOneActivity extends AppCompatActivity {
     VideoView letterChant,character;
     FloatingActionButton back,forward,play;
     FrameLayout letterChantFrame;
-    ImageView imageView ;
+    StorageReference storageReference ;
+
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -51,7 +55,7 @@ public class StepOneActivity extends AppCompatActivity {
 
 
         initialization();
-        Log.e(TAG,button+"");
+
 
         alphabetsRef.orderByChild("id").equalTo(button).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -61,7 +65,8 @@ public class StepOneActivity extends AppCompatActivity {
                 for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
                     Letter letter = userSnapshot.getValue(Letter.class);
                     Log.e(TAG,letter.getName());
-                    letterChatInitialization(letter.getVideo_URL());
+                    letterChatInitialization();
+
                 }
             }
 
@@ -120,17 +125,24 @@ public class StepOneActivity extends AppCompatActivity {
         });
     }
 
-    private void letterChatInitialization(String url) {
-        Uri uri =Uri.parse(url);
-        letterChant.setVideoURI(uri);
-        letterChant.setZOrderOnTop(true);
-        letterChant.start();
-        MediaController mediaController = new MediaController(this);
-        letterChant.setMediaController(mediaController);
-        mediaController.setAnchorView(letterChant);
-
+    private void letterChatInitialization() {
+        storageReference.child("lettersChant/"+button+".mp4").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                letterChant.setVideoURI(uri);
+                letterChant.setZOrderOnTop(true);
+                letterChant.start();
+                MediaController mediaController = new MediaController(StepOneActivity.this);
+                letterChant.setMediaController(mediaController);
+                mediaController.setAnchorView(letterChant);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
     }
-
 
     private void initialization () {
         database = FirebaseDatabase.getInstance();
@@ -147,6 +159,8 @@ public class StepOneActivity extends AppCompatActivity {
         forward=findViewById(R.id.forward);
         play=findViewById(R.id.playIcon);
         letterChantFrame=findViewById(R.id.letterChatFrame);
+        storageReference = FirebaseStorage.getInstance().getReference();
+
 
 
     }

@@ -405,30 +405,28 @@ public class MapActivity extends AppCompatActivity {
     }
 
     private void addLettersToDatabase() {
-        alphabetsRef.child(1+"").setValue(new Letter(1+"", "أ",  "الف", "إبرة", "أرنب","أناناس","أسد", "https://firebasestorage.googleapis.com/v0/b/abjadity-507d7.appspot.com/o/a1.png?alt=media&token=74440768-6f29-48a6-8628-ea279091c602","https://firebasestorage.googleapis.com/v0/b/abjadity-507d7.appspot.com/o/a2.png?alt=media&token=728ecb2a-b05d-4c42-9019-ec205c68ac30","https://firebasestorage.googleapis.com/v0/b/abjadity-507d7.appspot.com/o/a3.png?alt=media&token=b37cf0a8-babe-4338-9565-277bdba78946","https://firebasestorage.googleapis.com/v0/b/abjadity-507d7.appspot.com/o/a4.png?alt=media&token=aaccad27-9ad9-4741-af40-a037f5f91756","https://firebasestorage.googleapis.com/v0/b/abjadity-507d7.appspot.com/o/lettersChant%2F1.mp4?alt=media&token=0b22c6d3-d25a-4bdd-8563-e52b1317a14f","https://h.top4top.io/m_1871mcaee1.m4a","https://h.top4top.io/m_1871mcaee1.m4a","https://h.top4top.io/m_1871mcaee1.m4a","https://h.top4top.io/m_1871mcaee1.m4a"));
-        alphabetsRef.child(2+"").setValue(new Letter(2+"", "ب",  "باء", "بطة", "برتقال","بطيخ","بحر", "https://firebasestorage.googleapis.com/v0/b/abjadity-507d7.appspot.com/o/b2.png?alt=media&token=76080664-b34d-49d5-962d-3b0a93540026","https://firebasestorage.googleapis.com/v0/b/abjadity-507d7.appspot.com/o/b1.png?alt=media&token=d87113dd-83fc-4df1-bdf0-7c41780e1f73","https://firebasestorage.googleapis.com/v0/b/abjadity-507d7.appspot.com/o/b3.png?alt=media&token=2c54c0bf-61fe-4bf2-a311-0364c2c482a7","https://firebasestorage.googleapis.com/v0/b/abjadity-507d7.appspot.com/o/b4.png?alt=media&token=c52a1bab-5a93-4502-82cd-f60507e4feb6", "https://g.top4top.io/m_1876got4b1.mp4","https://h.top4top.io/m_1871mcaee1.m4a","https://h.top4top.io/m_1871mcaee1.m4a","https://h.top4top.io/m_1871mcaee1.m4a","https://h.top4top.io/m_1871mcaee1.m4a"));
-        alphabetsRef.child(3+"").setValue(new Letter(3+"", "ت",  "تاء", "تمساح", "تاج","تفاح","توت", "https://k.top4top.io/p_1880bplz71.png","https://g.top4top.io/p_1880b9fld1.png","https://i.top4top.io/p_1880j5id11.png","https://b.top4top.io/p_1880o2ihn1.png", "https://c.top4top.io/m_1876kjntw1.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
+        alphabetsRef.child(1+"").setValue(new Letter(1+"", "أ",  "الف", "إبرة", "أرنب","أناناس","أسد","أ","ـا","ـا"));
+        alphabetsRef.child(2+"").setValue(new Letter(2+"", "ب",  "باء", "بطة", "برتقال","بطيخ","بحر","بـ","ـبـ","ــب"));
+        alphabetsRef.child(3+"").setValue(new Letter(3+"", "ت",  "تاء", "تمساح", "تاج","تفاح","توت","تـ","ـتـ","ـت"));
 //
-        alphabetsRef.child(4+"").setValue(new Letter(4+"", "ث",  "ثاء", "ثعلب", "ثلج","ثلاجة","ثمار",  "https://d.top4top.io/p_1880rx3pm2.png","https://h.top4top.io/p_1880pirgk1.png","https://e.top4top.io/p_18807gc2f3.png","https://c.top4top.io/p_1880wbyox1.png","https://e.top4top.io/m_1876pq5nm2.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
-        alphabetsRef.child(5+"").setValue(new Letter(5+"", "ج",  "جيم", "جرس", "جوارب","جمل","جزر",  "https://j.top4top.io/p_1880qycn81.png","https://a.top4top.io/p_1880yojrp4.png","https://l.top4top.io/p_1880vha023.png","https://k.top4top.io/p_18808o9qd2.png","https://g.top4top.io/m_1876zjdvz3.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
-        alphabetsRef.child(6+"").setValue(new Letter(6+"", "ح",  "حاء", "حائط", "حذاء","حجر","حطب",  "https://h.top4top.io/p_18809a64a1.png","https://d.top4top.io/p_1880ekq061.png","https://f.top4top.io/p_1880jsvp21.png","https://a.top4top.io/p_1880svcnr1.png","https://h.top4top.io/m_1877btm2l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
-        alphabetsRef.child(7+"").setValue(new Letter(7+"", "خ",  "خاء", "خيمة", "خضار","خاتم","خيل",  "https://g.top4top.io/p_1880f4t0g3.png","https://h.top4top.io/p_188071r4t4.png","https://f.top4top.io/p_1880zr13j2.png","https://e.top4top.io/p_1880v2hu01.png","https://i.top4top.io/m_187702dsy2.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
-        alphabetsRef.child(8+"").setValue(new Letter(8+"", "د",  "دال", "دب", "دراجة","دلفين","دجاجة",  "https://e.top4top.io/p_1880ah3421.png","https://f.top4top.io/p_18806p8c32.png","https://a.top4top.io/p_18807svpk9.png","https://b.top4top.io/p_1880xi17810.png","https://j.top4top.io/m_18777xqvm3.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
+        alphabetsRef.child(4+"").setValue(new Letter(4+"", "ث",  "ثاء", "ثعلب", "ثلج","ثلاجة","ثمار","ثـ","ـثـ","ـث"));
+        alphabetsRef.child(5+"").setValue(new Letter(5+"", "ج",  "جيم", "جرس", "جوارب","جمل","جزر","جـ","ـجـ","ــج"));
+        alphabetsRef.child(6+"").setValue(new Letter(6+"", "ح",  "حاء", "حائط", "حذاء","حجر","حطب","حـ","ـحـ","ــح"));
+        alphabetsRef.child(7+"").setValue(new Letter(7+"", "خ",  "خاء", "خيمة", "خضار","خاتم","خيل",  "خـ","ـخـ","ــخ"));
+        alphabetsRef.child(8+"").setValue(new Letter(8+"", "د",  "دال", "دب", "دراجة","دلفين","دجاجة","د","ـد","ـد"));
 
-        alphabetsRef.child(9+"").setValue(new Letter(9+"", "ذ",  "ذال", "ذهب", "ذرة","ذئب","ذبابة",  "https://l.top4top.io/p_1880jk30f8.png","https://k.top4top.io/p_1880cctul7.png","https://j.top4top.io/p_1880rrp7d6.png","https://i.top4top.io/p_1880jqxbr5.png","https://k.top4top.io/m_1877p7esq4.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
-        alphabetsRef.child(10+"").setValue(new Letter(10+"", "ر",  "راء", "ريشة", "رغيف","رمان","رأس",  "https://j.top4top.io/p_18805556b6.png","https://i.top4top.io/p_1880v6zy55.png","https://h.top4top.io/p_1880k7dp24.png","https://g.top4top.io/p_1880dlvun3.png","https://a.top4top.io/m_18774y8pl1.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
-        alphabetsRef.child(11+"").setValue(new Letter(11+"", "ز",  "زاء", "زورق", "زرافة","زهرة","زيت",  "https://c.top4top.io/p_1880b6esx10.png","https://b.top4top.io/p_1880qplwm9.png","https://a.top4top.io/p_18801d7dz8.png","https://k.top4top.io/p_1880zaz7m7.png","https://b.top4top.io/m_1877k12zp2.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
-        alphabetsRef.child(12+"").setValue(new Letter(12+"", "س",  "سين", "سفينة", "سيارة","سياج","سمك", "","","","", "https://c.top4top.io/m_1877bj04j3.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
-        alphabetsRef.child(13+"").setValue(new Letter(13+"", "ش",  "شين", "شرطي", "شجرة","شمعة","شمس",  "","","","","https://e.top4top.io/m_1877tlwyo4.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
+        alphabetsRef.child(9+"").setValue(new Letter(9+"", "ذ",  "ذال", "ذهب", "ذرة","ذئب","ذبابة","ذ","ـذ","ـذ"));
+        alphabetsRef.child(10+"").setValue(new Letter(10+"", "ر",  "راء", "ريشة", "رغيف","رمان","رأس","ر","ـر","ـر"));
+        alphabetsRef.child(11+"").setValue(new Letter(11+"", "ز",  "زاء", "زورق", "زرافة","زهرة","زيت", "ز","ـز","ـز"));
+        alphabetsRef.child(12+"").setValue(new Letter(12+"", "س",  "سين", "سفينة", "سيارة","سياج","سمك","سـ","ـسـ","ـس"));
+        alphabetsRef.child(13+"").setValue(new Letter(13+"", "ش",  "شين", "شرطي", "شجرة","شمعة","شمس","شـ","ـشـ","ـش"));
 
-        alphabetsRef.child(14+"").setValue(new Letter(14+"", "ص",  "صاد", "صاروخ", "صنبور","صورة","صندوق",  "","","","","https://c.top4top.io/m_1877jlq7y1.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
-        alphabetsRef.child(15+"").setValue(new Letter(15+"", "ض",  "ضاد", "ضماد", "ضوء","ضفدع","ضابط",  "","","","","https://d.top4top.io/m_1877ixrvs2.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
-        alphabetsRef.child(16+"").setValue(new Letter(16+"", "ط",  "طاء", "طفل", "طاووس","طاولة","طريق", "","","","", "https://e.top4top.io/m_1877cg6yb3.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
-        alphabetsRef.child(17+"").setValue(new Letter(17+"", "ظ",  "'ظاء'", "ظبي", "ظرف","ظفر","ظهر",  "","","","","https://f.top4top.io/m_1877zz07o4.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
+        alphabetsRef.child(14+"").setValue(new Letter(14+"", "ص",  "صاد", "صاروخ", "صنبور","صورة","صندوق", "صـ","ـصـ","ـص"));
+        alphabetsRef.child(15+"").setValue(new Letter(15+"", "ض",  "ضاد", "ضماد", "ضوء","ضفدع","ضابط","ضـ","ـضـ","ـض"));
+        alphabetsRef.child(16+"").setValue(new Letter(16+"", "ط",  "طاء", "طفل", "طاووس","طاولة","طريق","طـ","ـطـ","ـط"));
+        alphabetsRef.child(17+"").setValue(new Letter(17+"", "ظ",  "'ظاء'", "ظبي", "ظرف","ظفر","ظهر", "ظـ","ـظـ","ـظ"));
 
-        alphabetsRef.child(18+"").setValue(new Letter(18+"", "ع",  "عين", "عين", "علبة","عسل","عنب", "","","","", "https://g.top4top.io/m_18776vu2p5.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
-
-
+        alphabetsRef.child(18+"").setValue(new Letter(18+"", "ع",  "عين", "عين", "علبة","عسل","عنب","عـ","ـعـ","ـع"));
 
 
 
@@ -436,17 +434,19 @@ public class MapActivity extends AppCompatActivity {
 
 
 
-        alphabetsRef.child(19+"").setValue(new Letter(19+"", "غ",  "غين", "غواص", "غيوم","غرس","غابة",  "","","","","https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
-        alphabetsRef.child(20+"").setValue(new Letter(20+"", "ف",  "فاء", "فضاء", "فواكة","فأر","فأس",  "","","","","https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
-        alphabetsRef.child(21+"").setValue(new Letter(21+"", "ق",  "قاف", "قلم", "قبعة","قميص","قمر",  "","","","","https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
-        alphabetsRef.child(22+"").setValue(new Letter(22+"", "ك",  "كاف", "كاميرا", "كرسي","كعكة","كمثرى", "","","","", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
 
-        alphabetsRef.child(23+"").setValue(new Letter(23+"", "ل",  "لام", "لوز", "لهب","لعبة","ليمون", "","","","", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
-        alphabetsRef.child(24+"").setValue(new Letter(24+"", "م",  "ميم", "ماء", "مظلة","ملعقة","مقص", "","","","", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
-        alphabetsRef.child(25+"").setValue(new Letter(25+"", "ن",  "نون", "نافذة", "نهر","نمر","نورس",  "","","","","https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
-        alphabetsRef.child(26+"").setValue(new Letter(26+"", "ه",  "هاء", "هرة", "هدية","هلال","هرم",  "","","","","https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
-        alphabetsRef.child(27+"").setValue(new Letter(27+"", "و",  "واو", "وعاء", "ورقة","وزة","وردة",  "","","","","https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
-        alphabetsRef.child(28+"").setValue(new Letter(28+"", "ي",  "ياء", "بطة", "بيت","بئر","بستان", "","","","", "https://o.top4top.io/m_18659gd3l1.mp4","https://h.top4top.io/m_1871mcaee1.m4a","","",""));
+
+        alphabetsRef.child(19+"").setValue(new Letter(19+"", "غ",  "غين", "غواص", "غيوم","غرس","غابة","غـ","ـغـ","ـغ"));
+        alphabetsRef.child(20+"").setValue(new Letter(20+"", "ف",  "فاء", "فضاء", "فواكة","فأر","فأس",  "فـ","ـفـ","ـف"));
+        alphabetsRef.child(21+"").setValue(new Letter(21+"", "ق",  "قاف", "قلم", "قبعة","قميص","قمر","قـ","ـقـ","ـق"));
+        alphabetsRef.child(22+"").setValue(new Letter(22+"", "ك",  "كاف", "كاميرا", "كرسي","كعكة","كمثرى","كـ","ـكـ","ـك"));
+
+        alphabetsRef.child(23+"").setValue(new Letter(23+"", "ل",  "لام", "لوز", "لهب","لعبة","ليمون","لـ","ـلـ","ـل"));
+        alphabetsRef.child(24+"").setValue(new Letter(24+"", "م",  "ميم", "ماء", "مظلة","ملعقة","مقص","مـ","ـمـ","ـم"));
+        alphabetsRef.child(25+"").setValue(new Letter(25+"", "ن",  "نون", "نافذة", "نهر","نمر","نورس", "نـ","ـنـ","ـن"));
+        alphabetsRef.child(26+"").setValue(new Letter(26+"", "ه",  "هاء", "هرة", "هدية","هلال","هرم","هـ","ـهـ","ـه"));
+        alphabetsRef.child(27+"").setValue(new Letter(27+"", "و",  "واو", "وعاء", "ورقة","وزة","وردة","و","ـو","ـو"));
+        alphabetsRef.child(28+"").setValue(new Letter(28+"", "ي",  "ياء", "ياسمين", "يقطين","يد","يمامة","يـ","ـيـ","ـي"));
     }
 
     private void buttonsActivation() {

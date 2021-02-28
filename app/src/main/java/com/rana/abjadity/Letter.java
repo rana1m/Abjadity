@@ -2,31 +2,13 @@ package com.rana.abjadity;
 
 public class Letter {
 
-    String id,name,chant,word1,word2,word3,word4,image1,image2,image3,image4,video_URL,voice_URL1,voice_URL2,voice_URL3,voice_URL4;
+    String id,name,chant,word1,word2,word3,word4,firstLetter,middleLetter,lastLetter;
 
     public Letter() {
     }
 
-    public Letter(Letter l) {
-        this.id = l.id;
-        this.name = l.name;
-        this.chant = l.chant;
-        this.word1 = l.word1;
-        this.word2 = l.word2;
-        this.word3 = l.word3;
-        this.word4 = l.word4;
-        this.image1 = l.image1;
-        this.image2 = l.image2;
-        this.image3 = l.image3;
-        this.image4 = l.image4;
-        this.video_URL = l.video_URL;
-        this.voice_URL1 = l.voice_URL1;
-        this.voice_URL2 = l.voice_URL2;
-        this.voice_URL3 = l.voice_URL3;
-        this.voice_URL4 = l.voice_URL4;
-    }
 
-    public Letter(String id, String name, String chant, String word1, String word2, String word3, String word4, String image1, String image2, String image3, String image4, String video_URL, String voice_URL1, String voice_URL2, String voice_URL3, String voice_URL4) {
+    public Letter(String id, String name, String chant, String word1, String word2, String word3, String word4, String firstLetter, String middleLetter, String lastLetter ) {
         this.id = id;
         this.name = name;
         this.chant = chant;
@@ -34,15 +16,10 @@ public class Letter {
         this.word2 = word2;
         this.word3 = word3;
         this.word4 = word4;
-        this.image1 = image1;
-        this.image2 = image2;
-        this.image3 = image3;
-        this.image4 = image4;
-        this.video_URL = video_URL;
-        this.voice_URL1 = voice_URL1;
-        this.voice_URL2 = voice_URL2;
-        this.voice_URL3 = voice_URL3;
-        this.voice_URL4 = voice_URL4;
+        this.firstLetter = firstLetter;
+        this.middleLetter = middleLetter;
+        this.lastLetter = lastLetter;
+
     }
 
     public String getId() {
@@ -101,76 +78,27 @@ public class Letter {
         this.word4 = word4;
     }
 
-    public String getVideo_URL() {
-        return video_URL;
+    public String getFirstLetter() {
+        return firstLetter;
     }
 
-    public String getImage1() {
-        return image1;
+    public void setFirstLetter(String firstLetter) {
+        this.firstLetter = firstLetter;
     }
 
-    public void setImage1(String image1) {
-        this.image1 = image1;
+    public String getMiddleLetter() {
+        return middleLetter;
     }
 
-    public String getImage2() {
-        return image2;
+    public void setMiddleLetter(String middleLetter) {
+        this.middleLetter = middleLetter;
     }
 
-    public void setImage2(String image2) {
-        this.image2 = image2;
+    public String getLastLetter() {
+        return lastLetter;
     }
 
-    public String getImage3() {
-        return image3;
+    public void setLastLetter(String lastLetter) {
+        this.lastLetter = lastLetter;
     }
-
-    public void setImage3(String image3) {
-        this.image3 = image3;
-    }
-
-    public String getImage4() {
-        return image4;
-    }
-
-    public void setImage4(String image4) {
-        this.image4 = image4;
-    }
-
-    public void setVideo_URL(String video_URL) {
-        this.video_URL = video_URL;
-    }
-
-    public String getVoice_URL1() {
-        return voice_URL1;
-    }
-
-    public void setVoice_URL1(String voice_URL1) {
-        this.voice_URL1 = voice_URL1;
-    }
-
-    public String getVoice_URL2() {
-        return voice_URL2;
-    }
-
-    public void setVoice_URL2(String voice_URL2) {
-        this.voice_URL2 = voice_URL2;
-    }
-
-    public String getVoice_URL3() {
-        return voice_URL3;
-    }
-
-    public void setVoice_URL3(String voice_URL3) {
-        this.voice_URL3 = voice_URL3;
-    }
-
-    public String getVoice_URL4() {
-        return voice_URL4;
-    }
-
-    public void setVoice_URL4(String voice_URL4) {
-        this.voice_URL4 = voice_URL4;
-    }
-
 }

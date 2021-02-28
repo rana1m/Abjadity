@@ -143,7 +143,7 @@ public class StepSixActivity extends AppCompatActivity {
         forward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(StepSixActivity.this, StepFiveActivity.class);
+                Intent i = new Intent(StepSixActivity.this, StepSevenActivity.class);
                 i.putExtra("childId", childId);
                 i.putExtra("parentId", parentId);
                 i.putExtra("childLevel", childLevel);

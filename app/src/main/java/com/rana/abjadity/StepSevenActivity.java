@@ -3,7 +3,6 @@ package com.rana.abjadity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -26,30 +25,25 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
+public class StepSevenActivity extends AppCompatActivity {
 
-public class StepFourActivity extends AppCompatActivity {
-
-    private static final String TAG = "StepFourActivity";
+    private static final String TAG = "StepSevenActivity";
     FirebaseDatabase database;
     DatabaseReference accountRef,alphabetsRef,digitsRef;
     String childId,parentId,childLevel,button;
     VideoView character;
     FloatingActionButton back,forward;
-    TextView textView1,textView2,textView3,textView4;
+    TextView layout1,layout2,layout3;
     StorageReference storageReference ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_step_four);
-
+        setContentView(R.layout.activity_step_seven);
 
         initialization();
         characterInitialization();
-        
 
         alphabetsRef.orderByChild("id").equalTo(button).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -60,12 +54,16 @@ public class StepFourActivity extends AppCompatActivity {
                     Letter letter = userSnapshot.getValue(Letter.class);
                     Log.e(TAG,letter.getName());
 
-                    loadImages(1);
-                    loadImages(2);
-                    loadImages(3);
-                    loadImages(4);
-                    loadWords(letter.getWord1(),letter.getWord2(),letter.getWord3(),letter.getWord4());
-                    
+//                    loadImages(1);
+//                    loadImages(2);
+//                    loadImages(3);
+//                    loadImages(4);
+                    loadWords(letter.getFirstLetter(),layout1);
+                    loadWords(letter.getMiddleLetter(),layout2);
+                    loadWords(letter.getLastLetter(),layout3);
+
+
+
                 }
             }
             @Override
@@ -74,11 +72,10 @@ public class StepFourActivity extends AppCompatActivity {
             }
         });
 
-
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(StepFourActivity.this,StepTowActivity.class);
+                Intent i = new Intent(StepSevenActivity.this,StepTowActivity.class);
                 startActivity(i);
             }
         });
@@ -86,7 +83,7 @@ public class StepFourActivity extends AppCompatActivity {
         forward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(StepFourActivity.this,StepFiveActivity.class);
+                Intent i = new Intent(StepSevenActivity.this, StepEightActivity.class);
                 i.putExtra("childId",childId);
                 i.putExtra("parentId",parentId);
                 i.putExtra("childLevel",childLevel);
@@ -96,11 +93,8 @@ public class StepFourActivity extends AppCompatActivity {
         });
     }
 
-    private void loadWords(String word1, String word2, String word3, String word4) {
-        textView1.setText(word1);
-        textView2.setText(word2);
-        textView3.setText(word3);
-        textView4.setText(word4);
+    private void loadWords(String firstLetter, TextView layout) {
+         layout.setText(firstLetter);
     }
 
 
@@ -120,7 +114,6 @@ public class StepFourActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private void characterInitialization() {
         String path = "android.resource://"+getPackageName()+"/"+ R.raw.v2;
@@ -149,10 +142,9 @@ public class StepFourActivity extends AppCompatActivity {
         character=findViewById(R.id.character);
         back=findViewById(R.id.back);
         forward=findViewById(R.id.forward);
-        textView1=findViewById(R.id.textView1);
-        textView2=findViewById(R.id.textView2);
-        textView3=findViewById(R.id.textView3);
-        textView4=findViewById(R.id.textView4);
+        layout1=findViewById(R.id.layout1);
+        layout2=findViewById(R.id.layout2);
+        layout3=findViewById(R.id.layout3);
         storageReference = FirebaseStorage.getInstance().getReference();
 
     }

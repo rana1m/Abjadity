@@ -1,5 +1,6 @@
 package com.rana.abjadity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -20,16 +21,21 @@ import android.widget.AbsoluteLayout;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.MediaController;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -41,14 +47,15 @@ public class StepThreeActivity extends AppCompatActivity {
     private static final String TAG = "StepThreeActivity";
     FirebaseDatabase database;
     DatabaseReference accountRef,alphabetsRef,digitsRef;
-    String childId,parentId,childLevel,button,randomLetter1,randomLetter2,correctLetter;
+    String childId,parentId,childLevel,button,correctLetter;
     VideoView character;
     FloatingActionButton back,forward;
-    ImageView imageView1,imageView2,imageView3,imageView4;
     int correctIndex;
     Random rand;
     TextView textView1,textView2,textView3;
     ArrayList<String> letters;
+    StorageReference storageReference ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +77,10 @@ public class StepThreeActivity extends AppCompatActivity {
                     Log.e(TAG,letter.getName());
                     correctLetter=letter.getName();
 
-                    loadImages(letter.getImage1(),letter.getImage2(),letter.getImage3(),letter.getImage4());
+                    loadImages(1);
+                    loadImages(2);
+                    loadImages(3);
+                    loadImages(4);
                     loadChoices(correctLetter);
 
                     textView1.setOnClickListener(new View.OnClickListener() {
@@ -155,11 +165,22 @@ public class StepThreeActivity extends AppCompatActivity {
     }
 
 
-    private void loadImages(String image1, String image2, String image3, String image4) {
-        Picasso.get().load(image1).into(imageView1);
-        Picasso.get().load(image2).into(imageView2);
-        Picasso.get().load(image3).into(imageView3);
-        Picasso.get().load(image4).into(imageView4);
+    private void loadImages(int index) {
+        storageReference.child("/images/"+button+"/"+index+".png").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri)
+                        .into((ImageView) findViewById(getResources()
+                                .getIdentifier("imageView" + index, "id",getPackageName())
+                        ));
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
+
     }
 
 
@@ -190,22 +211,15 @@ public class StepThreeActivity extends AppCompatActivity {
         character=findViewById(R.id.character);
         back=findViewById(R.id.back);
         forward=findViewById(R.id.forward);
-        imageView1=findViewById(R.id.imageView1);
-        imageView2=findViewById(R.id.imageView2);
-        imageView3=findViewById(R.id.imageView3);
-        imageView4=findViewById(R.id.imageView4);
         textView1=findViewById(R.id.text1);
         textView2=findViewById(R.id.text2);
         textView3=findViewById(R.id.text3);
         rand = new Random();
+        storageReference = FirebaseStorage.getInstance().getReference();
         letters=new ArrayList<String>(Arrays.asList(
                 "أ","ب","ت","ث","ج","ح","خ","د","ذ","ر",
                 "ز","س","ش","ص","ض","ط","ظ","ع","غ","ق","ك","ل",
                 "م","ن","ه","و","ي"));
-
-
-
-
 
     }
 }
