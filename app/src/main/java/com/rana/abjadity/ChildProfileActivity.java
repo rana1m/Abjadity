@@ -186,12 +186,11 @@ public class ChildProfileActivity extends AppCompatActivity {
                 i.putExtra("childId",childId);
                 i.putExtra("parentId",parentId);
                 startActivity(i);
-
+                if(bundle!= null){
+                    UpdateProfileImg();}
                 }
         });
-        if(bundle!= null){
-            UpdateProfileImg();
-            retrieveChildInfo();}
+//            retrieveChildInfo();}
 
         deleteChildAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -318,7 +317,6 @@ public class ChildProfileActivity extends AppCompatActivity {
     }
 
     private void UpdateProfileImg(){
-        retrieveChildInfo();
         if(bundle!= null){
             int res_image = bundle.getInt("char");
             if(res_image != 0){

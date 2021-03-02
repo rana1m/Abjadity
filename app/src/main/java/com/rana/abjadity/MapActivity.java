@@ -48,8 +48,8 @@ public class MapActivity extends AppCompatActivity {
     Intent i;
     Intent i2;
     Button buttonGray1,buttonGray2,buttonGray3,buttonGray4,buttonGray5,buttonGray6,buttonGray7,buttonGray8,buttonGray9,buttonGray10,buttonGray11,buttonGray12,buttonGray13,buttonGray14,
-    buttonGray15,buttonGray16,buttonGray17,buttonGray18,buttonGray19,buttonGray20,buttonGray21,buttonGray22,buttonGray23,buttonGray24,buttonGray25,buttonGray26,buttonGray27,buttonGray28,
-    buttonGray29,buttonGray30,buttonGray31,buttonGray32,buttonGray33,buttonGray34,buttonGray35,buttonGray36,buttonGray37,buttonGray38;
+            buttonGray15,buttonGray16,buttonGray17,buttonGray18,buttonGray19,buttonGray20,buttonGray21,buttonGray22,buttonGray23,buttonGray24,buttonGray25,buttonGray26,buttonGray27,buttonGray28,
+            buttonGray29,buttonGray30,buttonGray31,buttonGray32,buttonGray33,buttonGray34,buttonGray35,buttonGray36,buttonGray37,buttonGray38;
     BottomNavigationView bottomNavigationView;
 
     @Override
@@ -86,6 +86,7 @@ public class MapActivity extends AppCompatActivity {
         initialization();
         retrieveChildInfo();
         addLettersToDatabase();
+        addNumbersToDatabase();
 
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -448,6 +449,22 @@ public class MapActivity extends AppCompatActivity {
         alphabetsRef.child(27+"").setValue(new Letter(27+"", "و",  "واو", "وعاء", "ورقة","وزة","وردة","و","ـو","ـو"));
         alphabetsRef.child(28+"").setValue(new Letter(28+"", "ي",  "ياء", "ياسمين", "يقطين","يد","يمامة","يـ","ـيـ","ـي"));
     }
+    private void addNumbersToDatabase() {
+
+        digitsRef.child(1+"").setValue(new Digit(1+"","١","واحد"));
+        digitsRef.child(2+"").setValue(new Digit(2+"","٢","اثنان"));
+        digitsRef.child(3+"").setValue(new Digit(3+"","٣","ثلاثة"));
+        digitsRef.child(4+"").setValue(new Digit(4+"","٤","أربعة"));
+        digitsRef.child(5+"").setValue(new Digit(5+"","٥","خمسة"));
+
+        digitsRef.child(6+"").setValue(new Digit(6+"","٦","ستة"));
+        digitsRef.child(7+"").setValue(new Digit(7+"","٧","سبعة"));
+        digitsRef.child(8+"").setValue(new Digit(8+"","٨","ثمانية"));
+        digitsRef.child(9+"").setValue(new Digit(9+"","٩","تسعة"));
+        digitsRef.child(10+"").setValue(new Digit(10+"","١٠","عشرة"));
+
+
+    }
 
     private void buttonsActivation() {
         int intLevel=Integer.parseInt(level);
@@ -461,8 +478,8 @@ public class MapActivity extends AppCompatActivity {
         //set current level
         intLevel++;
         if(intLevel!=29){
-        findViewById(getResources().getIdentifier("buttonGray" + intLevel, "id",this.getPackageName())).
-                setBackgroundResource( getResources().getIdentifier("button_blue" + intLevel, "mipmap",this.getPackageName()));
+            findViewById(getResources().getIdentifier("buttonGray" + intLevel, "id",this.getPackageName())).
+                    setBackgroundResource( getResources().getIdentifier("button_blue" + intLevel, "mipmap",this.getPackageName()));
         }
 
     }
@@ -528,16 +545,16 @@ public class MapActivity extends AppCompatActivity {
         buttonGray26=findViewById(R.id.buttonGray26);
         buttonGray27=findViewById(R.id.buttonGray27);
         buttonGray28=findViewById(R.id.buttonGray28);
-            buttonGray29=findViewById(R.id.buttonGray29);
-            buttonGray30=findViewById(R.id.buttonGray30);
-            buttonGray31=findViewById(R.id.buttonGray31);
-            buttonGray32=findViewById(R.id.buttonGray32);
-            buttonGray33=findViewById(R.id.buttonGray33);
-            buttonGray34=findViewById(R.id.buttonGray34);
-            buttonGray35=findViewById(R.id.buttonGray35);
-            buttonGray36=findViewById(R.id.buttonGray36);
-            buttonGray37=findViewById(R.id.buttonGray37);
-            buttonGray38=findViewById(R.id.buttonGray38);
+        buttonGray29=findViewById(R.id.buttonGray29);
+        buttonGray30=findViewById(R.id.buttonGray30);
+        buttonGray31=findViewById(R.id.buttonGray31);
+        buttonGray32=findViewById(R.id.buttonGray32);
+        buttonGray33=findViewById(R.id.buttonGray33);
+        buttonGray34=findViewById(R.id.buttonGray34);
+        buttonGray35=findViewById(R.id.buttonGray35);
+        buttonGray36=findViewById(R.id.buttonGray36);
+        buttonGray37=findViewById(R.id.buttonGray37);
+        buttonGray38=findViewById(R.id.buttonGray38);
 
 
 
@@ -550,9 +567,9 @@ public class MapActivity extends AppCompatActivity {
         desiredChild=new Child();
         bottomNavigationView=findViewById(R.id.bottom_navigation);
         i = new Intent(MapActivity.this, StepOneActivity.class);
-            i.putExtra("childId",childId);
-            i.putExtra("parentId",parentId);
-        i2 = new Intent(MapActivity.this, StepOneNumActivity.class);
+        i.putExtra("childId",childId);
+        i.putExtra("parentId",parentId);
+        i2 = new Intent(MapActivity.this, OneActivity.class);
 
     }
 }
