@@ -28,7 +28,8 @@
         android:theme="@style/Theme.Abjadity"
         android:usesCleartextTraffic="false"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".OneActivity"></activity>
+        <activity android:name=".StepFourNumActivity"></activity>
+        <activity android:name=".OneActivity" />
         <activity android:name=".StepSixActivity" />
         <activity android:name=".StepFiveActivity" />
         <activity android:name=".ParentProfileActivity" />
