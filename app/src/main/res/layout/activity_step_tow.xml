@@ -7,69 +7,77 @@
     android:background="@drawable/image2"
     tools:context=".StepTowActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        android:layout_width="374dp"
-        android:layout_height="635dp"
-        android:background="@drawable/card"
-        android:backgroundTint="@color/white"
-        android:elevation="@dimen/cardview_default_elevation"
-        android:padding="13dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/constraintLayout2"
+      android:layout_width="374dp"
+      android:layout_height="635dp"
+      android:background="@drawable/ar_card"
+      android:backgroundTint="@color/white"
+      android:elevation="@dimen/cardview_default_elevation"
+      android:padding="13dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.486"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.302">
+
+
+    <android.opengl.GLSurfaceView
+        android:id="@+id/surfaceview"
+        android:layout_width="352dp"
+        android:layout_height="605dp"
+        android:layout_gravity="top"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/playIcon"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
-            android:layout_marginTop="67dp"
-            android:clickable="true"
-            app:fabCustomSize="180dp"
-            app:maxImageSize="170dp"
-            android:backgroundTint="#285588"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/play_foreground" />
+  </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <VideoView
-            android:id="@+id/character"
-            android:layout_width="218dp"
-            android:layout_height="246dp"
-            android:backgroundTint="@color/white"
-            android:clickable="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+      android:id="@+id/back"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="24dp"
+      android:layout_marginBottom="11dp"
+      android:backgroundTint="@color/yellow"
+      android:clickable="true"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+      app:srcCompat="@drawable/back" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginBottom="11dp"
-            android:backgroundTint="@color/yellow"
-            android:clickable="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/back" />
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+      android:id="@+id/forward"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="24dp"
+      android:layout_marginBottom="11dp"
+      android:backgroundTint="@color/yellow"
+      android:clickable="true"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+      app:srcCompat="@drawable/forward" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/forward"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="11dp"
-            android:backgroundTint="@color/yellow"
-            android:clickable="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/forward" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+  <Button
+      android:id="@+id/settings_button"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentTop="true"
+      android:layout_alignParentEnd="true"
+      android:layout_marginTop="8dp"
+      android:background="@drawable/round_button"
+      android:padding="14dp"
+      android:textSize="20dp"
+      android:textStyle="bold"
+      android:text="حاول مرة أخرى!"
+      app:backgroundTint="@color/yellow"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

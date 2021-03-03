@@ -1,17 +1,24 @@
 package com.rana.abjadity.common.helpers;
 
 import android.app.Activity;
+import android.graphics.Typeface;
+import android.os.Build;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
+
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
+import com.rana.abjadity.R;
 
 /**
  * Helper to manage the sample snackbar. Hides the Android boilerplate code, and exposes simpler
  * methods.
  */
 public final class SnackbarHelper {
-  private static final int BACKGROUND_COLOR = 0xbf323232;
+  private static final int BACKGROUND_COLOR = 0;
   private Snackbar messageSnackbar;
   private enum DismissBehavior { HIDE, SHOW, FINISH };
   private int maxLines = 2;
@@ -70,10 +77,8 @@ public final class SnackbarHelper {
   /**
    * Sets the view that will be used to find a suitable parent view to hold the Snackbar view.
    *
-   * <p>To use the root layout ({@link android.R.id.content}), pass in {@code null}.
    *
-   * @param snackbarView the view to pass to {@link
-   *     com.google.android.material.snackbar.Snackbar#make(…)} which will be used to find a
+   * @param snackbarView the view to pass to  which will be used to find a
    *     suitable parent, which is a {@link androidx.coordinatorlayout.widget.CoordinatorLayout}, or
    *     the window decor's content view, whichever comes first.
    */
@@ -83,6 +88,7 @@ public final class SnackbarHelper {
 
   private void show(
       final Activity activity, final String message, final DismissBehavior dismissBehavior) {
+
     activity.runOnUiThread(
         new Runnable() {
           @Override
@@ -94,7 +100,17 @@ public final class SnackbarHelper {
                         : snackbarView,
                     message,
                     Snackbar.LENGTH_INDEFINITE);
-            messageSnackbar.getView().setBackgroundColor(BACKGROUND_COLOR);
+              View view = messageSnackbar.getView();
+              TextView tv = (TextView) view.findViewById(com.google.android.material.R.id.snackbar_text);
+              tv.setTypeface(tv.getTypeface(), Typeface.BOLD);
+
+              if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                  tv.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+              } else {
+                  tv.setGravity(Gravity.RIGHT);
+              }
+              messageSnackbar.getView().setBackgroundColor(BACKGROUND_COLOR);
+            messageSnackbar.setTextColor(0xFF285588);
             if (dismissBehavior != DismissBehavior.HIDE) {
               messageSnackbar.setAction(
                   "Dismiss",

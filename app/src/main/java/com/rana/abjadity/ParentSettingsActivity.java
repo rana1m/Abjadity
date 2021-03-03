@@ -75,6 +75,8 @@ public class ParentSettingsActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         FirebaseAuth.getInstance().signOut();
                         Intent logout = new Intent(getApplicationContext(), MainActivity.class);
+                        logout.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        logout.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(logout);
                         finish();
                     }
@@ -166,7 +168,6 @@ public class ParentSettingsActivity extends AppCompatActivity {
   //  }
   private void initialization() {
       parentId = getIntent().getStringExtra("parentId");
-      backIcon = findViewById(R.id.backIcon);
       logout = findViewById(R.id.logouts);
       accountInfo = findViewById(R.id.accountInfo);
   }

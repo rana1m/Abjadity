@@ -246,7 +246,7 @@
                         <Button
                             android:id="@+id/DeleteChildPage"
                             android:layout_width="wrap_content"
-                            android:layout_height="62dp"
+                            android:layout_height="wrap_content"
                             android:background="@drawable/round_button"
                             android:backgroundTint="@color/pink"
                             android:padding="10dp"
@@ -260,7 +260,7 @@
                         <Button
                             android:id="@+id/GoToChildPage"
                             android:layout_width="wrap_content"
-                            android:layout_height="62dp"
+                            android:layout_height="wrap_content"
                             android:background="@drawable/round_button"
                             android:backgroundTint="@color/yellow"
                             android:padding="10dp"

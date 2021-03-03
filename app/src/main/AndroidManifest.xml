@@ -34,7 +34,6 @@
         <activity android:name=".ParentProfileActivity" />
         <activity android:name=".StepFourActivity" />
         <activity android:name=".StepThreeActivity" />
-        <activity android:name=".StepTowActivity" />
         <activity
             android:name=".CustomActivity"
             android:launchMode="singleTask"
@@ -56,7 +55,7 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LogInActivity" />
         <activity
-            android:name=".ArActivity"
+            android:name=".StepTowActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true"
             android:screenOrientation="locked"

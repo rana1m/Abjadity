@@ -106,7 +106,6 @@ public class ParentProfileActivity extends AppCompatActivity {
     }
 
   private void initialization(){
-        backIcon = findViewById(R.id.backIcon);
         Name = (TextView) findViewById(R.id.Pname);
         Email = (TextView) findViewById(R.id.Pemail);
         editProfile = findViewById(R.id.editInfo);
