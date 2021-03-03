@@ -57,7 +57,7 @@ public class OneActivity extends AppCompatActivity {
 
                 }
             }
-
+//
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 throw databaseError.toException();
