@@ -43,6 +43,11 @@ public class OneActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_one);
 
+        Bundle extras = getIntent().getExtras();
+        if(extras!= null){
+            button = extras.getString("button");
+        }
+
         initialization();
 
         digitsRef.orderByChild("id").equalTo(button).addListenerForSingleValueEvent(new ValueEventListener() {

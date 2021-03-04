@@ -86,7 +86,7 @@ public class StepFourNumActivity extends AppCompatActivity implements View.OnCli
             public void onClick(View v) {
 
                 Intent intent = new Intent(StepFourNumActivity.this, OneActivity.class);
-                intent.putExtra("button",num);
+                intent.putExtra("button",numberId);
                 startActivity(intent);
 
             }
