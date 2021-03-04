@@ -35,6 +35,8 @@
         <activity android:name=".ParentProfileActivity" />
         <activity android:name=".StepFourActivity" />
         <activity android:name=".StepThreeActivity" />
+        <activity android:name=".StepSevenActivity" />
+        <activity android:name=".StepEightActivity" />
         <activity
             android:name=".CustomActivity"
             android:launchMode="singleTask"

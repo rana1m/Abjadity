@@ -23,6 +23,7 @@ import android.widget.VideoView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.room.Update;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
@@ -79,7 +80,6 @@ import java.util.List;
 
 
 public class StepTowActivity extends AppCompatActivity implements SampleRender.Renderer {
-
     private static final String TAG = "StepTowActivity";
     FirebaseDatabase database;
     DatabaseReference alphabetsRef;
@@ -366,10 +366,7 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
         }
     }
 
-//    @Override
-//    public void onWindowFocusChanged(boolean hasFocus) {
-//        super.onWindowFocusChanged(hasFocus);
-//    }
+
 
     @Override
     public void onSurfaceCreated(SampleRender render) {
@@ -832,7 +829,6 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
         }
         session.configure(config);
     }
-
 
     private void characterInitialization() {
         String path = "android.resource://"+getPackageName()+"/"+ R.raw.v2;
