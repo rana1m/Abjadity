@@ -1,7 +1,5 @@
 package com.rana.abjadity;
 
-import android.widget.EditText;
-
 public class Child {
 
     private String id;
@@ -11,14 +9,14 @@ public class Child {
     private String age;
     private String email;
     private String password;
-    private String level;
-    private String score;
+    private Integer level;
+    private Integer score;
     private String alarm;
     private String parentId;
 
 
 
-    public Child(String parentId,String id,String age, String character, String name, String level, String score, String alarm) {
+    public Child(String parentId, String id, String age, String character, String name, Integer level, Integer score, String alarm) {
         this.parentId = parentId;
         this.id = id;
         this.age = age;
@@ -29,7 +27,7 @@ public class Child {
         this.alarm = alarm;
     }
 
-    public Child(String name,String age,String level) {
+    public Child(String name,String age,Integer level) {
         this.name = name;
         this.level = level;
         this.age = age;
@@ -104,19 +102,19 @@ public class Child {
         this.password = password;
     }
 
-    public String getLevel() {
+    public Integer getLevel() {
         return level;
     }
 
-    public void setLevel(String level) {
+    public void setLevel(Integer level) {
         this.level = level;
     }
 
-    public String getScore() {
+    public Integer getScore() {
         return score;
     }
 
-    public void setScore(String score) {
+    public void setScore(Integer score) {
         this.score = score;
     }
 

@@ -62,6 +62,17 @@ public class StepSixActivity extends AppCompatActivity {
     TextView textView;
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(StepSixActivity.this, StepFiveActivity.class);
+        i.putExtra("childId",childId);
+        i.putExtra("parentId",parentId);
+        i.putExtra("childLevel",childLevel);
+        i.putExtra("button",button);
+        startActivity(i);
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         cameraView.start();
@@ -136,6 +147,10 @@ public class StepSixActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(StepSixActivity.this, StepFiveActivity.class);
+                i.putExtra("childId",childId);
+                i.putExtra("parentId",parentId);
+                i.putExtra("childLevel",childLevel);
+                i.putExtra("button",button);
                 startActivity(i);
             }
         });

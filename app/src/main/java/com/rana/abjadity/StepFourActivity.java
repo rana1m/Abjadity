@@ -42,6 +42,17 @@ public class StepFourActivity extends AppCompatActivity {
     StorageReference storageReference ;
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(StepFourActivity.this,StepThreeActivity.class);
+        i.putExtra("childId",childId);
+        i.putExtra("parentId",parentId);
+        i.putExtra("childLevel",childLevel);
+        i.putExtra("button",button);
+        startActivity(i);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_four);
@@ -78,7 +89,11 @@ public class StepFourActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(StepFourActivity.this,StepTowActivity.class);
+                Intent i = new Intent(StepFourActivity.this,StepThreeActivity.class);
+                i.putExtra("childId",childId);
+                i.putExtra("parentId",parentId);
+                i.putExtra("childLevel",childLevel);
+                i.putExtra("button",button);
                 startActivity(i);
             }
         });

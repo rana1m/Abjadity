@@ -11,12 +11,15 @@ import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -26,8 +29,11 @@ import androidx.core.content.ContextCompat;
 import androidx.room.Update;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.rana.abjadity.common.helpers.CameraPermissionHelper;
 import com.rana.abjadity.common.helpers.DepthSettings;
 import com.rana.abjadity.common.helpers.DisplayRotationHelper;
@@ -82,11 +88,18 @@ import java.util.List;
 public class StepTowActivity extends AppCompatActivity implements SampleRender.Renderer {
     private static final String TAG = "StepTowActivity";
     FirebaseDatabase database;
-    DatabaseReference alphabetsRef;
+    DatabaseReference alphabetsRef,accountRef;
     String childId,parentId,childLevel,button;
     VideoView character;
     FloatingActionButton back,forward;
     MediaPlayer mediaPlayer;
+    Window window ;
+    Button SaveButton;
+    View dialogView;
+    TextView correct;
+    int score;
+
+
 
     private static final String SEARCHING_PLANE_MESSAGE = "يتم البحث عن سطح...";
     private static final String WAITING_FOR_TAP_MESSAGE = "أنقر على السطح لإضافة الحرف";
@@ -162,6 +175,17 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
     private final float[] viewLightDirection = new float[4]; // view x world light direction
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(StepTowActivity.this,StepOneActivity.class);
+        i.putExtra("childId",childId);
+        i.putExtra("parentId",parentId);
+        i.putExtra("childLevel",childLevel);
+        i.putExtra("button",button);
+        startActivity(i);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_tow);
@@ -216,28 +240,12 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
             e.printStackTrace();
         }
 
-        //characterInitialization();
-
-        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                mp.start();
-            }
-        });
 
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(StepTowActivity.this,StepOneActivity.class);
-                startActivity(i);
-            }
-        });
-
-        forward.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(StepTowActivity.this,StepThreeActivity.class);
                 i.putExtra("childId",childId);
                 i.putExtra("parentId",parentId);
                 i.putExtra("childLevel",childLevel);
@@ -245,6 +253,111 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
                 startActivity(i);
             }
         });
+
+        forward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                winningFunction();
+            }
+        });
+    }
+
+    private void winningFunction() {
+
+        window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL);
+        window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
+                WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(StepTowActivity.this);
+        ViewGroup viewGroup = findViewById(android.R.id.content);
+
+       dialogView = getLayoutInflater().inflate(R.layout.correct_answer_dialog, viewGroup, false);
+
+        builder.setView(dialogView);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+        initializationForDialog();
+        //play voice
+        try {
+//            character.pause();
+            playVoice();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //update scores
+        updateScores();
+
+        SaveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(StepTowActivity.this,StepThreeActivity.class);
+                i.putExtra("childId",childId);
+                i.putExtra("parentId",parentId);
+                i.putExtra("childLevel",childLevel);
+                i.putExtra("button",button);
+                startActivity(i);
+                alertDialog.dismiss();
+            }
+            public boolean onTouchEvent(MotionEvent event)
+            {
+
+                if(event.getAction() == MotionEvent.ACTION_OUTSIDE){
+                    alertDialog.dismiss();
+                }
+                return false;
+            }
+        });
+    }
+
+    private void updateScores() {
+        score=5;
+        accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //loop through accounts to find the parent with that id
+                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
+
+                    //loop through parent children to add them to adapter ArrayList
+                    for (DataSnapshot theChild: userSnapshot.child("children").getChildren()) {
+                        Child child = theChild.getValue(Child.class);
+                        if(child.getId().equals(childId)){
+                            score += child.getScore();
+                            theChild.getRef().child("score").setValue(score);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
+    }
+
+    private void playVoice() throws IOException {
+        mediaPlayer=new MediaPlayer();
+        String path = "android.resource://"+getPackageName()+"/"+ R.raw.correct_answer;
+        Uri uri =Uri.parse(path);
+        mediaPlayer.setDataSource(this,uri);
+        mediaPlayer.prepareAsync();
+
+        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.start();
+            }
+        });
+    }
+
+    private void initializationForDialog() {
+
+        SaveButton = dialogView.findViewById(R.id.buttonOk);
+        correct = dialogView.findViewById(R.id.correct);
+
     }
 
 
@@ -848,6 +961,7 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
     private void initialization () throws IOException {
         database = FirebaseDatabase.getInstance();
         alphabetsRef = database.getReference("alphabets");
+        accountRef = database.getReference("accounts");
 
         childId = getIntent().getStringExtra("childId");
         parentId = getIntent().getStringExtra("parentId");
@@ -857,11 +971,8 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
 //        character=findViewById(R.id.character);
         back=findViewById(R.id.back);
         forward=findViewById(R.id.forward);
-        mediaPlayer=new MediaPlayer();
-        String path = "https://f.top4top.io/m_1877uwe3c1.m4a";
-        Uri uri =Uri.parse(path);
-        mediaPlayer.setDataSource(this,uri);
-        mediaPlayer.prepareAsync();
+        window = this.getWindow();
+
 
     }
 

@@ -70,7 +70,7 @@
       android:background="@drawable/round_button"
       android:padding="14dp"
       android:textSize="20dp"
-      android:textStyle="bold"
+      android:textColor="@color/textDarkColor"
       android:text="حاول مرة أخرى!"
       app:backgroundTint="@color/yellow"
       app:layout_constraintEnd_toEndOf="parent"

@@ -16,19 +16,21 @@
 
         android:padding="16dp">
         <TextView
+            android:textSize="22dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="تسجيل الخروج"
+
             android:layout_marginBottom="6dp"
             android:gravity="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
         <TextView
+            android:textSize="22dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="هل بالتأكيد تريد تسجيل الخروج؟"
+            android:text="هل أنت متأكد؟"
             android:layout_marginBottom="6dp"
-            android:textSize="20dp"
             android:gravity="center_horizontal"
             android:textAppearance="@style/TextAppearance.AppCompat" />
         <LinearLayout
@@ -41,16 +43,6 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/buttonOk"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/round_button"
-                android:backgroundTint="@color/yellow"
-                android:text="نعم"
-                android:textColor="#FFF" />
-
-            <Button
                 android:id="@+id/buttonCancle"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
@@ -58,7 +50,22 @@
                 android:background="@drawable/round_button"
                 android:backgroundTint="@color/yellow"
                 android:text="لا"
-                android:textColor="#FFF" />
+                android:textColor="@color/textDarkColor"
+                android:textSize="22dp"
+                />
+            <Button
+                android:id="@+id/buttonOk"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/round_button"
+                android:backgroundTint="@color/yellow"
+                android:text="نعم"
+                android:textColor="@color/textDarkColor"
+                android:textSize="22dp"
+                />
+
+
         </LinearLayout>
 
 

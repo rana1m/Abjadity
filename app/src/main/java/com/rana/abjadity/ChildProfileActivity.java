@@ -287,8 +287,8 @@ public class ChildProfileActivity extends AppCompatActivity {
                             desiredChild=child;
                             childName.setText(desiredChild.getName());
                             childAge.setText(desiredChild.getAge());
-                            childLevel.setText(desiredChild.getLevel());
-                            childScore.setText(desiredChild.getScore());
+                            childLevel.setText(desiredChild.getLevel().toString());
+                            childScore.setText(desiredChild.getScore().toString());
 
                             storageReference.child("characters/char"+child.getCharacter()+".png").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override

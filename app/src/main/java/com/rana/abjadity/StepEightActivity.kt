@@ -1,10 +1,11 @@
 package com.rana.abjadity
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.view.View
+import android.view.*
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -12,20 +13,25 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_step_eight.*
 
 class StepEightActivity : AppCompatActivity() {
+    var button=""
+    var childLevel=""
+    var parentId=""
+    var childId=""
+    var character: VideoView? =null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_step_eight)
 
+
         var back: FloatingActionButton = findViewById<FloatingActionButton>(R.id.back)
         var forward: FloatingActionButton = findViewById(R.id.forward)
-        var childId = intent.getStringExtra("childId")
-        var parentId = intent.getStringExtra("parentId")
-        var childLevel = intent.getStringExtra("childLevel")
-        var button = intent.getStringExtra("button")
         val database: FirebaseDatabase = FirebaseDatabase.getInstance()
         val alphabetsRef: DatabaseReference =  database.getReference("alphabets")
-        val character = findViewById<VideoView>(R.id.character)
+        character = findViewById<VideoView>(R.id.character)
+        childId = intent.getStringExtra("childId")
+        parentId = intent.getStringExtra("parentId")
+        button = intent.getStringExtra("button")
 
         characterInitialization()
 
@@ -38,7 +44,8 @@ class StepEightActivity : AppCompatActivity() {
                     Log.e("StepEigthActivity", letter.getName())
                     StrokeManager.download()
                     recognize.setOnClickListener {
-                        StrokeManager.recognize(this@StepEightActivity,letter.getName())
+                        StrokeManager.recognize(this@StepEightActivity,letter.getName(),parentId,childId)
+
                     }
                     clear.setOnClickListener {
                         drawingView.clear()
@@ -59,6 +66,10 @@ class StepEightActivity : AppCompatActivity() {
         back.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 val intent = Intent(this@StepEightActivity, StepSevenActivity::class.java)
+                intent.putExtra("childId", childId)
+                intent.putExtra("parentId", parentId)
+                intent.putExtra("button", button)
+                intent.putExtra("childLevel", childLevel)
                 startActivity(intent)
             }
 
@@ -66,21 +77,37 @@ class StepEightActivity : AppCompatActivity() {
 
         forward.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
-                val intent = Intent(this@StepEightActivity, StepSevenActivity::class.java)
+                val intent = Intent(this@StepEightActivity, FinalStepActivity::class.java)
+                intent.putExtra("childId", childId)
+                intent.putExtra("parentId", parentId)
+                intent.putExtra("button", button)
+
                 startActivity(intent)            }
 
         })
 
     }
 
+
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this@StepEightActivity, StepSevenActivity::class.java)
+        intent.putExtra("childId", childId)
+        intent.putExtra("parentId", parentId)
+        intent.putExtra("button", button)
+
+        startActivity(intent)
+    }
+
     private fun characterInitialization() {
         val path = "android.resource://" + packageName + "/" + R.raw.v2
         val uri = Uri.parse(path)
-        character.setVideoURI(uri)
-        character.setZOrderOnTop(true)
-        character.start()
-        character.setOnTouchListener { sv, event ->
-            character.start()
+        character?.setVideoURI(uri)
+        character?.setZOrderOnTop(true)
+        character?.start()
+        character?.setOnTouchListener { sv, event ->
+            character?.start()
             false
         }
     }

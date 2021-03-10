@@ -7,16 +7,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.PixelFormat;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -34,6 +41,7 @@ import com.google.firebase.storage.StorageReference;
 import com.luseen.spacenavigation.SpaceItem;
 import com.luseen.spacenavigation.SpaceNavigationView;
 import com.luseen.spacenavigation.SpaceOnClickListener;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.Date;
 
@@ -41,10 +49,12 @@ public class MapActivity extends AppCompatActivity {
 
     private static final String TAG = "MapActicity";
     FirebaseDatabase database;
+    Animation scaleUp,scaleDown;
     DatabaseReference accountRef,alphabetsRef,digitsRef;
     String childId,parentId;
     Child desiredChild;
-    String level,id;
+    String id;
+    int level;
     Intent i;
     Intent i2;
     Button buttonGray1,buttonGray2,buttonGray3,buttonGray4,buttonGray5,buttonGray6,buttonGray7,buttonGray8,buttonGray9,buttonGray10,buttonGray11,buttonGray12,buttonGray13,buttonGray14,
@@ -58,6 +68,8 @@ public class MapActivity extends AppCompatActivity {
         getWindow().setFormat(PixelFormat.RGBA_8888);
 
         setContentView(R.layout.activity_map);
+
+
 
 
         BitmapFactory.Options options = new BitmapFactory.Options();
@@ -99,307 +111,7 @@ public class MapActivity extends AppCompatActivity {
                     case R.id.profileActivity:
                         break;
                 }
-
                 return true;
-            }
-        });
-
-        buttonGray1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i.putExtra("button","1");
-                startActivity(i);
-            }
-        });
-        buttonGray2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i.putExtra("button","2");
-                startActivity(i);
-            }
-        });
-        buttonGray3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i.putExtra("button","3");
-                startActivity(i);
-            }
-        });
-        buttonGray4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i.putExtra("button","4");
-                startActivity(i);
-            }
-        });
-        buttonGray5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i.putExtra("button","5");
-                startActivity(i);
-            }
-        });
-        buttonGray6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i.putExtra("button","6");
-                startActivity(i);
-            }
-        });
-        buttonGray7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i.putExtra("button","7");
-                startActivity(i);
-            }
-        });
-        buttonGray8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i.putExtra("button","8");
-                startActivity(i);
-            }
-        });
-        buttonGray9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i.putExtra("button","9");
-                startActivity(i);
-            }
-        });
-        buttonGray10.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i.putExtra("button","10");
-                startActivity(i);
-            }
-        });
-        buttonGray11.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i.putExtra("button","11");
-                startActivity(i);
-            }
-        });
-        buttonGray12.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i.putExtra("button","12");
-                startActivity(i);
-            }
-        });
-        buttonGray13.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i.putExtra("button","13");
-                startActivity(i);
-            }
-        });
-        buttonGray14.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i.putExtra("button","14");
-                startActivity(i);
-            }
-        });
-        buttonGray15.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i.putExtra("button","15");
-                startActivity(i);
-            }
-        });
-        buttonGray16.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i.putExtra("button","16");
-                startActivity(i);
-            }
-        });
-        buttonGray17.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i.putExtra("button","17");
-                startActivity(i);
-            }
-        });
-        buttonGray18.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i.putExtra("button","18");
-                startActivity(i);
-            }
-        });
-        buttonGray19.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i.putExtra("button","19");
-                startActivity(i);
-            }
-        });
-        buttonGray20.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i.putExtra("button","20");
-                startActivity(i);
-            }
-        });
-        buttonGray21.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i.putExtra("button","21");
-                startActivity(i);
-            }
-        });
-        buttonGray22.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i.putExtra("button","22");
-                startActivity(i);
-            }
-        });
-        buttonGray23.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i.putExtra("button","23");
-                startActivity(i);
-            }
-        });
-        buttonGray24.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i.putExtra("button","24");
-                startActivity(i);
-            }
-        });
-        buttonGray25.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i.putExtra("button","25");
-                startActivity(i);
-            }
-        });
-        buttonGray26.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i.putExtra("button","26");
-                startActivity(i);
-            }
-        });
-        buttonGray27.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i.putExtra("button","27");
-                startActivity(i);
-            }
-        });
-        buttonGray28.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i.putExtra("button","28");
-                startActivity(i);
-            }
-        });
-
-        ///////////////////////////////////////////////////////////////////////////////////////////
-        buttonGray29.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i2.putExtra("button","1");
-                i2.putExtra("childId",childId);
-                i2.putExtra("parentId",parentId);
-
-                startActivity(i2);
-            }
-        });
-        buttonGray30.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i2.putExtra("button","2");
-                i2.putExtra("childId",childId);
-                i2.putExtra("parentId",parentId);
-
-                startActivity(i2);
-            }
-        });
-        buttonGray31.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i2.putExtra("button","3");
-                i2.putExtra("childId",childId);
-                i2.putExtra("parentId",parentId);
-
-                startActivity(i2);
-            }
-        });
-        buttonGray32.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i2.putExtra("button","4");
-                i2.putExtra("childId",childId);
-                i2.putExtra("parentId",parentId);
-
-                startActivity(i2);
-            }
-        });
-        buttonGray33.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i2.putExtra("button","5");
-                i2.putExtra("childId",childId);
-                i2.putExtra("parentId",parentId);
-
-                startActivity(i2);
-            }
-        });
-        buttonGray34.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i2.putExtra("button","6");
-                i2.putExtra("childId",childId);
-                i2.putExtra("parentId",parentId);
-
-                startActivity(i2);
-            }
-        });
-        buttonGray35.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i2.putExtra("button","7");
-                i2.putExtra("childId",childId);
-                i2.putExtra("parentId",parentId);
-
-                startActivity(i2);
-            }
-        });
-        buttonGray36.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i2.putExtra("button","8");
-                i2.putExtra("childId",childId);
-                i2.putExtra("parentId",parentId);
-
-                startActivity(i2);
-            }
-        });
-        buttonGray37.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i2.putExtra("button","9");
-                i2.putExtra("childId",childId);
-                i2.putExtra("parentId",parentId);
-
-                startActivity(i2);
-            }
-        });
-        buttonGray38.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i2.putExtra("button","10");
-                i2.putExtra("childId",childId);
-                i2.putExtra("parentId",parentId);
-
-                startActivity(i2);
             }
         });
 
@@ -467,7 +179,7 @@ public class MapActivity extends AppCompatActivity {
     }
 
     private void buttonsActivation() {
-        int intLevel=Integer.parseInt(level);
+        int intLevel=level;
 
         //set passed levels
         for (int i=1; i<intLevel+1;i++){
@@ -502,8 +214,386 @@ public class MapActivity extends AppCompatActivity {
                             i.putExtra("childId", desiredChild.getId());
                             i.putExtra("childLevel", desiredChild.getLevel());
 
-                            level = new String(desiredChild.getLevel());
+                            level = desiredChild.getLevel();
                             buttonsActivation();
+
+                            PushDownAnim.setPushDownAnimTo(buttonGray1).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i.putExtra("button","1");
+                                    if(child.getLevel()+1>=1){
+                                        startActivity(i);
+                                    }
+
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray2).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i.putExtra("button","2");
+                                    if(child.getLevel()+1>=2){
+                                        startActivity(i);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray3).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i.putExtra("button","3");
+                                    if(child.getLevel()+1>=3){
+                                        startActivity(i);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray4).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i.putExtra("button","4");
+                                    if(child.getLevel()+1>=4){
+                                        startActivity(i);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray5).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i.putExtra("button","5");
+                                    if(child.getLevel()+1>=5){
+                                        startActivity(i);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray6).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i.putExtra("button","6");
+                                    if(child.getLevel()+1>=6){
+                                        startActivity(i);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray7).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i.putExtra("button","7");
+                                    if(child.getLevel()+1>=7){
+                                        startActivity(i);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray8).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i.putExtra("button","8");
+                                    if(child.getLevel()+1>=8){
+                                        startActivity(i);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray9).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i.putExtra("button","9");
+                                    if(child.getLevel()+1>=9){
+                                        startActivity(i);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray10).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i.putExtra("button","10");
+                                    if(child.getLevel()+1>=10){
+                                        startActivity(i);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray11).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i.putExtra("button","11");
+                                    if(child.getLevel()+1>=11){
+                                        startActivity(i);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray12).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i.putExtra("button","12");
+                                    if(child.getLevel()+1>=12){
+                                        startActivity(i);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray13).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i.putExtra("button","13");
+                                    if(child.getLevel()+1>=13){
+                                        startActivity(i);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray14).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i.putExtra("button","14");
+                                    if(child.getLevel()+1>=14){
+                                        startActivity(i);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray15).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i.putExtra("button","15");
+                                    if(child.getLevel()+1>=15){
+                                        startActivity(i);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray16).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i.putExtra("button","16");
+                                    if(child.getLevel()+1>=16){
+                                        startActivity(i);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray17).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i.putExtra("button","17");
+                                    if(child.getLevel()+1>=17){
+                                        startActivity(i);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray18).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i.putExtra("button","18");
+                                    if(child.getLevel()+1>=18){
+                                        startActivity(i);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray19).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i.putExtra("button","19");
+                                    if(child.getLevel()+1>=19){
+                                        startActivity(i);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray20).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i.putExtra("button","20");
+                                    if(child.getLevel()+1>=20){
+                                        startActivity(i);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray21).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i.putExtra("button","21");
+                                    if(child.getLevel()+1>=21){
+                                        startActivity(i);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray22).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i.putExtra("button","22");
+                                    if(child.getLevel()+1>=22){
+                                        startActivity(i);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray23).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i.putExtra("button","23");
+                                    if(child.getLevel()+1>=23){
+                                        startActivity(i);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray24).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i.putExtra("button","24");
+                                    if(child.getLevel()+1>=24){
+                                        startActivity(i);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray25).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i.putExtra("button","25");
+                                    if(child.getLevel()+1>=25){
+                                        startActivity(i);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray26).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i.putExtra("button","26");
+                                    if(child.getLevel()+1>=26){
+                                        startActivity(i);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray27).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i.putExtra("button","27");
+                                    if(child.getLevel()+1>=27){
+                                        startActivity(i);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray28).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i.putExtra("button","28");
+                                    if(child.getLevel()+1>=28){
+                                        startActivity(i);
+                                    }
+                                }
+                            });
+
+                            ///////////////////////////////////////////////////////////////////////////////////////////
+                            PushDownAnim.setPushDownAnimTo(buttonGray29).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i2.putExtra("button","1");
+                                    i2.putExtra("childId",childId);
+                                    i2.putExtra("parentId",parentId);
+
+                                    if(child.getLevel()+1>=29){
+                                        startActivity(i2);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray30).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i2.putExtra("button","2");
+                                    i2.putExtra("childId",childId);
+                                    i2.putExtra("parentId",parentId);
+
+                                    if(child.getLevel()+1>=30){
+                                        startActivity(i2);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray31).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i2.putExtra("button","3");
+                                    i2.putExtra("childId",childId);
+                                    i2.putExtra("parentId",parentId);
+
+                                    if(child.getLevel()+1>=31){
+                                        startActivity(i2);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray32).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i2.putExtra("button","4");
+                                    i2.putExtra("childId",childId);
+                                    i2.putExtra("parentId",parentId);
+
+                                    if(child.getLevel()+1>=32){
+                                        startActivity(i2);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray33).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i2.putExtra("button","5");
+                                    i2.putExtra("childId",childId);
+                                    i2.putExtra("parentId",parentId);
+
+                                    if(child.getLevel()+1>=33){
+                                        startActivity(i2);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray34).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i2.putExtra("button","6");
+                                    i2.putExtra("childId",childId);
+                                    i2.putExtra("parentId",parentId);
+
+                                    if(child.getLevel()+1>=34){
+                                        startActivity(i2);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray35).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i2.putExtra("button","7");
+                                    i2.putExtra("childId",childId);
+                                    i2.putExtra("parentId",parentId);
+
+                                    if(child.getLevel()+1>=35){
+                                        startActivity(i2);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray36).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i2.putExtra("button","8");
+                                    i2.putExtra("childId",childId);
+                                    i2.putExtra("parentId",parentId);
+
+                                    if(child.getLevel()+1>=36){
+                                        startActivity(i2);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray37).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i2.putExtra("button","9");
+                                    i2.putExtra("childId",childId);
+                                    i2.putExtra("parentId",parentId);
+
+                                    if(child.getLevel()+1>=37){
+                                        startActivity(i2);
+                                    }
+                                }
+                            });
+                            PushDownAnim.setPushDownAnimTo(buttonGray38).setScale(.7f).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    i2.putExtra("button","10");
+                                    i2.putExtra("childId",childId);
+                                    i2.putExtra("parentId",parentId);
+
+                                    if(child.getLevel()+1>=38){
+                                        startActivity(i2);
+                                    }
+                                }
+                            });
+
+
                         }
                     }
                 }
@@ -570,6 +660,8 @@ public class MapActivity extends AppCompatActivity {
         i.putExtra("childId",childId);
         i.putExtra("parentId",parentId);
         i2 = new Intent(MapActivity.this, OneActivity.class);
+        scaleUp= AnimationUtils.loadAnimation(this,R.anim.scale_up);
+        scaleDown= AnimationUtils.loadAnimation(this,R.anim.scale_down);
 
     }
 }

@@ -114,26 +114,28 @@
             android:layout_marginTop="4dp"
             android:gravity="center"
             android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/buttonOk"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/round_button"
-                android:backgroundTint="@color/yellow"
-                android:text="إضافة"
-                android:textColor="#FFF" />
-
             <Button
                 android:id="@+id/buttonCancle"
                 android:layout_width="150dp"
+                android:textSize="22dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/textDarkColor"
+                android:background="@drawable/round_button"
+                android:backgroundTint="@color/yellow"
+                android:text="إلغاء" />
+            <Button
+                android:id="@+id/buttonOk"
+                android:layout_width="150dp"
+                android:textColor="@color/textDarkColor"
+                android:textSize="22dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@drawable/round_button"
                 android:backgroundTint="@color/yellow"
-                android:text="إلغاء"
-                android:textColor="#FFF" />
+                android:text="إضافة" />
+
+
         </LinearLayout>
 
 

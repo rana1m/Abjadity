@@ -1,15 +1,22 @@
 package com.rana.abjadity;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -37,6 +45,22 @@ public class StepFiveActivity extends AppCompatActivity {
     FloatingActionButton back,forward;
     ImageView microphoneIcon;
     TextView speechToText;
+    Window window ;
+    MediaPlayer mediaPlayer;
+    int score;
+    View dialogView;
+    private Button SaveButton;
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(StepFiveActivity.this,StepFourActivity.class);
+        i.putExtra("childId",childId);
+        i.putExtra("parentId",parentId);
+        i.putExtra("childLevel",childLevel);
+        i.putExtra("button",button);
+        startActivity(i);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +100,10 @@ public class StepFiveActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(StepFiveActivity.this,StepFourActivity.class);
+                i.putExtra("childId",childId);
+                i.putExtra("parentId",parentId);
+                i.putExtra("childLevel",childLevel);
+                i.putExtra("button",button);
                 startActivity(i);
             }
         });
@@ -129,16 +157,153 @@ public class StepFiveActivity extends AppCompatActivity {
 
                     // check for chant
                     if(result.get(0).equals(letterChant)||result.get(0).equals(letterName)){
-                        Toast.makeText(this, "corrrect", Toast.LENGTH_SHORT).show();
+                        winningFunction();
 
                     }else {
-                        Toast.makeText(this, "try again", Toast.LENGTH_SHORT).show();
-
+                        tryAgain();
                     }
                 }
                 break;
             }
         }
+    }
+
+    private void tryAgain() {
+
+        window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL);
+        window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
+                WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(StepFiveActivity.this);
+        ViewGroup viewGroup = findViewById(android.R.id.content);
+        dialogView = LayoutInflater.from(this).inflate(R.layout.wrong_answer_dialog, viewGroup, false);
+
+        builder.setView(dialogView);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+        initializationForDialog();
+        //play voice
+        try {
+            playVoice("try_again");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        SaveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                alertDialog.dismiss();
+            }
+            public boolean onTouchEvent(MotionEvent event)
+            {
+                if(event.getAction() == MotionEvent.ACTION_OUTSIDE){
+                    alertDialog.dismiss();
+                }
+                return false;
+            }
+        });
+    }
+
+    private void winningFunction() {
+
+        window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL);
+        window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
+                WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(StepFiveActivity.this);
+        ViewGroup viewGroup = findViewById(android.R.id.content);
+        dialogView = LayoutInflater.from(this).inflate(R.layout.next_step_dialog, viewGroup, false);
+
+        builder.setView(dialogView);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+        initializationForDialog();
+        //play voice
+        try {
+//            character.pause();
+            playVoice("");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //update scores
+        updateScores();
+
+        SaveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(StepFiveActivity.this,StepSixActivity.class);
+                i.putExtra("childId",childId);
+                i.putExtra("parentId",parentId);
+                i.putExtra("childLevel",childLevel);
+                i.putExtra("button",button);
+                startActivity(i);
+                alertDialog.dismiss();
+            }
+            public boolean onTouchEvent(MotionEvent event)
+            {
+
+                if(event.getAction() == MotionEvent.ACTION_OUTSIDE){
+                    alertDialog.dismiss();
+                }
+                return false;
+            }
+        });
+    }
+
+    private void updateScores() {
+        score=5;
+        accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //loop through accounts to find the parent with that id
+                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
+
+                    //loop through parent children to add them to adapter ArrayList
+                    for (DataSnapshot theChild: userSnapshot.child("children").getChildren()) {
+                        Child child = theChild.getValue(Child.class);
+                        if(child.getId().equals(childId)){
+                            score += child.getScore();
+                            theChild.getRef().child("score").setValue(score);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
+    }
+
+    private void initializationForDialog() {
+        SaveButton = dialogView.findViewById(R.id.buttonOk);
+
+    }
+
+    private void playVoice(String s) throws IOException {
+        mediaPlayer=new MediaPlayer();
+        String path="";
+        if(s.equals("try_again")){
+            path = "android.resource://" + getPackageName() + "/" + R.raw.try_again;
+        }
+        else {
+            path = "android.resource://" + getPackageName() + "/" + R.raw.correct_answer;
+        }
+        Uri uri =Uri.parse(path);
+        mediaPlayer.setDataSource(this,uri);
+        mediaPlayer.prepareAsync();
+        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.start();
+            }
+        });
     }
 
     private void characterInitialization() {
@@ -170,9 +335,8 @@ public class StepFiveActivity extends AppCompatActivity {
         forward=findViewById(R.id.forward);
         microphoneIcon=findViewById(R.id.microphoneIcon);
         speechToText=findViewById(R.id.speechToText);
-
-
-
+        window = this.getWindow();
+        score=0;
 
     }
 }

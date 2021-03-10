@@ -181,8 +181,8 @@ public class ParentHomePageActivity extends AppCompatActivity {
                 for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
                     if(CheckForfileds()) {
 
-                        Child newChild =new Child(parentId,id,childAge, "1",childName,
-                                "0","0", "0");
+                        Child newChild =new Child(parentId,id,childAge, "0",childName,
+                                0,0, "0");
                         userSnapshot.getRef().child("children").push()
                                 .setValue(newChild);
 

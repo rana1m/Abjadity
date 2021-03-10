@@ -49,6 +49,10 @@ public class ChildsAdapter extends RecyclerView.Adapter<ChildsAdapter.ViewHolder
         Child child =children.get(position);
         holder.childName.setText(child.getName());
         holder.childLevel.setText("المستوى "+child.getLevel());
+        String path = "android.resource://"+ context.getPackageName() +"/"+ R.mipmap.child_blue;
+        Uri uri =Uri.parse(path);
+        Picasso.get().load(uri).into(holder.childIcon);
+
 
         storageReference.child("characters/char"+child.getCharacter()+".png").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override

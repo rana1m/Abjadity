@@ -36,6 +36,16 @@ public class StepSevenActivity extends AppCompatActivity {
     TextView layout1,layout2,layout3;
     StorageReference storageReference ;
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(StepSevenActivity.this,StepTowActivity.class);
+        i.putExtra("childId",childId);
+        i.putExtra("parentId",parentId);
+        i.putExtra("childLevel",childLevel);
+        i.putExtra("button",button);
+        startActivity(i);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +53,7 @@ public class StepSevenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_step_seven);
 
         initialization();
+        Log.e(TAG,childLevel+"------------------");
         characterInitialization();
 
         alphabetsRef.orderByChild("id").equalTo(button).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -76,6 +87,10 @@ public class StepSevenActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(StepSevenActivity.this,StepTowActivity.class);
+                i.putExtra("childId",childId);
+                i.putExtra("parentId",parentId);
+                i.putExtra("childLevel",childLevel);
+                i.putExtra("button",button);
                 startActivity(i);
             }
         });
