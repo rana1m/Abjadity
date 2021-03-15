@@ -59,6 +59,7 @@ public class StepSixActivity extends AppCompatActivity {
     FloatingActionButton back, forward;
     CameraView cameraView;
     Button detect;
+    TextView level,scores;
     TextView textView;
 
     @Override
@@ -90,6 +91,8 @@ public class StepSixActivity extends AppCompatActivity {
         setContentView(R.layout.activity_step_six);
 
         initialization();
+        scoresAndLevel();
+
         characterInitialization();
 
         alphabetsRef.orderByChild("id").equalTo(button).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -201,6 +204,31 @@ public class StepSixActivity extends AppCompatActivity {
         }
     }
 
+    private void scoresAndLevel() {
+        accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //loop through accounts to find the parent with that id
+                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
+
+                    //loop through parent children to add them to adapter ArrayList
+                    for (DataSnapshot theChild: userSnapshot.child("children").getChildren()) {
+                        Child child = theChild.getValue(Child.class);
+                        if(child.getId().equals(childId)){
+                            scores.setText(child.getScore().toString());
+                            level.setText(child.getLevel().toString());
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
+    }
+
     private void translateAndCheck(String text,String name) {
 
         FirebaseTranslatorOptions options =
@@ -278,7 +306,8 @@ public class StepSixActivity extends AppCompatActivity {
         cameraView = findViewById(R.id.camera_view);
         detect = findViewById(R.id.btn_detect);
         textView = findViewById(R.id.textView9);
-
+        level=findViewById(R.id.level);
+        scores=findViewById(R.id.score);
 
     }
 

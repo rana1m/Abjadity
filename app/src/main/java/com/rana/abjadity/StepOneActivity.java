@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.MediaController;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -50,6 +51,7 @@ public class StepOneActivity extends AppCompatActivity {
     FloatingActionButton back,forward,play;
     FrameLayout letterChantFrame;
     Button SaveButton;
+    TextView level,scores;
     View dialogView;
     StorageReference storageReference ;
     Window window ;
@@ -71,7 +73,7 @@ public class StepOneActivity extends AppCompatActivity {
 
 
         initialization();
-
+        scoresAndLevel();
 
         alphabetsRef.orderByChild("id").equalTo(button).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -132,8 +134,33 @@ public class StepOneActivity extends AppCompatActivity {
         });
     }
 
+    private void scoresAndLevel() {
+        accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //loop through accounts to find the parent with that id
+                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
+
+                    //loop through parent children to add them to adapter ArrayList
+                    for (DataSnapshot theChild: userSnapshot.child("children").getChildren()) {
+                        Child child = theChild.getValue(Child.class);
+                        if(child.getId().equals(childId)){
+                            scores.setText(child.getScore().toString());
+                            level.setText(child.getLevel().toString());
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
+    }
+
     private void updateScores() {
-        score=5;
+        score=3;
         accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -160,7 +187,7 @@ public class StepOneActivity extends AppCompatActivity {
 
     private void playVoice() throws IOException {
         mediaPlayer=new MediaPlayer();
-        String path = "android.resource://"+getPackageName()+"/"+ R.raw.correct_answer;
+        String path = "android.resource://"+getPackageName()+"/"+ R.raw.good_job;
         Uri uri =Uri.parse(path);
         mediaPlayer.setDataSource(this,uri);
         mediaPlayer.prepareAsync();
@@ -274,13 +301,10 @@ public class StepOneActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         alphabetsRef = database.getReference("alphabets");
         accountRef = database.getReference("accounts");
-
-
         childId = getIntent().getStringExtra("childId");
         parentId = getIntent().getStringExtra("parentId");
         childLevel = getIntent().getStringExtra("childLevel");
         button = getIntent().getStringExtra("button");
-
         letterChant=findViewById(R.id.letterChant);
         character=findViewById(R.id.character);
         back=findViewById(R.id.back);
@@ -290,9 +314,8 @@ public class StepOneActivity extends AppCompatActivity {
         storageReference = FirebaseStorage.getInstance().getReference();
         window = this.getWindow();
         score=0;
-
-
-
+        level=findViewById(R.id.level);
+        scores=findViewById(R.id.score);
     }
 
 

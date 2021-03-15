@@ -50,6 +50,8 @@ public class StepFiveActivity extends AppCompatActivity {
     int score;
     View dialogView;
     private Button SaveButton;
+    TextView level,scores;
+
 
     @Override
     public void onBackPressed() {
@@ -68,6 +70,8 @@ public class StepFiveActivity extends AppCompatActivity {
         setContentView(R.layout.activity_step_five);
 
         initialization();
+        scoresAndLevel();
+
         characterInitialization();
 
 
@@ -111,7 +115,7 @@ public class StepFiveActivity extends AppCompatActivity {
         forward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(StepFiveActivity.this,StepSixActivity.class);
+                Intent i = new Intent(StepFiveActivity.this,StepThreeActivity.class);
                 i.putExtra("childId",childId);
                 i.putExtra("parentId",parentId);
                 i.putExtra("childLevel",childLevel);
@@ -215,7 +219,7 @@ public class StepFiveActivity extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(StepFiveActivity.this);
         ViewGroup viewGroup = findViewById(android.R.id.content);
-        dialogView = LayoutInflater.from(this).inflate(R.layout.next_step_dialog, viewGroup, false);
+        dialogView = LayoutInflater.from(this).inflate(R.layout.correct_answer_dialog, viewGroup, false);
 
         builder.setView(dialogView);
         AlertDialog alertDialog = builder.create();
@@ -236,7 +240,7 @@ public class StepFiveActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(StepFiveActivity.this,StepSixActivity.class);
+                Intent i = new Intent(StepFiveActivity.this,StepThreeActivity.class);
                 i.putExtra("childId",childId);
                 i.putExtra("parentId",parentId);
                 i.putExtra("childLevel",childLevel);
@@ -305,7 +309,30 @@ public class StepFiveActivity extends AppCompatActivity {
             }
         });
     }
+    private void scoresAndLevel() {
+        accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //loop through accounts to find the parent with that id
+                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
 
+                    //loop through parent children to add them to adapter ArrayList
+                    for (DataSnapshot theChild: userSnapshot.child("children").getChildren()) {
+                        Child child = theChild.getValue(Child.class);
+                        if(child.getId().equals(childId)){
+                            scores.setText(child.getScore().toString());
+                            level.setText(child.getLevel().toString());
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
+    }
     private void characterInitialization() {
         String path = "android.resource://"+getPackageName()+"/"+ R.raw.v2;
         Uri uri =Uri.parse(path);
@@ -337,6 +364,8 @@ public class StepFiveActivity extends AppCompatActivity {
         speechToText=findViewById(R.id.speechToText);
         window = this.getWindow();
         score=0;
+        level=findViewById(R.id.level);
+        scores=findViewById(R.id.score);
 
     }
 }

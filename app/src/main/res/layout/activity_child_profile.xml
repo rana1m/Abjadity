@@ -80,7 +80,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="right"
+                            android:gravity="center"
                             android:orientation="horizontal"
                             android:padding="3dp">
 
@@ -100,7 +100,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:gravity="right"
+                            android:gravity="center"
                             android:orientation="horizontal"
                             android:padding="3dp">
 
@@ -120,7 +120,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:gravity="right"
+                            android:gravity="center"
                             android:orientation="horizontal"
                             android:padding="3dp">
 
@@ -140,7 +140,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:gravity="right"
+                            android:gravity="center"
                             android:orientation="horizontal"
                             android:padding="3dp">
 

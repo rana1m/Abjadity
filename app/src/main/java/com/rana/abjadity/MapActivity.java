@@ -55,6 +55,8 @@ public class MapActivity extends AppCompatActivity {
     Child desiredChild;
     String id;
     int level;
+    Button SaveButton;
+    View dialogView;
     Intent i;
     Intent i2;
     Button buttonGray1,buttonGray2,buttonGray3,buttonGray4,buttonGray5,buttonGray6,buttonGray7,buttonGray8,buttonGray9,buttonGray10,buttonGray11,buttonGray12,buttonGray13,buttonGray14,
@@ -68,8 +70,6 @@ public class MapActivity extends AppCompatActivity {
         getWindow().setFormat(PixelFormat.RGBA_8888);
 
         setContentView(R.layout.activity_map);
-
-
 
 
         BitmapFactory.Options options = new BitmapFactory.Options();
@@ -177,7 +177,21 @@ public class MapActivity extends AppCompatActivity {
 
 
     }
-
+    private void popUpDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(MapActivity.this);
+        ViewGroup viewGroup = findViewById(android.R.id.content);
+        dialogView = LayoutInflater.from(this).inflate(R.layout.play_previous_stage_first, viewGroup, false);
+        initializationForDialog();
+        builder.setView(dialogView);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+        SaveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            alertDialog.dismiss();
+                }
+            });
+    }
     private void buttonsActivation() {
         int intLevel=level;
 
@@ -195,7 +209,6 @@ public class MapActivity extends AppCompatActivity {
         }
 
     }
-
     private void retrieveChildInfo() {
         accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -223,6 +236,8 @@ public class MapActivity extends AppCompatActivity {
                                     i.putExtra("button","1");
                                     if(child.getLevel()+1>=1){
                                         startActivity(i);
+                                    }else {
+                                        popUpDialog();
                                     }
 
                                 }
@@ -233,6 +248,8 @@ public class MapActivity extends AppCompatActivity {
                                     i.putExtra("button","2");
                                     if(child.getLevel()+1>=2){
                                         startActivity(i);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -242,6 +259,8 @@ public class MapActivity extends AppCompatActivity {
                                     i.putExtra("button","3");
                                     if(child.getLevel()+1>=3){
                                         startActivity(i);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -251,6 +270,8 @@ public class MapActivity extends AppCompatActivity {
                                     i.putExtra("button","4");
                                     if(child.getLevel()+1>=4){
                                         startActivity(i);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -260,6 +281,8 @@ public class MapActivity extends AppCompatActivity {
                                     i.putExtra("button","5");
                                     if(child.getLevel()+1>=5){
                                         startActivity(i);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -269,6 +292,8 @@ public class MapActivity extends AppCompatActivity {
                                     i.putExtra("button","6");
                                     if(child.getLevel()+1>=6){
                                         startActivity(i);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -278,6 +303,8 @@ public class MapActivity extends AppCompatActivity {
                                     i.putExtra("button","7");
                                     if(child.getLevel()+1>=7){
                                         startActivity(i);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -287,6 +314,8 @@ public class MapActivity extends AppCompatActivity {
                                     i.putExtra("button","8");
                                     if(child.getLevel()+1>=8){
                                         startActivity(i);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -296,6 +325,8 @@ public class MapActivity extends AppCompatActivity {
                                     i.putExtra("button","9");
                                     if(child.getLevel()+1>=9){
                                         startActivity(i);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -305,6 +336,8 @@ public class MapActivity extends AppCompatActivity {
                                     i.putExtra("button","10");
                                     if(child.getLevel()+1>=10){
                                         startActivity(i);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -314,6 +347,8 @@ public class MapActivity extends AppCompatActivity {
                                     i.putExtra("button","11");
                                     if(child.getLevel()+1>=11){
                                         startActivity(i);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -323,6 +358,8 @@ public class MapActivity extends AppCompatActivity {
                                     i.putExtra("button","12");
                                     if(child.getLevel()+1>=12){
                                         startActivity(i);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -332,6 +369,8 @@ public class MapActivity extends AppCompatActivity {
                                     i.putExtra("button","13");
                                     if(child.getLevel()+1>=13){
                                         startActivity(i);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -341,6 +380,8 @@ public class MapActivity extends AppCompatActivity {
                                     i.putExtra("button","14");
                                     if(child.getLevel()+1>=14){
                                         startActivity(i);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -350,6 +391,8 @@ public class MapActivity extends AppCompatActivity {
                                     i.putExtra("button","15");
                                     if(child.getLevel()+1>=15){
                                         startActivity(i);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -359,6 +402,8 @@ public class MapActivity extends AppCompatActivity {
                                     i.putExtra("button","16");
                                     if(child.getLevel()+1>=16){
                                         startActivity(i);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -368,6 +413,8 @@ public class MapActivity extends AppCompatActivity {
                                     i.putExtra("button","17");
                                     if(child.getLevel()+1>=17){
                                         startActivity(i);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -377,6 +424,8 @@ public class MapActivity extends AppCompatActivity {
                                     i.putExtra("button","18");
                                     if(child.getLevel()+1>=18){
                                         startActivity(i);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -386,6 +435,8 @@ public class MapActivity extends AppCompatActivity {
                                     i.putExtra("button","19");
                                     if(child.getLevel()+1>=19){
                                         startActivity(i);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -395,6 +446,8 @@ public class MapActivity extends AppCompatActivity {
                                     i.putExtra("button","20");
                                     if(child.getLevel()+1>=20){
                                         startActivity(i);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -404,6 +457,8 @@ public class MapActivity extends AppCompatActivity {
                                     i.putExtra("button","21");
                                     if(child.getLevel()+1>=21){
                                         startActivity(i);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -413,6 +468,8 @@ public class MapActivity extends AppCompatActivity {
                                     i.putExtra("button","22");
                                     if(child.getLevel()+1>=22){
                                         startActivity(i);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -422,6 +479,8 @@ public class MapActivity extends AppCompatActivity {
                                     i.putExtra("button","23");
                                     if(child.getLevel()+1>=23){
                                         startActivity(i);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -431,6 +490,8 @@ public class MapActivity extends AppCompatActivity {
                                     i.putExtra("button","24");
                                     if(child.getLevel()+1>=24){
                                         startActivity(i);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -440,6 +501,8 @@ public class MapActivity extends AppCompatActivity {
                                     i.putExtra("button","25");
                                     if(child.getLevel()+1>=25){
                                         startActivity(i);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -449,6 +512,8 @@ public class MapActivity extends AppCompatActivity {
                                     i.putExtra("button","26");
                                     if(child.getLevel()+1>=26){
                                         startActivity(i);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -458,6 +523,8 @@ public class MapActivity extends AppCompatActivity {
                                     i.putExtra("button","27");
                                     if(child.getLevel()+1>=27){
                                         startActivity(i);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -467,6 +534,8 @@ public class MapActivity extends AppCompatActivity {
                                     i.putExtra("button","28");
                                     if(child.getLevel()+1>=28){
                                         startActivity(i);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -493,6 +562,8 @@ public class MapActivity extends AppCompatActivity {
 
                                     if(child.getLevel()+1>=30){
                                         startActivity(i2);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -505,6 +576,8 @@ public class MapActivity extends AppCompatActivity {
 
                                     if(child.getLevel()+1>=31){
                                         startActivity(i2);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -517,6 +590,8 @@ public class MapActivity extends AppCompatActivity {
 
                                     if(child.getLevel()+1>=32){
                                         startActivity(i2);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -529,6 +604,8 @@ public class MapActivity extends AppCompatActivity {
 
                                     if(child.getLevel()+1>=33){
                                         startActivity(i2);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -541,6 +618,8 @@ public class MapActivity extends AppCompatActivity {
 
                                     if(child.getLevel()+1>=34){
                                         startActivity(i2);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -553,6 +632,8 @@ public class MapActivity extends AppCompatActivity {
 
                                     if(child.getLevel()+1>=35){
                                         startActivity(i2);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -565,6 +646,8 @@ public class MapActivity extends AppCompatActivity {
 
                                     if(child.getLevel()+1>=36){
                                         startActivity(i2);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -577,6 +660,8 @@ public class MapActivity extends AppCompatActivity {
 
                                     if(child.getLevel()+1>=37){
                                         startActivity(i2);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -589,6 +674,8 @@ public class MapActivity extends AppCompatActivity {
 
                                     if(child.getLevel()+1>=38){
                                         startActivity(i2);
+                                    }else {
+                                        popUpDialog();
                                     }
                                 }
                             });
@@ -605,7 +692,9 @@ public class MapActivity extends AppCompatActivity {
         });
 
     }
-
+    private void initializationForDialog() {
+        SaveButton = dialogView.findViewById(R.id.buttonOk);
+    }
     private void initialization() {
         buttonGray1=findViewById(R.id.buttonGray1);
         buttonGray2=findViewById(R.id.buttonGray2);

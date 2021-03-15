@@ -98,6 +98,7 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
     View dialogView;
     TextView correct;
     int score;
+    TextView level,scores;
 
 
 
@@ -236,6 +237,8 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
 
         try {
             initialization();
+            scoresAndLevel();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -272,7 +275,7 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
         AlertDialog.Builder builder = new AlertDialog.Builder(StepTowActivity.this);
         ViewGroup viewGroup = findViewById(android.R.id.content);
 
-       dialogView = getLayoutInflater().inflate(R.layout.correct_answer_dialog, viewGroup, false);
+       dialogView = getLayoutInflater().inflate(R.layout.next_step_dialog, viewGroup, false);
 
         builder.setView(dialogView);
         AlertDialog alertDialog = builder.create();
@@ -286,14 +289,14 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
             e.printStackTrace();
         }
 
-        //update scores
-        updateScores();
+
 
         SaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent i = new Intent(StepTowActivity.this,StepThreeActivity.class);
+//update scores
+                updateScores();
+                Intent i = new Intent(StepTowActivity.this,StepFourActivity.class);
                 i.putExtra("childId",childId);
                 i.putExtra("parentId",parentId);
                 i.putExtra("childLevel",childLevel);
@@ -313,7 +316,7 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
     }
 
     private void updateScores() {
-        score=5;
+        score=3;
         accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -340,7 +343,7 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
 
     private void playVoice() throws IOException {
         mediaPlayer=new MediaPlayer();
-        String path = "android.resource://"+getPackageName()+"/"+ R.raw.correct_answer;
+        String path = "android.resource://"+getPackageName()+"/"+ R.raw.good_job;
         Uri uri =Uri.parse(path);
         mediaPlayer.setDataSource(this,uri);
         mediaPlayer.prepareAsync();
@@ -479,7 +482,30 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
         }
     }
 
+    private void scoresAndLevel() {
+        accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //loop through accounts to find the parent with that id
+                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
 
+                    //loop through parent children to add them to adapter ArrayList
+                    for (DataSnapshot theChild: userSnapshot.child("children").getChildren()) {
+                        Child child = theChild.getValue(Child.class);
+                        if(child.getId().equals(childId)){
+                            scores.setText(child.getScore().toString());
+                            level.setText(child.getLevel().toString());
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
+    }
 
     @Override
     public void onSurfaceCreated(SampleRender render) {
@@ -829,34 +855,8 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
                 .show();
     }
 
-    private void launchInstantPlacementSettingsMenuDialog() {
-        resetSettingsMenuDialogCheckboxes();
-        Resources resources = getResources();
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.options_title_instant_placement)
-                .setMultiChoiceItems(
-                        resources.getStringArray(R.array.instant_placement_options_array),
-                        instantPlacementSettingsMenuDialogCheckboxes,
-                        (DialogInterface dialog, int which, boolean isChecked) ->
-                                instantPlacementSettingsMenuDialogCheckboxes[which] = isChecked)
-                .setPositiveButton(
-                        R.string.done,
-                        (DialogInterface dialogInterface, int which) -> applySettingsMenuDialogCheckboxes())
-                .setNegativeButton(
-                        android.R.string.cancel,
-                        (DialogInterface dialog, int which) -> resetSettingsMenuDialogCheckboxes())
-                .show();
-    }
 
 
-    private void applySettingsMenuDialogCheckboxes() {
-        depthSettings.setUseDepthForOcclusion(depthSettingsMenuDialogCheckboxes[0]);
-        depthSettings.setDepthColorVisualizationEnabled(depthSettingsMenuDialogCheckboxes[1]);
-
-        instantPlacementSettings.setInstantPlacementEnabled(
-                instantPlacementSettingsMenuDialogCheckboxes[0]);
-        configureSession();
-    }
 
     private void resetSettingsMenuDialogCheckboxes() {
         depthSettingsMenuDialogCheckboxes[0] = depthSettings.useDepthForOcclusion();
@@ -972,6 +972,8 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
         back=findViewById(R.id.back);
         forward=findViewById(R.id.forward);
         window = this.getWindow();
+        level=findViewById(R.id.level);
+        scores=findViewById(R.id.score);
 
 
     }

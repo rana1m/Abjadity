@@ -2,6 +2,7 @@ package com.rana.abjadity
 
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.media.MediaPlayer
 import android.media.MediaPlayer.OnPreparedListener
 import android.net.Uri
@@ -10,6 +11,7 @@ import android.view.MotionEvent
 import android.view.Window
 import android.widget.Button
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import com.google.firebase.database.*
 import com.google.mlkit.common.MlKitException
 import com.google.mlkit.common.model.DownloadConditions
@@ -25,6 +27,12 @@ object StrokeManager {
     val accountRef: DatabaseReference =  database.getReference("accounts")
     var mediaPlayer = MediaPlayer()
 
+    fun launchNextScreen(context: Context,parentId: String,childId: String): Intent? {
+        val intent = Intent(context, StrokeManager::class.java)
+        intent.putExtra("childId", childId)
+        intent.putExtra("parentId", parentId)
+        return intent
+    }
 
     fun addNewTouchEvent(event: MotionEvent) {
         val action = event.actionMasked
@@ -110,6 +118,7 @@ object StrokeManager {
         }
 
     }
+
     private fun winningFunction(context: Context,parentId: String,childId: String) {
         val dialog = Dialog(context)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -117,10 +126,11 @@ object StrokeManager {
         dialog.setContentView(R.layout.correct_answer_dialog)
         val yesBtn = dialog.findViewById(R.id.buttonOk) as Button
         dialog.show()
-        playVoice("j",context)
+        playVoice("",context)
         updateScores(parentId,childId)
 
         yesBtn.setOnClickListener {
+          // context.startActivity(launchNextScreen(context,parentId,childId))
             dialog.dismiss()
         }
 
@@ -155,6 +165,7 @@ object StrokeManager {
             "android.resource://" + context.getPackageName() + "/" + R.raw.correct_answer
         }
         val uri = Uri.parse(path)
+        mediaPlayer.reset()
         mediaPlayer.setDataSource(context, uri)
         mediaPlayer.prepareAsync()
         mediaPlayer.setOnPreparedListener(OnPreparedListener { mp -> mp.start() })

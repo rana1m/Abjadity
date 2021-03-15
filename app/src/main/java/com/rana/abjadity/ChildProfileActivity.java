@@ -126,7 +126,11 @@ public class ChildProfileActivity extends AppCompatActivity {
                 SaveButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        checkPassword();
+                        if(EnterPass.getText().toString().equals("")){
+                            errorMsg.setVisibility(View.VISIBLE);
+                        }else {
+                            checkPassword();
+                        }
                     }
 
                     private void checkPassword() {
@@ -136,8 +140,7 @@ public class ChildProfileActivity extends AppCompatActivity {
 
                                 for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
 
-                                    AuthCredential credential = EmailAuthProvider
-                                            .getCredential(curretUser.getEmail(), EnterPass.getText().toString());
+                                    AuthCredential credential = EmailAuthProvider.getCredential(curretUser.getEmail(), EnterPass.getText().toString());
                                     curretUser.reauthenticate(credential).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {

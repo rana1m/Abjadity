@@ -56,11 +56,13 @@ public class StepThreeActivity extends AppCompatActivity {
     int score;
     View dialogView;
     private Button SaveButton;
+    TextView level,scores;
+
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i = new Intent(StepThreeActivity.this,StepTowActivity.class);
+        Intent i = new Intent(StepThreeActivity.this,StepFiveActivity.class);
         i.putExtra("childId",childId);
         i.putExtra("parentId",parentId);
         i.putExtra("childLevel",childLevel);
@@ -74,6 +76,8 @@ public class StepThreeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_step_three);
 
         initialization();
+        scoresAndLevel();
+
         characterInitialization();
 
 
@@ -143,7 +147,7 @@ public class StepThreeActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(StepThreeActivity.this,StepTowActivity.class);
+                Intent i = new Intent(StepThreeActivity.this,StepFiveActivity.class);
                 i.putExtra("childId",childId);
                 i.putExtra("parentId",parentId);
                 i.putExtra("childLevel",childLevel);
@@ -155,7 +159,7 @@ public class StepThreeActivity extends AppCompatActivity {
         forward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(StepThreeActivity.this,StepFourActivity.class);
+                Intent i = new Intent(StepThreeActivity.this,StepSevenActivity.class);
                 i.putExtra("childId",childId);
                 i.putExtra("parentId",parentId);
                 i.putExtra("childLevel",childLevel);
@@ -202,6 +206,30 @@ public class StepThreeActivity extends AppCompatActivity {
             }
         });
     }
+    private void scoresAndLevel() {
+        accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //loop through accounts to find the parent with that id
+                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
+
+                    //loop through parent children to add them to adapter ArrayList
+                    for (DataSnapshot theChild: userSnapshot.child("children").getChildren()) {
+                        Child child = theChild.getValue(Child.class);
+                        if(child.getId().equals(childId)){
+                            scores.setText(child.getScore().toString());
+                            level.setText(child.getLevel().toString());
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
+    }
 
     private void winningFunction() {
 
@@ -212,7 +240,7 @@ public class StepThreeActivity extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(StepThreeActivity.this);
         ViewGroup viewGroup = findViewById(android.R.id.content);
-        dialogView = LayoutInflater.from(this).inflate(R.layout.next_step_dialog, viewGroup, false);
+        dialogView = LayoutInflater.from(this).inflate(R.layout.correct_answer_dialog, viewGroup, false);
 
         builder.setView(dialogView);
         AlertDialog alertDialog = builder.create();
@@ -233,7 +261,7 @@ public class StepThreeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(StepThreeActivity.this,StepFourActivity.class);
+                Intent i = new Intent(StepThreeActivity.this,StepSevenActivity.class);
                 i.putExtra("childId",childId);
                 i.putExtra("parentId",parentId);
                 i.putExtra("childLevel",childLevel);
@@ -421,6 +449,8 @@ public class StepThreeActivity extends AppCompatActivity {
                 ,"د","ذ","ر", "ز","س","ش","ص"
                 ,"ض","ط","ظ","ع","ف","غ","ق","ك","ل",
                 "م","ن","ه","و","ي"));
+        level=findViewById(R.id.level);
+        scores=findViewById(R.id.score);
 
     }
 }
