@@ -128,7 +128,7 @@ public class StepSevenActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(StepSevenActivity.this);
         ViewGroup viewGroup = findViewById(android.R.id.content);
 
-        dialogView = getLayoutInflater().inflate(R.layout.correct_answer_dialog, viewGroup, false);
+        dialogView = getLayoutInflater().inflate(R.layout.next_step_dialog, viewGroup, false);
 
         builder.setView(dialogView);
         AlertDialog alertDialog = builder.create();

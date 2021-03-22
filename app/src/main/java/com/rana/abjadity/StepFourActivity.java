@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -35,6 +36,7 @@ import com.squareup.picasso.Picasso;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.Random;
 
 public class StepFourActivity extends AppCompatActivity {
@@ -54,6 +56,7 @@ public class StepFourActivity extends AppCompatActivity {
     TextView correct;
     int score;
     TextView level,scores;
+    TextToSpeech textToSpeech;
 
 
     @Override
@@ -173,7 +176,7 @@ public class StepFourActivity extends AppCompatActivity {
     }
 
     private void updateScores() {
-        score=5;
+        score=3;
         accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -304,5 +307,14 @@ public class StepFourActivity extends AppCompatActivity {
         window = this.getWindow();
         level=findViewById(R.id.level);
         scores=findViewById(R.id.score);
+        textToSpeech=new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+//                if (status==TextToSpeech.SUCCESS){
+//
+//                }
+
+            }
+        });
     }
 }

@@ -45,7 +45,8 @@
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_margin="5dp"
-            tools:src="@mipmap/child_blue" />
+            tools:src="@mipmap/child_blue"
+            />
 
     </LinearLayout>
 

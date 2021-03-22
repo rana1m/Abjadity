@@ -28,7 +28,8 @@
         android:theme="@style/Theme.Abjadity"
         android:usesCleartextTraffic="false"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".FinalStepActivity"></activity>
+        <activity android:name=".gameMenuActivity"></activity>
+        <activity android:name=".FinalStepActivity" />
         <activity android:name=".StepFourNumActivity" />
         <activity android:name=".OneActivity" />
         <activity android:name=".StepSixActivity" />
@@ -38,10 +39,6 @@
         <activity android:name=".StepThreeActivity" />
         <activity android:name=".StepSevenActivity" />
         <activity android:name=".StepEightActivity" />
-
-            android:name=".CustomActivity"
-            android:launchMode="singleTask"
-            android:process=":unityplayer" />
         <activity
             android:name=".UnityHolderActivity"
             android:launchMode="singleTask"

@@ -86,6 +86,7 @@ public class MapActivity extends AppCompatActivity {
 
 
 
+
         ScrollView scrollView = (ScrollView) findViewById(R.id.scrollView);
 
         scrollView.post(new Runnable() {
@@ -100,7 +101,7 @@ public class MapActivity extends AppCompatActivity {
         addLettersToDatabase();
         addNumbersToDatabase();
 
-
+        bottomNavigationView.setSelectedItemId(R.id.mapActivity);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -110,6 +111,13 @@ public class MapActivity extends AppCompatActivity {
                         break;
                     case R.id.profileActivity:
                         break;
+                    case R.id.gameActivity:
+                        Intent i = new Intent(MapActivity.this,gameMenuActivity.class);
+                        i.putExtra("childId",childId);
+                        i.putExtra("parentId",parentId);
+                        startActivity(i);
+                        break;
+
                 }
                 return true;
             }
@@ -691,6 +699,15 @@ public class MapActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(MapActivity.this,ChildProfileActivity.class);
+        i.putExtra("childId",childId);
+        i.putExtra("parentId",parentId);
+        startActivity(i);
     }
     private void initializationForDialog() {
         SaveButton = dialogView.findViewById(R.id.buttonOk);

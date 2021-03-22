@@ -67,6 +67,7 @@ public class LogInActivity extends AppCompatActivity {
                                     i.putExtra("parentId",user.getUid());
                                     startActivity(i);
 
+
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Log.w(TAG, "signInWithEmail:failure", task.getException());

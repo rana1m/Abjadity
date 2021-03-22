@@ -123,7 +123,6 @@ public class StepOneActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
                         Intent i = new Intent(StepOneActivity.this,StepTowActivity.class);
                         i.putExtra("childId",childId);
                         i.putExtra("parentId",parentId);

@@ -12,6 +12,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference accountRef,alphabetsRef,digitsRef;
     Button logIn,Register;
+    FirebaseAuth mAuth;
+    FirebaseUser firebaseUser;
 
 
     @Override
@@ -37,11 +41,14 @@ public class MainActivity extends AppCompatActivity {
 
         initialization();
 
-//        accountRef.setValue("s");
-//        alphabetsRef.setValue("hello");
-//        digitsRef.setValue("hello");
+        if(firebaseUser!=null){
+            Intent i = new Intent(MainActivity.this,ParentHomePageActivity.class);
+            i.putExtra("parentId",firebaseUser.getUid());
+            startActivity(i);
+        }
 
          myAlarm();
+
 
     logIn.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -69,6 +76,9 @@ public class MainActivity extends AppCompatActivity {
         accountRef = database.getReference("accounts");
         alphabetsRef = database.getReference("alphabets");
         digitsRef = database.getReference("digits");
+        mAuth = FirebaseAuth.getInstance();
+        firebaseUser=mAuth.getCurrentUser();
+
     }
 
 

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_gravity="center"
     android:background="@drawable/image2"
     android:layout_height="match_parent"
     tools:context=".ParentHomePageActivity">
@@ -17,26 +18,18 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout2"
                 android:layout_width="383dp"
                 android:layout_height="635dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="49dp"
-                android:layout_marginEnd="24dp"
                 android:background="@drawable/card"
                 android:backgroundTint="@color/white"
-                android:elevation="@dimen/cardview_default_elevation"
-                android:padding="13dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:elevation="3dp"
+                android:layout_gravity="center"
+                android:padding="13dp">
 
 
                 <LinearLayout
@@ -53,7 +46,6 @@
                         android:id="@+id/profileImg"
                         android:layout_width="222dp"
                         android:layout_height="169dp"
-                        app:srcCompat="@mipmap/child_blue"
                         tools:layout_editor_absoluteX="127dp" />
 
                     <Button
@@ -278,6 +270,5 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -97,8 +97,8 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
     Button SaveButton;
     View dialogView;
     TextView correct;
-    int score;
     TextView level,scores;
+    int score;
 
 
 
@@ -238,7 +238,6 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
         try {
             initialization();
             scoresAndLevel();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -289,13 +288,13 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
             e.printStackTrace();
         }
 
-
+        //update scores
+        updateScores();
 
         SaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//update scores
-                updateScores();
+
                 Intent i = new Intent(StepTowActivity.this,StepFourActivity.class);
                 i.putExtra("childId",childId);
                 i.putExtra("parentId",parentId);
@@ -341,6 +340,31 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
         });
     }
 
+    private void scoresAndLevel() {
+        accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //loop through accounts to find the parent with that id
+                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
+
+                    //loop through parent children to add them to adapter ArrayList
+                    for (DataSnapshot theChild: userSnapshot.child("children").getChildren()) {
+                        Child child = theChild.getValue(Child.class);
+                        if(child.getId().equals(childId)){
+                            scores.setText(child.getScore().toString());
+                            level.setText(child.getLevel().toString());
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
+    }
+
     private void playVoice() throws IOException {
         mediaPlayer=new MediaPlayer();
         String path = "android.resource://"+getPackageName()+"/"+ R.raw.good_job;
@@ -355,6 +379,81 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
             }
         });
     }
+
+    private void playLetterChant() throws IOException {
+        mediaPlayer=new MediaPlayer();
+        String path;
+        if(button.equals("1")){
+             path = "android.resource://"+getPackageName()+"/"+ R.raw.l1;
+        }else if(button.equals("2")){
+             path = "android.resource://"+getPackageName()+"/"+ R.raw.l2;
+          }else if(button.equals("3")){
+             path = "android.resource://"+getPackageName()+"/"+ R.raw.l3;
+        }  else if(button.equals("4")){
+             path = "android.resource://"+getPackageName()+"/"+ R.raw.l4;
+        }  else if(button.equals("5")){
+             path = "android.resource://"+getPackageName()+"/"+ R.raw.l5;
+        }  else if(button.equals("6")){
+             path = "android.resource://"+getPackageName()+"/"+ R.raw.l6;
+        }  else if(button.equals("7")){
+             path = "android.resource://"+getPackageName()+"/"+ R.raw.l7;
+        }  else if(button.equals("8")){
+             path = "android.resource://"+getPackageName()+"/"+ R.raw.l8;
+        }  else if(button.equals("9")){
+             path = "android.resource://"+getPackageName()+"/"+ R.raw.l9;
+        }  else if(button.equals("10")){
+             path = "android.resource://"+getPackageName()+"/"+ R.raw.l10;
+        }  else if(button.equals("11")){
+             path = "android.resource://"+getPackageName()+"/"+ R.raw.l11;
+        }  else if(button.equals("12")){
+             path = "android.resource://"+getPackageName()+"/"+ R.raw.l12;
+        }  else if(button.equals("13")){
+             path = "android.resource://"+getPackageName()+"/"+ R.raw.l13;
+        }  else if(button.equals("14")){
+             path = "android.resource://"+getPackageName()+"/"+ R.raw.l14;
+        }  else if(button.equals("15")){
+             path = "android.resource://"+getPackageName()+"/"+ R.raw.l15;
+        }  else if(button.equals("16")){
+             path = "android.resource://"+getPackageName()+"/"+ R.raw.l16;
+        }  else if(button.equals("17")){
+             path = "android.resource://"+getPackageName()+"/"+ R.raw.l17;
+        }  else if(button.equals("18")){
+             path = "android.resource://"+getPackageName()+"/"+ R.raw.l18;
+        }  else if(button.equals("19")){
+             path = "android.resource://"+getPackageName()+"/"+ R.raw.l19;
+        }  else if(button.equals("20")){
+             path = "android.resource://"+getPackageName()+"/"+ R.raw.l20;
+        }  else if(button.equals("21")){
+             path = "android.resource://"+getPackageName()+"/"+ R.raw.l21;
+        }  else if(button.equals("22")){
+             path = "android.resource://"+getPackageName()+"/"+ R.raw.l22;
+        }  else if(button.equals("23")){
+             path = "android.resource://"+getPackageName()+"/"+ R.raw.l23;
+        }  else if(button.equals("24")){
+             path = "android.resource://"+getPackageName()+"/"+ R.raw.l24;
+        }  else if(button.equals("25")){
+             path = "android.resource://"+getPackageName()+"/"+ R.raw.l25;
+        }  else if(button.equals("26")){
+             path = "android.resource://"+getPackageName()+"/"+ R.raw.l26;
+        }  else if(button.equals("27")){
+             path = "android.resource://"+getPackageName()+"/"+ R.raw.l27;
+        }  else if(button.equals("28")) {
+             path = "android.resource://" + getPackageName() + "/" + R.raw.l28;
+        }
+        else {
+            path = "android.resource://" + getPackageName() + "/" + R.raw.l1;
+        }
+        Uri uri =Uri.parse(path);
+        mediaPlayer.setDataSource(this,uri);
+        mediaPlayer.prepareAsync();
+        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.start();
+            }
+        });
+    }
+
 
     private void initializationForDialog() {
 
@@ -482,36 +581,14 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
         }
     }
 
-    private void scoresAndLevel() {
-        accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                //loop through accounts to find the parent with that id
-                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
 
-                    //loop through parent children to add them to adapter ArrayList
-                    for (DataSnapshot theChild: userSnapshot.child("children").getChildren()) {
-                        Child child = theChild.getValue(Child.class);
-                        if(child.getId().equals(childId)){
-                            scores.setText(child.getScore().toString());
-                            level.setText(child.getLevel().toString());
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                throw databaseError.toException();
-            }
-        });
-    }
 
     @Override
     public void onSurfaceCreated(SampleRender render) {
         // Prepare the rendering objects. This involves reading shaders and 3D model files, so may throw
         // an IOException.
         try {
+            playLetterChant();
             planeRenderer = new PlaneRenderer(render);
             backgroundRenderer = new BackgroundRenderer(render);
             virtualSceneFramebuffer = new Framebuffer(render, /*width=*/ 1, /*height=*/ 1);
@@ -855,8 +932,34 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
                 .show();
     }
 
+    private void launchInstantPlacementSettingsMenuDialog() {
+        resetSettingsMenuDialogCheckboxes();
+        Resources resources = getResources();
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.options_title_instant_placement)
+                .setMultiChoiceItems(
+                        resources.getStringArray(R.array.instant_placement_options_array),
+                        instantPlacementSettingsMenuDialogCheckboxes,
+                        (DialogInterface dialog, int which, boolean isChecked) ->
+                                instantPlacementSettingsMenuDialogCheckboxes[which] = isChecked)
+                .setPositiveButton(
+                        R.string.done,
+                        (DialogInterface dialogInterface, int which) -> applySettingsMenuDialogCheckboxes())
+                .setNegativeButton(
+                        android.R.string.cancel,
+                        (DialogInterface dialog, int which) -> resetSettingsMenuDialogCheckboxes())
+                .show();
+    }
 
 
+    private void applySettingsMenuDialogCheckboxes() {
+        depthSettings.setUseDepthForOcclusion(depthSettingsMenuDialogCheckboxes[0]);
+        depthSettings.setDepthColorVisualizationEnabled(depthSettingsMenuDialogCheckboxes[1]);
+
+        instantPlacementSettings.setInstantPlacementEnabled(
+                instantPlacementSettingsMenuDialogCheckboxes[0]);
+        configureSession();
+    }
 
     private void resetSettingsMenuDialogCheckboxes() {
         depthSettingsMenuDialogCheckboxes[0] = depthSettings.useDepthForOcclusion();
@@ -972,6 +1075,7 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
         back=findViewById(R.id.back);
         forward=findViewById(R.id.forward);
         window = this.getWindow();
+        score=0;
         level=findViewById(R.id.level);
         scores=findViewById(R.id.score);
 
