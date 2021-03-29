@@ -556,9 +556,11 @@ public class MapActivity extends AppCompatActivity {
                                     i2.putExtra("childId",childId);
                                     i2.putExtra("parentId",parentId);
 
-                                    if(child.getLevel()+1>=29){
+                                 if(child.getLevel()+1>=29){
                                         startActivity(i2);
-                                    }
+                                 }else{
+                                     popUpDialog();
+                                 }
                                 }
                             });
                             PushDownAnim.setPushDownAnimTo(buttonGray30).setScale(.7f).setOnClickListener(new View.OnClickListener() {
@@ -570,8 +572,8 @@ public class MapActivity extends AppCompatActivity {
 
                                     if(child.getLevel()+1>=30){
                                         startActivity(i2);
-                                    }else {
-                                        popUpDialog();
+                                   }else {
+                                       popUpDialog();
                                     }
                                 }
                             });
@@ -582,7 +584,7 @@ public class MapActivity extends AppCompatActivity {
                                     i2.putExtra("childId",childId);
                                     i2.putExtra("parentId",parentId);
 
-                                    if(child.getLevel()+1>=31){
+                                   if(child.getLevel()+1>=31){
                                         startActivity(i2);
                                     }else {
                                         popUpDialog();
@@ -610,11 +612,11 @@ public class MapActivity extends AppCompatActivity {
                                     i2.putExtra("childId",childId);
                                     i2.putExtra("parentId",parentId);
 
-                                    if(child.getLevel()+1>=33){
+                                 //   if(child.getLevel()+1>=33){
                                         startActivity(i2);
-                                    }else {
-                                        popUpDialog();
-                                    }
+                                   // }else {
+                                     //   popUpDialog();
+                                    //}
                                 }
                             });
                             PushDownAnim.setPushDownAnimTo(buttonGray34).setScale(.7f).setOnClickListener(new View.OnClickListener() {
@@ -624,7 +626,7 @@ public class MapActivity extends AppCompatActivity {
                                     i2.putExtra("childId",childId);
                                     i2.putExtra("parentId",parentId);
 
-                                    if(child.getLevel()+1>=34){
+                                   if(child.getLevel()+1>=34){
                                         startActivity(i2);
                                     }else {
                                         popUpDialog();
@@ -656,7 +658,7 @@ public class MapActivity extends AppCompatActivity {
                                         startActivity(i2);
                                     }else {
                                         popUpDialog();
-                                    }
+                                }
                                 }
                             });
                             PushDownAnim.setPushDownAnimTo(buttonGray37).setScale(.7f).setOnClickListener(new View.OnClickListener() {
@@ -666,10 +668,10 @@ public class MapActivity extends AppCompatActivity {
                                     i2.putExtra("childId",childId);
                                     i2.putExtra("parentId",parentId);
 
-                                    if(child.getLevel()+1>=37){
+                                   if(child.getLevel()+1>=37){
                                         startActivity(i2);
-                                    }else {
-                                        popUpDialog();
+                                   }else {
+                                       popUpDialog();
                                     }
                                 }
                             });

@@ -5,7 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class Digit{
-    String id,name,chant;
+    String id, name, chant;
+
 
     public Digit() {
     }
@@ -25,7 +26,7 @@ public class Digit{
         this.id = id;
     }
 
-    public String getName() {
+    public  String getName() {
         return name;
     }
 
