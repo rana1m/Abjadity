@@ -124,6 +124,7 @@ object StrokeManager {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(false)
         dialog.setContentView(R.layout.correct_answer_dialog)
+
         val yesBtn = dialog.findViewById(R.id.buttonOk) as Button
         dialog.show()
         playVoice("",context)

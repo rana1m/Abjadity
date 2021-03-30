@@ -4,9 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class LogInActivity extends AppCompatActivity {
@@ -39,12 +43,13 @@ public class LogInActivity extends AppCompatActivity {
     DatabaseReference accountRef;
     TextView errorMsg,forgetPasswordLink;
     private FirebaseAuth mAuth;
+    int counter = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-        
+
         initialization();
         logIn();
         forgetPassword();
@@ -55,6 +60,7 @@ public class LogInActivity extends AppCompatActivity {
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
                         .addOnCompleteListener(LogInActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -67,14 +73,28 @@ public class LogInActivity extends AppCompatActivity {
                                     i.putExtra("parentId",user.getUid());
                                     startActivity(i);
 
-
-                                } else {
+                                } else if(!task.isSuccessful()) {
                                     // If sign in fails, display a message to the user.
                                     Log.w(TAG, "signInWithEmail:failure", task.getException());
                                     errorMsg.setText("* البريد الاكتروني و/أو كلمة المرور خاطئة");
                                     errorMsg.setVisibility(View.VISIBLE);
-                                    Toast.makeText(LogInActivity.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
+                                    counter--;
+                                }
+                                if (counter == 0)
+                                // Disable button after 3 failed attempts
+                                {   logInButton.setEnabled(false);
+
+                                  errorMsg.setText("تم إيقاف تسجيل الدخول لمدة ٥ دقائق");
+                                    errorMsg.setVisibility(View.VISIBLE);
+
+                                    final Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable()
+                                    {   @Override
+                                    public void run()
+                                    {   logInButton.setEnabled(true);
+                                        counter = 3;
+                                    }
+                                    }, 300000);
                                 }
 
                             }

@@ -268,8 +268,8 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
 
         window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
                 WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL);
-        window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
-                WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH);
+//        window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
+//                WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(StepTowActivity.this);
         ViewGroup viewGroup = findViewById(android.R.id.content);
@@ -279,6 +279,7 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
         builder.setView(dialogView);
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+        alertDialog.setCanceledOnTouchOutside(false);
         initializationForDialog();
         //play voice
         try {
@@ -303,14 +304,7 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
                 startActivity(i);
                 alertDialog.dismiss();
             }
-            public boolean onTouchEvent(MotionEvent event)
-            {
 
-                if(event.getAction() == MotionEvent.ACTION_OUTSIDE){
-                    alertDialog.dismiss();
-                }
-                return false;
-            }
         });
     }
 

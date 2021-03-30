@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -59,6 +60,7 @@ public class ChildProfileActivity extends AppCompatActivity {
     Bundle bundle;
     StorageReference storageReference ;
     FirebaseUser curretUser;
+    int counter = 3;
 
 
     @Override
@@ -153,7 +155,23 @@ public class ChildProfileActivity extends AppCompatActivity {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
                                             errorMsg.setVisibility(View.VISIBLE);
+                                            counter--;
+                                            if (counter == 0)
+                                            // Disable button after 3 failed attempts
+                                            {   SaveButton.setEnabled(false);
 
+                                                errorMsg.setText("تم إيقاف تسجيل الدخول لمدة ٥ دقائق");
+                                                errorMsg.setVisibility(View.VISIBLE);
+
+                                                final Handler handler = new Handler();
+                                                handler.postDelayed(new Runnable()
+                                                {   @Override
+                                                public void run()
+                                                {   SaveButton.setEnabled(true);
+                                                    counter = 3;
+                                                }
+                                                }, 300000);
+                                            }
                                         }
                                     });
 

@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -104,7 +105,6 @@ public class StepFourActivity extends AppCompatActivity {
             }
         });
 
-
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,6 +140,7 @@ public class StepFourActivity extends AppCompatActivity {
         builder.setView(dialogView);
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+        alertDialog.setCanceledOnTouchOutside(false);
         initializationForDialog();
         //play voice
         try {
@@ -171,6 +172,64 @@ public class StepFourActivity extends AppCompatActivity {
                     alertDialog.dismiss();
                 }
                 return false;
+            }
+        });
+    }
+
+    private void tryAgain() {
+
+        window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL);
+        window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
+                WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(StepFourActivity.this);
+        ViewGroup viewGroup = findViewById(android.R.id.content);
+        dialogView = LayoutInflater.from(this).inflate(R.layout.wrong_answer_dialog, viewGroup, false);
+
+        builder.setView(dialogView);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+        initializationForDialog();
+        //play voice
+        try {
+            playVoice("try_again");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        SaveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                alertDialog.dismiss();
+            }
+            public boolean onTouchEvent(MotionEvent event)
+            {
+                if(event.getAction() == MotionEvent.ACTION_OUTSIDE){
+                    alertDialog.dismiss();
+                }
+                return false;
+            }
+        });
+    }
+
+    private void playVoice(String s) throws IOException {
+        mediaPlayer=new MediaPlayer();
+        String path="";
+        if(s.equals("try_again")){
+            path = "android.resource://" + getPackageName() + "/" + R.raw.try_again;
+        }
+        else {
+            path = "android.resource://" + getPackageName() + "/" + R.raw.correct_answer;
+        }
+        Uri uri =Uri.parse(path);
+        mediaPlayer.setDataSource(this,uri);
+        mediaPlayer.prepareAsync();
+        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.start();
             }
         });
     }
@@ -230,7 +289,6 @@ public class StepFourActivity extends AppCompatActivity {
         textView4.setText(word4);
     }
 
-
     private void loadImages(int index) {
         storageReference.child("/images/"+button+"/"+index+".png").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
@@ -248,7 +306,6 @@ public class StepFourActivity extends AppCompatActivity {
         });
     }
 
-
     private void characterInitialization() {
         String path = "android.resource://"+getPackageName()+"/"+ R.raw.v2;
         Uri uri =Uri.parse(path);
@@ -263,6 +320,7 @@ public class StepFourActivity extends AppCompatActivity {
             }
         });
     }
+
     private void scoresAndLevel() {
         accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -287,6 +345,7 @@ public class StepFourActivity extends AppCompatActivity {
             }
         });
     }
+
     private void initialization () {
         database = FirebaseDatabase.getInstance();
         accountRef = database.getReference("accounts");

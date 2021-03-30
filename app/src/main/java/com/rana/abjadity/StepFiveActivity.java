@@ -224,6 +224,7 @@ public class StepFiveActivity extends AppCompatActivity {
         builder.setView(dialogView);
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+        alertDialog.setCanceledOnTouchOutside(false);
         initializationForDialog();
         //play voice
         try {
@@ -347,7 +348,6 @@ public class StepFiveActivity extends AppCompatActivity {
             }
         });
     }
-
     private void initialization () {
         database = FirebaseDatabase.getInstance();
         accountRef = database.getReference("accounts");

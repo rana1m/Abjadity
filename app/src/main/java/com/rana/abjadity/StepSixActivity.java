@@ -275,7 +275,6 @@ public class StepSixActivity extends AppCompatActivity {
                         });
     }
 
-
     private void characterInitialization() {
         String path = "android.resource://" + getPackageName() + "/" + R.raw.v2;
         Uri uri = Uri.parse(path);

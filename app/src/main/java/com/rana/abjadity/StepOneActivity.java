@@ -257,6 +257,7 @@ public class StepOneActivity extends AppCompatActivity {
         builder.setView(dialogView);
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+        alertDialog.setCanceledOnTouchOutside(false);
         initializationForDialog();
         //play voice
         try {

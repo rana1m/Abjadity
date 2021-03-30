@@ -88,10 +88,6 @@ class StepEightActivity : AppCompatActivity() {
             }
         })
 
-
-
-
-
         back.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 val intent = Intent(this@StepEightActivity, StepSevenActivity::class.java)

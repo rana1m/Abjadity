@@ -34,4 +34,5 @@
     <string-array name="instant_placement_options_array" translatable="false">
         <item>Enable Instant Placement</item>
     </string-array>
+    <string name="title_activity_catching_game">Map</string>
 </resources>

@@ -65,11 +65,11 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginBottom="172dp"
+                android:layout_marginBottom="176dp"
                 android:background="@mipmap/button_gray3"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.687"
+                app:layout_constraintHorizontal_bias="0.695"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
@@ -97,11 +97,11 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginBottom="263dp"
+                android:layout_marginBottom="264dp"
                 android:background="@mipmap/button_gray5"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.513"
+                app:layout_constraintHorizontal_bias="0.485"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
@@ -113,11 +113,11 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginBottom="290dp"
+                android:layout_marginBottom="292dp"
                 android:background="@mipmap/button_gray6"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.718"
+                app:layout_constraintHorizontal_bias="0.695"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
@@ -129,11 +129,11 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginBottom="364dp"
+                android:layout_marginBottom="368dp"
                 android:background="@mipmap/button_gray7"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.677"
+                app:layout_constraintHorizontal_bias="0.671"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
@@ -145,11 +145,11 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginBottom="370dp"
+                android:layout_marginBottom="380dp"
                 android:background="@mipmap/button_gray8"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.452"
+                app:layout_constraintHorizontal_bias="0.45"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
@@ -161,28 +161,12 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="410dp"
+                android:layout_marginEnd="22dp"
+                android:layout_marginBottom="412dp"
                 android:background="@mipmap/button_gray9"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.246"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <Button
-                android:id="@+id/buttonGray10"
-                android:layout_width="67dp"
-                android:layout_height="75dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginBottom="473dp"
-                android:background="@mipmap/button_gray10"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.36"
+                app:layout_constraintHorizontal_bias="0.265"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
@@ -194,45 +178,11 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginBottom="490dp"
+                android:layout_marginBottom="500dp"
                 android:background="@mipmap/button_gray11"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.604"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <Button
-                android:id="@+id/buttonGray12"
-                android:layout_width="67dp"
-                android:layout_height="75dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="560dp"
-                android:background="@mipmap/button_gray12"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.559"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <Button
-                android:id="@+id/buttonGray13"
-                android:layout_width="67dp"
-                android:layout_height="75dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="616dp"
-                android:background="@mipmap/button_gray13"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.465"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
@@ -245,11 +195,61 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginStart="3dp"
-                android:layout_marginBottom="658dp"
+                android:layout_marginBottom="668dp"
                 android:background="@mipmap/button_gray14"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.627"
+                app:layout_constraintHorizontal_bias="0.628"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/buttonGray10"
+                android:layout_width="67dp"
+                android:layout_height="75dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="484dp"
+                android:background="@mipmap/button_gray10"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.363"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/buttonGray12"
+                android:layout_width="67dp"
+                android:layout_height="75dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginStart="18dp"
+                android:layout_marginBottom="568dp"
+                android:background="@mipmap/button_gray12"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.56"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/buttonGray13"
+                android:layout_width="67dp"
+                android:layout_height="75dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="624dp"
+                android:background="@mipmap/button_gray13"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.467"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
@@ -261,11 +261,11 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginBottom="756dp"
+                android:layout_marginBottom="768dp"
                 android:background="@mipmap/button_gray15"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.528"
+                app:layout_constraintHorizontal_bias="0.52"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
@@ -277,11 +277,11 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginBottom="836dp"
+                android:layout_marginBottom="848dp"
                 android:background="@mipmap/button_gray16"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.403"
+                app:layout_constraintHorizontal_bias="0.413"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
@@ -294,11 +294,11 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginStart="17dp"
-                android:layout_marginBottom="896dp"
+                android:layout_marginBottom="908dp"
                 android:background="@mipmap/button_gray17"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.539"
+                app:layout_constraintHorizontal_bias="0.545"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
@@ -311,11 +311,11 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginEnd="6dp"
-                android:layout_marginBottom="968dp"
+                android:layout_marginBottom="980dp"
                 android:background="@mipmap/button_gray18"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.697"
+                app:layout_constraintHorizontal_bias="0.698"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
@@ -327,12 +327,12 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginStart="52dp"
-                android:layout_marginBottom="1032dp"
+                android:layout_marginStart="54dp"
+                android:layout_marginBottom="1044dp"
                 android:background="@mipmap/button_gray19"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.847"
+                app:layout_constraintHorizontal_bias="0.842"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
@@ -344,11 +344,11 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginBottom="1068dp"
+                android:layout_marginBottom="1080dp"
                 android:background="@mipmap/button_gray20"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.677"
+                app:layout_constraintHorizontal_bias="0.671"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
@@ -361,7 +361,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginStart="9dp"
-                android:layout_marginBottom="1058dp"
+                android:layout_marginBottom="1072dp"
                 android:background="@mipmap/button_gray21"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -377,12 +377,12 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="1119dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginBottom="1116dp"
                 android:background="@mipmap/button_gray22"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.277"
+                app:layout_constraintHorizontal_bias="0.266"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
@@ -394,12 +394,12 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="1168dp"
+                android:layout_marginStart="7dp"
+                android:layout_marginBottom="1180dp"
                 android:background="@mipmap/button_gray23"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.478"
+                app:layout_constraintHorizontal_bias="0.472"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
@@ -411,12 +411,11 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="1240dp"
                 android:background="@mipmap/button_gray24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.591"
+                app:layout_constraintHorizontal_bias="0.616"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
@@ -429,11 +428,11 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginStart="8dp"
-                android:layout_marginBottom="1255dp"
+                android:layout_marginBottom="1268dp"
                 android:background="@mipmap/button_gray25"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.313"
+                app:layout_constraintHorizontal_bias="0.335"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
@@ -446,11 +445,11 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginStart="8dp"
-                android:layout_marginBottom="1280dp"
+                android:layout_marginBottom="1288dp"
                 android:background="@mipmap/button_gray26"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.087"
+                app:layout_constraintHorizontal_bias="0.112"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
@@ -462,12 +461,11 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="1356dp"
+                android:layout_marginBottom="1360dp"
                 android:background="@mipmap/button_gray27"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.141"
+                app:layout_constraintHorizontal_bias="0.166"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
@@ -480,11 +478,11 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginStart="8dp"
-                android:layout_marginBottom="1404dp"
+                android:layout_marginBottom="1420dp"
                 android:background="@mipmap/button_gray28"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.313"
+                app:layout_constraintHorizontal_bias="0.32"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
@@ -496,11 +494,11 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginBottom="1600dp"
+                android:layout_marginBottom="1612dp"
                 android:background="@mipmap/button_gray1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.634"
+                app:layout_constraintHorizontal_bias="0.624"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
@@ -512,11 +510,11 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginBottom="1656dp"
+                android:layout_marginBottom="1668dp"
                 android:background="@mipmap/button_gray2"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.345"
+                app:layout_constraintHorizontal_bias="0.351"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
@@ -528,11 +526,11 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginBottom="1800dp"
+                android:layout_marginBottom="1812dp"
                 android:background="@mipmap/button_gray3"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.662"
+                app:layout_constraintHorizontal_bias="0.65"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
@@ -544,11 +542,11 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginBottom="1892dp"
+                android:layout_marginBottom="1896dp"
                 android:background="@mipmap/button_gray4"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.617"
+                app:layout_constraintHorizontal_bias="0.674"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
@@ -560,7 +558,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginBottom="1884dp"
+                android:layout_marginBottom="1896dp"
                 android:background="@mipmap/button_gray5"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -580,7 +578,7 @@
                 android:background="@mipmap/button_gray6"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.162"
+                app:layout_constraintHorizontal_bias="0.173"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
@@ -592,11 +590,11 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginBottom="2004dp"
+                android:layout_marginBottom="2032dp"
                 android:background="@mipmap/button_gray7"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.351"
+                app:layout_constraintHorizontal_bias="0.321"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
@@ -608,11 +606,11 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginBottom="1972dp"
+                android:layout_marginBottom="1992dp"
                 android:background="@mipmap/button_gray8"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.584"
+                app:layout_constraintHorizontal_bias="0.576"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
@@ -625,11 +623,11 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginEnd="20dp"
-                android:layout_marginBottom="2004dp"
+                android:layout_marginBottom="2012dp"
                 android:background="@mipmap/button_gray9"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.883"
+                app:layout_constraintHorizontal_bias="0.837"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
@@ -641,11 +639,11 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginBottom="2088dp"
+                android:layout_marginBottom="2104dp"
                 android:background="@mipmap/button_gray10"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.776"
+                app:layout_constraintHorizontal_bias="0.785"
                 app:layout_constraintStart_toStartOf="parent" />
 
 
