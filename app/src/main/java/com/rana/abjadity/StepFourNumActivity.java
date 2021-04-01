@@ -381,7 +381,7 @@ public class StepFourNumActivity extends AppCompatActivity implements View.OnCli
 
         AlertDialog.Builder builder = new AlertDialog.Builder(StepFourNumActivity.this);
         ViewGroup viewGroup = findViewById(android.R.id.content);
-        dialogView = LayoutInflater.from(this).inflate(R.layout.next_step_dialog, viewGroup, false);
+        dialogView = LayoutInflater.from(this).inflate(R.layout.correct_answer_dialog, viewGroup, false);
 
         builder.setView(dialogView);
         AlertDialog alertDialog = builder.create();

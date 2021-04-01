@@ -33,7 +33,8 @@
         android:theme="@style/Theme.Abjadity"
         android:usesCleartextTraffic="false"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".gamesActivity"></activity>
+        <activity android:name=".matchPictureGame" />
+        <activity android:name=".gamesActivity" />
         <activity android:name=".gameMenuActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
