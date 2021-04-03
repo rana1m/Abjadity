@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -28,6 +29,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.IOException;
 import java.util.Random;
 
+import javax.crypto.spec.OAEPParameterSpec;
+
 public class StepFourNumActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "StepFourNumActivity";
@@ -38,6 +41,7 @@ public class StepFourNumActivity extends AppCompatActivity implements View.OnCli
     final int random = new Random().nextInt((4 - 1) + 1) + 1;
     VideoView character;
     String numberId;
+    String finalNum;
     String childId,parentId,childLevel,button;
     TextView level,scores;
     Window window ;
@@ -50,7 +54,8 @@ public class StepFourNumActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i = new Intent(StepFourNumActivity.this,StepThreeNumActivity.class);
+        scoresAndLevel();
+        Intent i = new Intent(StepFourNumActivity.this,ThreeNumStep.class);
         i.putExtra("childId",childId);
         i.putExtra("parentId",parentId);
         i.putExtra("childLevel",childLevel);
@@ -74,6 +79,7 @@ public class StepFourNumActivity extends AppCompatActivity implements View.OnCli
         scoresAndLevel();
         characterInitialization();
         setImage(random);
+        finalNum = checkNum(button);
 
         // perform click event on images's
         balon1.setOnClickListener(this);
@@ -95,6 +101,9 @@ public class StepFourNumActivity extends AppCompatActivity implements View.OnCli
 
                 if(counter==num){
                     winningFunction();
+                    scoresAndLevel();
+                    visableImages();
+                    counter=0;
 
                 }else {
                     tryAgain();
@@ -112,7 +121,7 @@ public class StepFourNumActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(StepFourNumActivity.this, StepThreeNumActivity.class);
+                Intent i = new Intent(StepFourNumActivity.this, ThreeNumStep.class);
                 i.putExtra("button",button);
                 i.putExtra("childId",childId);
                 i.putExtra("parentId",parentId);
@@ -394,19 +403,19 @@ public class StepFourNumActivity extends AppCompatActivity implements View.OnCli
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        //Toast.makeText(getApplicationContext(), finalNum+"", Toast.LENGTH_LONG).show();
         //update scores
         updateScores();
-
+        scoresAndLevel();
         SaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent i = new Intent(StepFourNumActivity.this,FinalStepActivity.class);
+                Intent i = new Intent(StepFourNumActivity.this,FinalNumActivity.class);
                 i.putExtra("childId",childId);
                 i.putExtra("parentId",parentId);
                 i.putExtra("childLevel",childLevel);
                 i.putExtra("button",button);
+                i.putExtra("num",finalNum);
                 startActivity(i);
                 alertDialog.dismiss();
             }
@@ -414,13 +423,9 @@ public class StepFourNumActivity extends AppCompatActivity implements View.OnCli
             {
 
                 if(event.getAction() == MotionEvent.ACTION_OUTSIDE){
-                    Intent i = new Intent(StepFourNumActivity.this,FinalStepActivity.class);
-                    i.putExtra("childId",childId);
-                    i.putExtra("parentId",parentId);
-                    i.putExtra("childLevel",childLevel);
-                    i.putExtra("button",button);
-                    startActivity(i);
-                    alertDialog.dismiss();
+                    visableImages();
+                    counter=0;
+                    characterInitialization();
                 }
                 return false;
             }
@@ -466,6 +471,30 @@ public class StepFourNumActivity extends AppCompatActivity implements View.OnCli
         });
     }
 
+    public String checkNum(String Digits){
+        switch(Digits){
+            case "2":
+                return "30";
+            case "3":
+                return "31";
+            case "4":
+                return "32";
+            case "5":
+                return "33";
+            case "6":
+                return "34";
+            case "7":
+                return "35";
+            case "8":
+                return "36";
+            case "9":
+                return "37";
+            case "10":
+                return "38";
+
+        }
+        return "29";
+    }
 
 
 

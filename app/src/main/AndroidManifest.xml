@@ -34,6 +34,8 @@
         android:theme="@style/Theme.Abjadity"
         android:usesCleartextTraffic="false"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".FinalNumActivity"></activity>
+        <activity android:name=".ThreeNumStep" />
         <activity android:name=".matchPictureGame" />
         <activity android:name=".gamesActivity" />
         <activity android:name=".gameMenuActivity" />

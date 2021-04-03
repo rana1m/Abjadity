@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ThreeNumStep">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/image2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".StepOneActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="374dp"
+            android:layout_height="674dp"
+            android:background="@drawable/card"
+            android:backgroundTint="@color/white"
+            android:elevation="@dimen/cardview_default_elevation"
+            android:padding="13dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/backIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="11dp"
+                android:backgroundTint="@color/yellow"
+                android:clickable="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/back" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/forward2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="11dp"
+                android:backgroundTint="@color/yellow"
+                android:clickable="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/forward" />
+
+
+            <ImageView
+                android:id="@+id/image_"
+                android:layout_width="258dp"
+                android:layout_height="348dp"
+                android:layout_marginTop="96dp"
+                android:src="@drawable/tv"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/character2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <VideoView
+                android:id="@+id/character2"
+                android:layout_width="224dp"
+                android:layout_height="153dp"
+                android:backgroundTint="@color/white"
+                android:clickable="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:visibility="invisible"
+                android:layout_width="93dp"
+                android:layout_height="110dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintEnd_toStartOf="@+id/imageView10"
+                app:layout_constraintHorizontal_bias="0.375"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/balls" />
+
+            <ImageView
+                android:id="@+id/imageView14"
+                android:layout_width="61dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="4dp"
+
+                android:layout_marginBottom="80dp"
+                android:visibility="invisible"
+
+                app:layout_constraintBottom_toTopOf="@+id/imageView13"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/balls" />
+
+            <ImageView
+                android:id="@+id/imageView13"
+                android:visibility="invisible"
+                android:layout_width="93dp"
+                android:layout_height="110dp"
+                app:layout_constraintBottom_toTopOf="@+id/character2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/balls" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:visibility="invisible"
+                android:layout_width="93dp"
+                android:layout_height="110dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="12dp"
+                app:layout_constraintBottom_toTopOf="@+id/imageView11"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.015"
+                app:srcCompat="@drawable/balls" />
+
+            <ImageView
+                android:id="@+id/imageView15"
+                android:layout_width="61dp"
+                android:layout_height="90dp"
+
+                android:layout_marginTop="200dp"
+                android:layout_marginEnd="12dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toTopOf="@+id/imageView11"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.126"
+                app:srcCompat="@drawable/balls" />
+
+            <ImageView
+                android:id="@+id/imageView11"
+                android:visibility="invisible"
+                android:layout_width="93dp"
+                android:layout_height="110dp"
+                app:layout_constraintBottom_toTopOf="@+id/character2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/balls" />
+
+            <ImageView
+                android:id="@+id/imageView10"
+                android:visibility="invisible"
+                android:layout_width="93dp"
+                android:layout_height="110dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toStartOf="@+id/imageView9"
+                app:layout_constraintHorizontal_bias="0.99"
+                app:layout_constraintStart_toStartOf="@+id/imageView13"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/balls" />
+
+            <ImageView
+                android:id="@+id/imageView12"
+                android:visibility="invisible"
+                android:layout_width="93dp"
+                android:layout_height="110dp"
+                app:layout_constraintBottom_toTopOf="@+id/character2"
+                app:layout_constraintEnd_toStartOf="@+id/imageView11"
+                app:layout_constraintStart_toEndOf="@+id/imageView13"
+                app:srcCompat="@drawable/balls" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:text="0"
+        android:textSize="18dp"
+        android:textColor="@color/textDarkColor"
+        app:layout_constraintEnd_toStartOf="@+id/imageView6"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:text="0"
+        android:textColor="@color/textDarkColor"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView5"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/level"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/star" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/prize" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

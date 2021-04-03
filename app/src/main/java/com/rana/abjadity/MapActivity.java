@@ -211,7 +211,7 @@ public class MapActivity extends AppCompatActivity {
 
         //set current level
         intLevel++;
-        if(intLevel!=29){
+        if(intLevel!=39){
             findViewById(getResources().getIdentifier("buttonGray" + intLevel, "id",this.getPackageName())).
                     setBackgroundResource( getResources().getIdentifier("button_blue" + intLevel, "mipmap",this.getPackageName()));
         }
