@@ -101,7 +101,6 @@ public class LogInActivity extends AppCompatActivity {
                                         }
                                         }, 300000);
                                     }
-
                                 }
                             });}
                 }else {
@@ -109,8 +108,6 @@ public class LogInActivity extends AppCompatActivity {
                     Error.setVisibility(View.VISIBLE);
 
                 }
-
-
             }
         });
     }
