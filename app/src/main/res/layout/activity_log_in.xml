@@ -21,6 +21,19 @@
         app:layout_constraintVertical_bias="0.753">
 
 
+        <TextView
+            android:id="@+id/Error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="11dp"
+            android:text="ادخل"
+            android:textColor="@color/red"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/logInButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <Button
             android:id="@+id/logInButton"
             android:layout_width="292dp"

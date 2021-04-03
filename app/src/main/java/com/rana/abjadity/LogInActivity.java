@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -41,7 +42,7 @@ public class LogInActivity extends AppCompatActivity {
     Button logInButton;
     FirebaseDatabase database;
     DatabaseReference accountRef;
-    TextView errorMsg,forgetPasswordLink;
+    TextView errorMsg,forgetPasswordLink,Error;
     private FirebaseAuth mAuth;
     int counter = 3;
 
@@ -60,45 +61,56 @@ public class LogInActivity extends AppCompatActivity {
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(isNetworkConnected()){
+                    if(email.getText().toString().equals("")||password.getText().toString().equals("")){
+                        errorMsg.setText("* جميع الحقول مطلوبة");
+                        errorMsg.setVisibility(View.VISIBLE);
+                    }
+                    else { mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+                            .addOnCompleteListener(LogInActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
+                                        Log.d(TAG, "signInWithEmail:success");
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        Intent i = new Intent(LogInActivity.this,ParentHomePageActivity.class);
+                                        i.putExtra("parentId",user.getUid());
+                                        startActivity(i);
 
-                mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
-                        .addOnCompleteListener(LogInActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    Log.d(TAG, "signInWithEmail:success");
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    Intent i = new Intent(LogInActivity.this,ParentHomePageActivity.class);
-                                    i.putExtra("parentId",user.getUid());
-                                    startActivity(i);
-
-                                } else if(!task.isSuccessful()) {
-                                    // If sign in fails, display a message to the user.
-                                    Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                    errorMsg.setText("* البريد الاكتروني و/أو كلمة المرور خاطئة");
-                                    errorMsg.setVisibility(View.VISIBLE);
-                                    counter--;
-                                }
-                                if (counter == 0)
-                                // Disable button after 3 failed attempts
-                                {   logInButton.setEnabled(false);
-
-                                  errorMsg.setText("تم إيقاف تسجيل الدخول لمدة ٥ دقائق");
-                                    errorMsg.setVisibility(View.VISIBLE);
-
-                                    final Handler handler = new Handler();
-                                    handler.postDelayed(new Runnable()
-                                    {   @Override
-                                    public void run()
-                                    {   logInButton.setEnabled(true);
-                                        counter = 3;
+                                    } else if(!task.isSuccessful()) {
+                                        // If sign in fails, display a message to the user.
+                                        Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                        errorMsg.setText("* البريد الإكتروني و/أو كلمة المرور خاطئة");
+                                        errorMsg.setVisibility(View.VISIBLE);
+                                        counter--;
                                     }
-                                    }, 300000);
-                                }
+                                    if (counter == 0)
+                                    // Disable button after 3 failed attempts
+                                    {   logInButton.setEnabled(false);
 
-                            }
-                        });
+                                        errorMsg.setText("تم إيقاف تسجيل الدخول لمدة ٥ دقائق");
+                                        errorMsg.setVisibility(View.VISIBLE);
+
+                                        final Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable()
+                                        {   @Override
+                                        public void run()
+                                        {   logInButton.setEnabled(true);
+                                            counter = 3;
+                                        }
+                                        }, 300000);
+                                    }
+
+                                }
+                            });}
+                }else {
+                    Error.setText("* لا يوجد إتصال بالإنترنت");
+                    Error.setVisibility(View.VISIBLE);
+
+                }
+
+
             }
         });
     }
@@ -111,9 +123,14 @@ public class LogInActivity extends AppCompatActivity {
         accountRef = database.getReference("accounts");
         errorMsg=findViewById(R.id.ErrorNameOrPassword);
         forgetPasswordLink=findViewById(R.id.forgetpassword);
+        Error=findViewById(R.id.Error);
         mAuth = FirebaseAuth.getInstance();
     }
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+    }
     private void forgetPassword(){
 
         forgetPasswordLink.setOnClickListener(new View.OnClickListener() {

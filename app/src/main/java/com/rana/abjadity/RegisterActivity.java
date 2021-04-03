@@ -3,7 +3,9 @@ package com.rana.abjadity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -34,7 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText name,password,passwordConf,email;
     Button register;
     String _name,_password,_passwordConf,_email;
-    TextView ErrorName,ErrorPass,ErrorEmail,ErrorPassConf;
+    TextView ErrorName,ErrorPass,ErrorEmail,ErrorPassConf,Error;
     private FirebaseAuth mAuth;
 
 
@@ -48,8 +50,14 @@ public class RegisterActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fetchInformation();
-                CheckEmail(_email);
+                if(isNetworkConnected()){
+                    fetchInformation();
+                    CheckEmail(_email);
+                }else {
+                    Error.setText("* لا يوجد إتصال بالإنترنت");
+                    Error.setVisibility(View.VISIBLE);
+
+                }
 
             }
         });
@@ -57,7 +65,6 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void addParentToDatabase() {
-
         if(CheckForfileds() ) {
             mAuth.createUserWithEmailAndPassword(_email, _password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -81,7 +88,6 @@ public class RegisterActivity extends AppCompatActivity {
                             }
                         }
                     });
-
         }
     }
 
@@ -203,6 +209,11 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     }
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+    }
 
     private void fetchInformation() {
         _name = name.getText().toString();
@@ -223,11 +234,10 @@ public class RegisterActivity extends AppCompatActivity {
         ErrorEmail=findViewById(R.id.ErrorEmail);
         ErrorPass=findViewById(R.id.ErrorPass);
         ErrorPassConf=findViewById(R.id.ErrorPassConf);
+        Error=findViewById(R.id.Error);
         mAuth = FirebaseAuth.getInstance();
 
     }
-
-
 
 
 }
