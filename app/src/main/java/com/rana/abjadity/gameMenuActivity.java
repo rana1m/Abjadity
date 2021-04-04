@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
@@ -38,7 +39,7 @@ public class gameMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game_menu);
         initialization();
         RetreiveLevel();
-
+        Toast.makeText(getApplicationContext(), "hi"+"", Toast.LENGTH_LONG).show();
         catchingGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,14 +50,14 @@ public class gameMenuActivity extends AppCompatActivity {
         matchPicturesGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               if(level>=38){
+              // if(level>=38){
                     Intent i = new Intent(gameMenuActivity.this, matchPictureGame.class);
                     i.putExtra("childId",childId);
                     i.putExtra("parentId",parentId);
                     startActivity(i);
-               }else{
-                    popUpDialog();
-               }
+               //}else{
+                 //   popUpDialog();
+              // }
             }
         });
 

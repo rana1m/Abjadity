@@ -71,6 +71,7 @@ public class MapActivity extends AppCompatActivity {
         getWindow().setFormat(PixelFormat.RGBA_8888);
         setContentView(R.layout.activity_map);
 
+        //   Toast.makeText(this, "chant", Toast.LENGTH_SHORT).show();
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inPreferredConfig = Bitmap.Config.ARGB_8888;
