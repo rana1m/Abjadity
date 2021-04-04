@@ -39,7 +39,7 @@ public class gameMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game_menu);
         initialization();
         RetreiveLevel();
-        Toast.makeText(getApplicationContext(), "hi"+"", Toast.LENGTH_LONG).show();
+       // Toast.makeText(getApplicationContext(), "here "+"", Toast.LENGTH_LONG).show();
         catchingGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,14 +50,14 @@ public class gameMenuActivity extends AppCompatActivity {
         matchPicturesGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              // if(level>=38){
-                    Intent i = new Intent(gameMenuActivity.this, matchPictureGame.class);
+             if(level>=38){
+                    Intent i = new Intent(gameMenuActivity.this, LastGame.class);
                     i.putExtra("childId",childId);
                     i.putExtra("parentId",parentId);
                     startActivity(i);
-               //}else{
-                 //   popUpDialog();
-              // }
+               }else{
+                   popUpDialog();
+               }
             }
         });
 

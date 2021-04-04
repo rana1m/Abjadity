@@ -46,8 +46,6 @@ public class matchPictureGame extends AppCompatActivity {
     View dialogView;
     Button SaveButton, ContinuesButton;
     LottieAnimationView animationView;
-    int num0, num1, num2,num3,num5,num4,num6,num7;
-    boolean b0=true,b1=true,b2=true,b3=true,b4=true,b5=true,b6=true,b7=true;
     final int[] drawable = new int[] {
             R.drawable.sample_000,
             R.drawable.sample_1,

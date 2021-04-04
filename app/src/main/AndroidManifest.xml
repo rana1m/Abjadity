@@ -34,7 +34,8 @@
         android:theme="@style/Theme.Abjadity"
         android:usesCleartextTraffic="false"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".StepAr"></activity>
+        <activity android:name=".LastGame"></activity>
+        <activity android:name=".StepAr" />
         <activity android:name=".FinalNumActivity" />
         <activity android:name=".ThreeNumStep" />
         <activity android:name=".matchPictureGame" />
