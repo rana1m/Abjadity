@@ -6,7 +6,7 @@
     app:layout_constraintCircleRadius="@dimen/cardview_default_radius"
     android:elevation="@dimen/cardview_default_elevation"
     android:layout_height="wrap_content"
-    android:background="#FFFFFF"
+    android:background="@drawable/card"
     android:orientation="vertical">
 
 

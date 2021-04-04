@@ -46,7 +46,7 @@ public class ThreeNumStep extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i = new Intent(ThreeNumStep.this,StepAr.class);
+        Intent i = new Intent(ThreeNumStep.this,OneActivity.class);
         i.putExtra("childId",childId);
         i.putExtra("parentId",parentId);
         i.putExtra("childLevel",childLevel);
@@ -69,7 +69,7 @@ public class ThreeNumStep extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ThreeNumStep.this,StepAr.class);
+                Intent i = new Intent(ThreeNumStep.this,OneActivity.class);
                 i.putExtra("childId",childId);
                 i.putExtra("parentId",parentId);
                 i.putExtra("childLevel",childLevel);

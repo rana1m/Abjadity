@@ -5,14 +5,14 @@
     android:layout_width="wrap_content"
     app:layout_constraintCircleRadius="@dimen/cardview_default_radius"
     android:elevation="@dimen/cardview_default_elevation"
-    android:background="@drawable/card"
     android:layout_height="wrap_content"
+    android:background="@drawable/card"
     android:orientation="vertical">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="278dp"
-        android:layout_height="327dp"
+        android:layout_width="234dp"
+        android:layout_height="251dp"
         android:background="@drawable/wrong"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,34 +22,33 @@
 
 
         <TextView
+            android:id="@+id/correct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="حاول مرة أخرى"
+            android:text="يجب ان تنتهي من جميع مراحل الحروف أولا"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textSize="26dp"
-            android:textStyle="bold"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.227" />
+            app:layout_constraintVertical_bias="0.149" />
 
         <Button
             android:id="@+id/buttonOk"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_width="134dp"
+            android:layout_height="48dp"
             android:layout_gravity="center"
-            android:layout_marginBottom="156dp"
+            android:layout_marginBottom="84dp"
             android:background="@drawable/round_button"
             android:backgroundTint="@color/yellow"
             android:text="استمرار"
-            android:textSize="22dp"
             android:textColor="@color/textDarkColor"
+            android:textSize="22dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

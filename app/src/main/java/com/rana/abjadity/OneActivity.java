@@ -105,7 +105,7 @@ public class OneActivity extends AppCompatActivity {
         forward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(OneActivity.this,StepAr.class);
+                Intent i = new Intent(OneActivity.this,ThreeNumStep.class);
                 i.putExtra("childId",childId);
                 i.putExtra("parentId",parentId);
                 i.putExtra("childLevel",childLevel);
@@ -258,7 +258,7 @@ public class OneActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(OneActivity.this,StepAr.class);
+                Intent i = new Intent(OneActivity.this,ThreeNumStep.class);
                 i.putExtra("childId",childId);
                 i.putExtra("parentId",parentId);
                 i.putExtra("childLevel",childLevel);
