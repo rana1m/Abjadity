@@ -125,7 +125,7 @@ public class HaifaGameActivity extends AppCompatActivity {
         if(editText.getText().toString().equals(textAnswer)){
             Toast.makeText(HaifaGameActivity.this,"صحيح", Toast.LENGTH_LONG).show();
             winningFunction();
-            editText.setText("");
+            //editText.setText("");
         }else {
             Toast.makeText(HaifaGameActivity.this,"خاطئ", Toast.LENGTH_LONG).show();
             tryAgain();
@@ -308,5 +308,6 @@ public class HaifaGameActivity extends AppCompatActivity {
         parentId = getIntent().getStringExtra("parentId");
         score = 0;
         gameImageView = findViewById(R.id.gameImageView);
+        window = this.getWindow();
     }
 }
