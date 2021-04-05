@@ -73,6 +73,16 @@ public class ChildProfileActivity extends AppCompatActivity {
         retrieveChildInfo();
 
 
+
+
+
+        addAlarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ChildProfileActivity.this,alarmPop.class));
+            }
+        });
+
         editInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -355,9 +365,6 @@ public class ChildProfileActivity extends AppCompatActivity {
         childAge=findViewById(R.id.childAge);
         childLevel=findViewById(R.id.childLevel);
         childScore=findViewById(R.id.childScore);
-        spinner=(MaterialSpinner)findViewById(R.id.spinnerr);
-        spinner.setSelectedIndex(0);
-        spinner.setItems("1","2","3","4","5","6","7","8","9","10","11","12");
         changeImg=findViewById(R.id.changeImg);
         editInfo=findViewById(R.id.editInfo);
         addAlarm=findViewById(R.id.addAlarm);

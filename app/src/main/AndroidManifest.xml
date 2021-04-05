@@ -97,12 +97,17 @@
             </intent-filter>
         </activity>
 
+<activity android:name="alarmPop"
+  >
+</activity>
         <meta-data
             android:name="com.google.ar.core"
             android:value="required" />
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="label" />
+
+        <receiver android:name=".AlarmReceiver"/>
     </application>
 
 </manifest>
