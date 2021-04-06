@@ -161,7 +161,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="5dp"
@@ -183,43 +183,6 @@
                             android:background="@drawable/round_button"
                             android:backgroundTint="@color/yellow"
                             android:text="إضافة منبة" />
-
-
-                        <TextView
-                            android:id="@+id/textView5"
-                            android:layout_width="5dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="right"
-                            android:text="PM" />
-
-                        <Switch
-                            android:id="@+id/switch1"
-                            android:layout_width="6dp"
-                            android:layout_height="49dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:textOff="OFF"
-                            android:textOn="ON" />
-
-                        <TextView
-                            android:id="@+id/textView4"
-                            android:layout_width="5dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="AM" />
-
-                        <com.jaredrummler.materialspinner.MaterialSpinner
-                            android:id="@+id/spinnerr"
-                            android:layout_width="34dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:backgroundTint="#00E63946"
-                            android:drawSelectorOnTop="true"
-                            android:dropDownWidth="40dp"
-                            android:gravity="center"
-                            app:ms_dropdown_max_height="140dp" />
 
 
                     </LinearLayout>

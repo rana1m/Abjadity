@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/landscape"
+    tools:context=".LastGame">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="384dp"
+        android:layout_height="650dp"
+        android:background="@drawable/card"
+        android:backgroundTint="@color/white"
+        android:elevation="@dimen/cardview_default_elevation"
+        android:padding="13dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.197">
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="254dp"
+            android:layout_height="56dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:text="حرف الحاء"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="365dp"
+            android:layout_height="354dp"
+
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="104dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/onnne"
+            android:tintMode="add"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <Button
+                android:id="@+id/v_red"
+                android:layout_width="20dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:background="@color/red"
+                android:onClick="checkColor"
+                tools:ignore="OnClick" />
+
+            <Button
+                android:id="@+id/v_green"
+                android:layout_width="20dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:background="@color/green"
+                android:onClick="checkColor"
+                tools:ignore="OnClick" />
+
+            <Button
+                android:id="@+id/v_yellow"
+                android:layout_width="20dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:background="@color/yellow"
+                android:onClick="checkColor"
+                tools:ignore="OnClick" />
+
+            <Button
+                android:id="@+id/v_blue"
+                android:layout_width="20dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:background="@color/purple_500"
+                android:onClick="checkColor"
+                tools:ignore="OnClick" />
+
+            <Button
+                android:id="@+id/v_move"
+                android:layout_width="20dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:background="@color/purple_200"
+                android:onClick="checkColor"
+                tools:ignore="OnClick" />
+
+            <Button
+                android:id="@+id/v_white"
+                android:layout_width="20dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:background="@color/pink"
+                android:onClick="checkColor"
+                tools:ignore="OnClick" />
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/round_button"
+        android:textColor="@color/textDarkColor"
+        android:text="إظهار النتيجة"
+        android:backgroundTint="@color/yellow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

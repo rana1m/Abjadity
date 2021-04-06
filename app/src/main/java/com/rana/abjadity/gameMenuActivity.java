@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
@@ -24,7 +25,7 @@ public class gameMenuActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     Intent i;
     String childId,parentId;
-    ConstraintLayout catchingGame, matchPicturesGame;
+    ConstraintLayout catchingGame, matchPicturesGame, arrangmentOfLettersGame;
     FirebaseDatabase database;
     DatabaseReference accountRef;
     int level;
@@ -38,7 +39,7 @@ public class gameMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game_menu);
         initialization();
         RetreiveLevel();
-
+       // Toast.makeText(getApplicationContext(), "here "+"", Toast.LENGTH_LONG).show();
         catchingGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,14 +50,27 @@ public class gameMenuActivity extends AppCompatActivity {
         matchPicturesGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               if(level>=38){
-                    Intent i = new Intent(gameMenuActivity.this, matchPictureGame.class);
+             if(level>=38){
+                    Intent i = new Intent(gameMenuActivity.this, LastGame.class);
                     i.putExtra("childId",childId);
                     i.putExtra("parentId",parentId);
                     startActivity(i);
                }else{
-                    popUpDialog();
+                   popUpDialog();
                }
+            }
+        });
+        arrangmentOfLettersGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(level>=28){
+                    Intent i = new Intent(gameMenuActivity.this, HaifaGameActivity.class);
+                    i.putExtra("childId",childId);
+                    i.putExtra("parentId",parentId);
+                    startActivity(i);
+                }else{
+                    popUpDialog2();
+                }
             }
         });
 
@@ -113,6 +127,21 @@ public class gameMenuActivity extends AppCompatActivity {
             }
         });
     }
+    private void popUpDialog2(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(gameMenuActivity.this);
+        ViewGroup viewGroup = findViewById(android.R.id.content);
+        dialogView = LayoutInflater.from(this).inflate(R.layout.play_previos_stage2, viewGroup, false);
+        initializationForDialog();
+        builder.setView(dialogView);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+        SaveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+    }
 
     private void RetreiveLevel() {
         // to get level
@@ -152,5 +181,6 @@ public class gameMenuActivity extends AppCompatActivity {
         parentId = getIntent().getStringExtra("parentId");
         catchingGame=findViewById(R.id.catchingGame);
         matchPicturesGame = findViewById(R.id.matchPictures);
+        arrangmentOfLettersGame = findViewById(R.id.constraintLacgyout2);
     }
 }

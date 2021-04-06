@@ -71,6 +71,7 @@ public class MapActivity extends AppCompatActivity {
         getWindow().setFormat(PixelFormat.RGBA_8888);
         setContentView(R.layout.activity_map);
 
+        //   Toast.makeText(this, "chant", Toast.LENGTH_SHORT).show();
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inPreferredConfig = Bitmap.Config.ARGB_8888;
@@ -211,7 +212,7 @@ public class MapActivity extends AppCompatActivity {
 
         //set current level
         intLevel++;
-        if(intLevel!=29){
+        if(intLevel!=39){
             findViewById(getResources().getIdentifier("buttonGray" + intLevel, "id",this.getPackageName())).
                     setBackgroundResource( getResources().getIdentifier("button_blue" + intLevel, "mipmap",this.getPackageName()));
         }
