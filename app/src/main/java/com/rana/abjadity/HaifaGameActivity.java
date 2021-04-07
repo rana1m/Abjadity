@@ -280,7 +280,7 @@ public class HaifaGameActivity extends AppCompatActivity {
             path = "android.resource://" + getPackageName() + "/" + R.raw.try_again;
         }
         else {
-            path = "android.resource://" + getPackageName() + "/" + R.raw.correct_answer;
+            path = "android.resource://" + getPackageName() + "/" + R.raw.correct_answer2;
         }
         Uri uri =Uri.parse(path);
         mediaPlayer.setDataSource(this,uri);
