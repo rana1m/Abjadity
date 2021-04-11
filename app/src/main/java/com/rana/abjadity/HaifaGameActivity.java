@@ -61,8 +61,28 @@ public class HaifaGameActivity extends AppCompatActivity {
         for (String key : keys){
             addView(((LinearLayout)findViewById(R.id.layoutParent)),key,((EditText)findViewById(R.id.word)));
         }
+        try {
+            playVoice2();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         maxpresCounter = 3;
 
+    }
+
+    private void playVoice2() throws IOException {
+        mediaPlayer=new MediaPlayer();
+           String path = "android.resource://" + getPackageName() + "/" + R.raw.select_letters;
+
+        Uri uri =Uri.parse(path);
+        mediaPlayer.setDataSource(this,uri);
+        mediaPlayer.prepareAsync();
+        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.start();
+            }
+        });
     }
 
     private String[] shuffleArray(String[] ar){
@@ -260,7 +280,7 @@ public class HaifaGameActivity extends AppCompatActivity {
             path = "android.resource://" + getPackageName() + "/" + R.raw.try_again;
         }
         else {
-            path = "android.resource://" + getPackageName() + "/" + R.raw.correct_answer;
+            path = "android.resource://" + getPackageName() + "/" + R.raw.correct_answer2;
         }
         Uri uri =Uri.parse(path);
         mediaPlayer.setDataSource(this,uri);
