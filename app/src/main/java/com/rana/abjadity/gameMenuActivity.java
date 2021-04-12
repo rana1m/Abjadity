@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -31,6 +32,7 @@ public class gameMenuActivity extends AppCompatActivity {
     int level;
     View dialogView;
     Button SaveButton;
+    TextView textView;
 
 
     @Override
@@ -39,11 +41,19 @@ public class gameMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game_menu);
         initialization();
         RetreiveLevel();
-       // Toast.makeText(getApplicationContext(), "here "+"", Toast.LENGTH_LONG).show();
+
         catchingGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(gameMenuActivity.this,catchingGame.class));
+                if(level==0){
+                    popUpDialog1();
+                }else {
+                    Intent i = new Intent(gameMenuActivity.this, catchingGame.class);
+                    i.putExtra("childId",childId);
+                    i.putExtra("parentId",parentId);
+                    startActivity(i);
+                }
+
             }
         });
 
@@ -127,6 +137,22 @@ public class gameMenuActivity extends AppCompatActivity {
             }
         });
     }
+    private void popUpDialog1(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(gameMenuActivity.this);
+        ViewGroup viewGroup = findViewById(android.R.id.content);
+        dialogView = LayoutInflater.from(this).inflate(R.layout.play_previous_stages_first, viewGroup, false);
+        initializationForDialog();
+        textView.setText("يجب أن تنهي المرحلة الأولى أولاً");
+        builder.setView(dialogView);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+        SaveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+    }
     private void popUpDialog2(){
         AlertDialog.Builder builder = new AlertDialog.Builder(gameMenuActivity.this);
         ViewGroup viewGroup = findViewById(android.R.id.content);
@@ -171,6 +197,7 @@ public class gameMenuActivity extends AppCompatActivity {
 
     private void initializationForDialog() {
         SaveButton = dialogView.findViewById(R.id.buttonOk);
+         textView =dialogView.findViewById(R.id.correct);
     }
 
     private void initialization() {

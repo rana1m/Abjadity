@@ -32,15 +32,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Abjadity"
-        android:usesCleartextTraffic="false"
+        android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".HaifaGameAvtivity"></activity>
+        <activity android:name=".ChildProfileActivity2"></activity>
+        <activity android:name=".HaifaGameAvtivity" />
         <activity android:name=".LastGame" />
-        <activity android:name=".StepAr" />
+        <activity android:name=".NumStepTowActivity" />
         <activity android:name=".FinalNumActivity" />
-        <activity android:name=".ThreeNumStep" />
+        <activity android:name=".NumStepThreeActivity" />
         <activity android:name=".matchPictureGame" />
-        <activity android:name=".gamesActivity" />
         <activity android:name=".gameMenuActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -58,8 +58,9 @@
             android:name=".catchingGame"
             android:label="@string/title_activity_catching_game" />
         <activity android:name=".FinalStepActivity" />
-        <activity android:name=".StepFourNumActivity" />
-        <activity android:name=".OneActivity" />
+        <activity android:name=".child_View_Profile" />
+        <activity android:name=".NumStepFourActivity" />
+        <activity android:name=".NumStepOneActivity" />
         <activity android:name=".StepSixActivity" />
         <activity android:name=".StepFiveActivity" />
         <activity android:name=".ParentProfileActivity" />
@@ -96,10 +97,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".alarmPop"></activity>
 
-<activity android:name="alarmPop"
-  >
-</activity>
         <meta-data
             android:name="com.google.ar.core"
             android:value="required" />
@@ -107,7 +106,7 @@
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="label" />
 
-        <receiver android:name=".AlarmReceiver"/>
+        <receiver android:name=".AlarmReceiver" />
     </application>
 
 </manifest>

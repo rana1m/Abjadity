@@ -120,6 +120,7 @@ public class StepFiveActivity extends AppCompatActivity {
                 i.putExtra("parentId",parentId);
                 i.putExtra("childLevel",childLevel);
                 i.putExtra("button",button);
+                character.pause();
                 startActivity(i);
             }
         });
@@ -246,6 +247,7 @@ public class StepFiveActivity extends AppCompatActivity {
                 i.putExtra("parentId",parentId);
                 i.putExtra("childLevel",childLevel);
                 i.putExtra("button",button);
+                mediaPlayer.stop();
                 startActivity(i);
                 alertDialog.dismiss();
             }
@@ -335,7 +337,7 @@ public class StepFiveActivity extends AppCompatActivity {
         });
     }
     private void characterInitialization() {
-        String path = "android.resource://"+getPackageName()+"/"+ R.raw.v2;
+        String path = "android.resource://"+getPackageName()+"/"+ R.raw.step_five;
         Uri uri =Uri.parse(path);
         character.setVideoURI(uri);
         character.setZOrderOnTop(true);

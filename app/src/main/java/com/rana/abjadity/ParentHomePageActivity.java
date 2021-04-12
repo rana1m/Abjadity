@@ -49,7 +49,7 @@ public class ParentHomePageActivity extends AppCompatActivity {
     ArrayList<Child> children;
     static RecyclerView recyclerView;
     static ChildsAdapter childsAdapter;
-    TextView ErrorName,ErrorAge;
+    TextView ErrorName,ErrorAge,message;
     SpaceNavigationView spaceNavigationView;
 
 
@@ -67,6 +67,11 @@ public class ParentHomePageActivity extends AppCompatActivity {
         initialization();
         retrieveChildrenFromDB();
         spaceNavigationView(savedInstanceState);
+
+        if(childsAdapter.getItemCount()==0){
+            message.setVisibility(View.VISIBLE);
+
+        }
 
     }
 
@@ -149,6 +154,11 @@ public class ParentHomePageActivity extends AppCompatActivity {
                         Child child = userchildren.getValue(Child.class);
 
                         children.add(child);
+                        if(childsAdapter.getItemCount()==0){
+                            message.setVisibility(View.VISIBLE);
+                        }else {
+                            message.setVisibility(View.GONE);
+                        }
                         childsAdapter.notifyDataSetChanged();
                     }
                 }
@@ -249,6 +259,7 @@ public class ParentHomePageActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         accountRef = database.getReference("accounts");
         recyclerView=findViewById(R.id.ListView);
+        message=findViewById(R.id.instant_message);
         children=new ArrayList<>();
         childsAdapter=new ChildsAdapter(this,children);
 

@@ -83,7 +83,7 @@
             android:id="@+id/textViewh13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="جمع الأشياء"
+            android:text="البحث عن الحروف"
             android:textSize="22dp"
             android:textColor="@color/textDarkColor"
             app:layout_constraintBottom_toBottomOf="parent"

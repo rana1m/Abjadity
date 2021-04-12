@@ -7,9 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,7 +26,7 @@ public class FinalNumActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         scoresAndLevel();
-        Intent i = new Intent(FinalNumActivity.this,StepFourNumActivity.class);
+        Intent i = new Intent(FinalNumActivity.this, NumStepFourActivity.class);
         i.putExtra("childId",childId);
         i.putExtra("parentId",parentId);
         i.putExtra("childLevel",childLevel);
@@ -39,7 +37,7 @@ public class FinalNumActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_final_step);
+        setContentView(R.layout.activity_final_num);
 
         initialization();
         updateChildLevel();

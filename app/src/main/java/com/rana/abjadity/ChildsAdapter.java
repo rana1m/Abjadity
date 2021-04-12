@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -30,6 +31,7 @@ public class ChildsAdapter extends RecyclerView.Adapter<ChildsAdapter.ViewHolder
     private Context context;
     private ArrayList<Child> children;
     StorageReference storageReference ;
+    
 
     public ChildsAdapter(Context c, ArrayList<Child> children) {
         this.context=c;

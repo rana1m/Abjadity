@@ -164,6 +164,7 @@ public class StepThreeActivity extends AppCompatActivity {
                 i.putExtra("parentId",parentId);
                 i.putExtra("childLevel",childLevel);
                 i.putExtra("button",button);
+                character.pause();
                 startActivity(i);
             }
         });
@@ -267,6 +268,7 @@ public class StepThreeActivity extends AppCompatActivity {
                 i.putExtra("parentId",parentId);
                 i.putExtra("childLevel",childLevel);
                 i.putExtra("button",button);
+                mediaPlayer.stop();
                 startActivity(i);
                 alertDialog.dismiss();
             }
@@ -280,6 +282,7 @@ public class StepThreeActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private void updateScores() {
         score=5;
@@ -391,7 +394,6 @@ public class StepThreeActivity extends AppCompatActivity {
         }
     }
 
-
     private void loadImages(int index) {
         storageReference.child("/images/"+button+"/"+index+".png").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
@@ -412,7 +414,7 @@ public class StepThreeActivity extends AppCompatActivity {
 
 
     private void characterInitialization() {
-        String path = "android.resource://"+getPackageName()+"/"+ R.raw.v2;
+        String path = "android.resource://"+getPackageName()+"/"+ R.raw.step_three;
         Uri uri =Uri.parse(path);
         character.setVideoURI(uri);
         character.setZOrderOnTop(true);

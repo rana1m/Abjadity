@@ -62,7 +62,12 @@ public class StepOneActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-
+        Intent i = new Intent(StepOneActivity.this,MapActivity.class);
+        i.putExtra("childId",childId);
+        i.putExtra("parentId",parentId);
+        i.putExtra("childLevel",childLevel);
+        i.putExtra("button",button);
+        startActivity(i);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -128,6 +133,7 @@ public class StepOneActivity extends AppCompatActivity {
                         i.putExtra("parentId",parentId);
                         i.putExtra("childLevel",childLevel);
                         i.putExtra("button",button);
+                        character.pause();
                         startActivity(i);
             }
         });
@@ -200,7 +206,7 @@ public class StepOneActivity extends AppCompatActivity {
 
 
     private void characterInitialization() {
-        String path = "android.resource://"+getPackageName()+"/"+ R.raw.v2;
+        String path = "android.resource://"+getPackageName()+"/"+ R.raw.step_one;
         Uri uri =Uri.parse(path);
         character.setVideoURI(uri);
         character.setZOrderOnTop(true);
@@ -279,6 +285,7 @@ public class StepOneActivity extends AppCompatActivity {
                 i.putExtra("parentId",parentId);
                 i.putExtra("childLevel",childLevel);
                 i.putExtra("button",button);
+                mediaPlayer.stop();
                 startActivity(i);
                 alertDialog.dismiss();
             }

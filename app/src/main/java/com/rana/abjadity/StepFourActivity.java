@@ -50,7 +50,7 @@ public class StepFourActivity extends AppCompatActivity {
     FloatingActionButton back,forward;
     TextView textView1,textView2,textView3,textView4;
     StorageReference storageReference ;
-    MediaPlayer mediaPlayer;
+    MediaPlayer mediaPlayer,letterChant;
     Window window ;
     Button SaveButton;
     View dialogView;
@@ -162,6 +162,7 @@ public class StepFourActivity extends AppCompatActivity {
                 i.putExtra("parentId",parentId);
                 i.putExtra("childLevel",childLevel);
                 i.putExtra("button",button);
+                mediaPlayer.stop();
                 startActivity(i);
                 alertDialog.dismiss();
             }
@@ -276,12 +277,84 @@ public class StepFourActivity extends AppCompatActivity {
     }
 
     private void initializationForDialog() {
-
         SaveButton = dialogView.findViewById(R.id.buttonOk);
         correct = dialogView.findViewById(R.id.correct);
 
     }
+    private void playLetterChant() throws IOException {
 
+        letterChant=new MediaPlayer();
+        String path;
+        if(button.equals("1")){
+            path = "android.resource://"+getPackageName()+"/"+ R.raw.l1;
+        }else if(button.equals("2")){
+            path = "android.resource://"+getPackageName()+"/"+ R.raw.l2;
+        }else if(button.equals("3")){
+            path = "android.resource://"+getPackageName()+"/"+ R.raw.l3;
+        }  else if(button.equals("4")){
+            path = "android.resource://"+getPackageName()+"/"+ R.raw.l4;
+        }  else if(button.equals("5")){
+            path = "android.resource://"+getPackageName()+"/"+ R.raw.l5;
+        }  else if(button.equals("6")){
+            path = "android.resource://"+getPackageName()+"/"+ R.raw.l6;
+        }  else if(button.equals("7")){
+            path = "android.resource://"+getPackageName()+"/"+ R.raw.l7;
+        }  else if(button.equals("8")){
+            path = "android.resource://"+getPackageName()+"/"+ R.raw.l8;
+        }  else if(button.equals("9")){
+            path = "android.resource://"+getPackageName()+"/"+ R.raw.l9;
+        }  else if(button.equals("10")){
+            path = "android.resource://"+getPackageName()+"/"+ R.raw.l10;
+        }  else if(button.equals("11")){
+            path = "android.resource://"+getPackageName()+"/"+ R.raw.l11;
+        }  else if(button.equals("12")){
+            path = "android.resource://"+getPackageName()+"/"+ R.raw.l12;
+        }  else if(button.equals("13")){
+            path = "android.resource://"+getPackageName()+"/"+ R.raw.l13;
+        }  else if(button.equals("14")){
+            path = "android.resource://"+getPackageName()+"/"+ R.raw.l14;
+        }  else if(button.equals("15")){
+            path = "android.resource://"+getPackageName()+"/"+ R.raw.l15;
+        }  else if(button.equals("16")){
+            path = "android.resource://"+getPackageName()+"/"+ R.raw.l16;
+        }  else if(button.equals("17")){
+            path = "android.resource://"+getPackageName()+"/"+ R.raw.l17;
+        }  else if(button.equals("18")){
+            path = "android.resource://"+getPackageName()+"/"+ R.raw.l18;
+        }  else if(button.equals("19")){
+            path = "android.resource://"+getPackageName()+"/"+ R.raw.l19;
+        }  else if(button.equals("20")){
+            path = "android.resource://"+getPackageName()+"/"+ R.raw.l20;
+        }  else if(button.equals("21")){
+            path = "android.resource://"+getPackageName()+"/"+ R.raw.l21;
+        }  else if(button.equals("22")){
+            path = "android.resource://"+getPackageName()+"/"+ R.raw.l22;
+        }  else if(button.equals("23")){
+            path = "android.resource://"+getPackageName()+"/"+ R.raw.l23;
+        }  else if(button.equals("24")){
+            path = "android.resource://"+getPackageName()+"/"+ R.raw.l24;
+        }  else if(button.equals("25")){
+            path = "android.resource://"+getPackageName()+"/"+ R.raw.l25;
+        }  else if(button.equals("26")){
+            path = "android.resource://"+getPackageName()+"/"+ R.raw.l26;
+        }  else if(button.equals("27")){
+            path = "android.resource://"+getPackageName()+"/"+ R.raw.l27;
+        }  else if(button.equals("28")) {
+            path = "android.resource://" + getPackageName() + "/" + R.raw.l28;
+        }
+        else {
+            path = "android.resource://" + getPackageName() + "/" + R.raw.l1;
+        }
+        Uri uri =Uri.parse(path);
+        letterChant.setDataSource(this,uri);
+        letterChant.prepareAsync();
+        letterChant.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.start();
+            }
+        });
+    }
     private void loadWords(String word1, String word2, String word3, String word4) {
         textView1.setText(word1);
         textView2.setText(word2);
@@ -307,15 +380,21 @@ public class StepFourActivity extends AppCompatActivity {
     }
 
     private void characterInitialization() {
-        String path = "android.resource://"+getPackageName()+"/"+ R.raw.v2;
+        String path = "android.resource://"+getPackageName()+"/"+R.raw.step_one;
         Uri uri =Uri.parse(path);
         character.setVideoURI(uri);
         character.setZOrderOnTop(true);
+        character.pause();
         character.start();
         character.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View sv, MotionEvent event) {
                 character.start();
+                try {
+                    playLetterChant();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 return false;
             }
         });

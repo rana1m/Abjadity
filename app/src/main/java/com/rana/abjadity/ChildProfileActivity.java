@@ -61,6 +61,11 @@ public class ChildProfileActivity extends AppCompatActivity {
     FirebaseUser curretUser;
     int counter = 3;
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

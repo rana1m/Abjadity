@@ -53,6 +53,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="3dp"
+                        android:textSize="21dp"
                         android:background="@drawable/round_button"
                         android:backgroundTint="@color/yellow"
                         android:text="تغيير الصورة الرمزية" />
@@ -153,20 +154,21 @@
                             android:id="@+id/editInfo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:layout_marginTop="9dp"
                             android:background="@drawable/round_button"
                             android:backgroundTint="@color/yellow"
-                            android:text="تعديل البيانات" />
+                            android:gravity="center"
+                            android:text="تعديل البيانات"
+                            android:textSize="20dp" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="5dp"
-                        android:background="@drawable/card"
-                        android:backgroundTint="#C5E6E7"
                         android:gravity="center"
                         android:orientation="horizontal"
                         android:paddingLeft="0dp"
@@ -177,11 +179,13 @@
 
                         <Button
                             android:id="@+id/addAlarm"
-                            android:layout_width="wrap_content"
+                            android:layout_width="107dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="6dp"
+                            android:layout_gravity="center"
                             android:background="@drawable/round_button"
                             android:backgroundTint="@color/yellow"
+                            android:gravity="center"
+                            android:textSize="20dp"
                             android:text="إضافة منبة" />
 
 

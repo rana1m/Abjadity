@@ -23,7 +23,16 @@ public class FinalStepActivity extends AppCompatActivity {
     DatabaseReference accountRef;
     TextView level,scores;
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(FinalStepActivity.this,StepEightActivity.class);
+        i.putExtra("childId",childId);
+        i.putExtra("parentId",parentId);
+        i.putExtra("childLevel",childLevel);
+        i.putExtra("button",button);
+        startActivity(i);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +40,8 @@ public class FinalStepActivity extends AppCompatActivity {
         setContentView(R.layout.activity_final_step);
 
         initialization();
-        scoresAndLevel();
         updateChildLevel();
+
 
         completeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +72,7 @@ public class FinalStepActivity extends AppCompatActivity {
                         }}
                     }
                 }
+                scoresAndLevel();
             }
 
             @Override
@@ -70,6 +80,7 @@ public class FinalStepActivity extends AppCompatActivity {
                 throw databaseError.toException();
             }
         });
+
     }
     private void scoresAndLevel() {
         accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {

@@ -139,8 +139,6 @@ public class child_View_Profile extends AppCompatActivity {
         curretUser= FirebaseAuth.getInstance().getCurrentUser();
         LogOutChild2=findViewById(R.id.LogOutChild2);
 
-
-
     }
 
     public void ChildLogOut(View view) {

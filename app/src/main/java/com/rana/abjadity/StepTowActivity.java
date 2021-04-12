@@ -89,7 +89,7 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
     private static final String TAG = "StepTowActivity";
     FirebaseDatabase database;
     DatabaseReference alphabetsRef,accountRef;
-    String childId,parentId,childLevel,button;
+    String childId,parentId,childLevel,button,isNum;
     VideoView character;
     FloatingActionButton back,forward;
     MediaPlayer mediaPlayer;
@@ -301,6 +301,7 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
                 i.putExtra("parentId",parentId);
                 i.putExtra("childLevel",childLevel);
                 i.putExtra("button",button);
+                mediaPlayer.stop();
                 startActivity(i);
                 alertDialog.dismiss();
             }
@@ -375,6 +376,7 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
     }
 
     private void playLetterChant() throws IOException {
+
         mediaPlayer=new MediaPlayer();
         String path;
         if(button.equals("1")){
@@ -1064,6 +1066,7 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
         parentId = getIntent().getStringExtra("parentId");
         childLevel = getIntent().getStringExtra("childLevel");
         button = getIntent().getStringExtra("button");
+        isNum = getIntent().getStringExtra("num");
 
 //        character=findViewById(R.id.character);
         back=findViewById(R.id.back);

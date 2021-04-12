@@ -106,7 +106,7 @@ class StepEightActivity : AppCompatActivity() {
                 intent.putExtra("childId", childId)
                 intent.putExtra("parentId", parentId)
                 intent.putExtra("button", button)
-
+                character?.suspend()
                 startActivity(intent)            }
 
         })

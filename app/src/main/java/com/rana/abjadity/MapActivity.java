@@ -111,7 +111,9 @@ public class MapActivity extends AppCompatActivity {
                     case R.id.back:
                         break;
                     case R.id.profileActivity:
-                        Intent h = new Intent(MapActivity.this,child_View_Profile.class);
+                        Intent h = new Intent(MapActivity.this,ChildProfileActivity2.class);
+                        h.putExtra("childId",childId);
+                        h.putExtra("parentId",parentId);
                         startActivity(h);
                         break;
                     case R.id.gameActivity:
@@ -770,7 +772,7 @@ public class MapActivity extends AppCompatActivity {
         i = new Intent(MapActivity.this, StepOneActivity.class);
         i.putExtra("childId",childId);
         i.putExtra("parentId",parentId);
-        i2 = new Intent(MapActivity.this, OneActivity.class);
+        i2 = new Intent(MapActivity.this, NumStepOneActivity.class);
         scaleUp= AnimationUtils.loadAnimation(this,R.anim.scale_up);
         scaleDown= AnimationUtils.loadAnimation(this,R.anim.scale_down);
 

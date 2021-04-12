@@ -74,6 +74,8 @@
             android:text="عودة إلى القائمة الرئيسية"
             android:textColor="@color/textDarkColor"
             android:textSize="19dp"
+            android:backgroundTint="@color/yellow"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

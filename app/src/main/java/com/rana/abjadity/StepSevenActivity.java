@@ -156,6 +156,7 @@ public class StepSevenActivity extends AppCompatActivity {
                 i.putExtra("parentId",parentId);
                 i.putExtra("childLevel",childLevel);
                 i.putExtra("button",button);
+                mediaPlayer.stop();
                 startActivity(i);
                 alertDialog.dismiss();
             }
@@ -241,7 +242,7 @@ public class StepSevenActivity extends AppCompatActivity {
     }
 
     private void characterInitialization() {
-        String path = "android.resource://"+getPackageName()+"/"+ R.raw.v2;
+        String path = "android.resource://"+getPackageName()+"/"+ R.raw.step_seven;
         Uri uri =Uri.parse(path);
         character.setVideoURI(uri);
         character.setZOrderOnTop(true);
