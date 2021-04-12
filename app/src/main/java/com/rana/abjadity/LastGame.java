@@ -150,7 +150,7 @@ public class LastGame extends Activity {
                 break;
             case 15: case 16: case 17: case 18:
                 img.setImageResource(R.drawable.frog);
-                word.setText("حرف الضاء");
+                word.setText("حرف الضاد");
                 break;
             case 19: case 20: case 21:
                 img.setImageResource(R.drawable.strwbary);
