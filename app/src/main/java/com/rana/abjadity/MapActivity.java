@@ -101,7 +101,7 @@ public class MapActivity extends AppCompatActivity {
         retrieveChildInfo();
         addLettersToDatabase();
         addNumbersToDatabase();
-
+//        bottomNavigationView.setSelectedItemId(R.id.mapActivity);
         bottomNavigationView.setSelectedItemId(R.id.mapActivity);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
