@@ -34,7 +34,8 @@
         android:theme="@style/Theme.Abjadity"
         android:usesCleartextTraffic="false"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".HaifaGameAvtivity"></activity>
+        <activity android:name=".child_View_Profile"></activity>
+        <activity android:name=".HaifaGameAvtivity" />
         <activity android:name=".LastGame" />
         <activity android:name=".StepAr" />
         <activity android:name=".FinalNumActivity" />
@@ -96,10 +97,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".alarmPop"></activity>
 
-<activity android:name="alarmPop"
-  >
-</activity>
         <meta-data
             android:name="com.google.ar.core"
             android:value="required" />
@@ -107,7 +106,7 @@
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="label" />
 
-        <receiver android:name=".AlarmReceiver"/>
+        <receiver android:name=".AlarmReceiver" />
     </application>
 
 </manifest>

@@ -53,7 +53,6 @@ public class ChildProfileActivity extends AppCompatActivity {
     EditText ChildNewName,ChildNewAge,EnterPass;
     String childNewName,childNewAge;
     TextView childName,childAge,childLevel,childScore,errorMsg;
-    MaterialSpinner spinner;
     Button changeImg,editInfo,addAlarm,SaveButton,CancelButton,GoToChildAccount,deleteChildAccount;
     View dialogView,dialogViewPass;
     ImageView profileImg;

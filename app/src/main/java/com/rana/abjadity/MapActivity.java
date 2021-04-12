@@ -111,6 +111,8 @@ public class MapActivity extends AppCompatActivity {
                     case R.id.back:
                         break;
                     case R.id.profileActivity:
+                        Intent h = new Intent(MapActivity.this,child_View_Profile.class);
+                        startActivity(h);
                         break;
                     case R.id.gameActivity:
                         Intent i = new Intent(MapActivity.this,gameMenuActivity.class);
