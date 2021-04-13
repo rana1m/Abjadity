@@ -97,7 +97,9 @@ public class gameMenuActivity extends AppCompatActivity {
                         startActivity(i);
                         break;
                     case R.id.profileActivity:
-                        i = new Intent(gameMenuActivity.this,gameMenuActivity.class);
+                        i = new Intent(gameMenuActivity.this,ChildProfileActivity2.class);
+                        i.putExtra("childId",childId);
+                        i.putExtra("parentId",parentId);
                         startActivity(i);
                         break;
                     case R.id.mapActivity:

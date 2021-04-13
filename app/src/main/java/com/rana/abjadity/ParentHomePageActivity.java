@@ -279,4 +279,9 @@ public class ParentHomePageActivity extends AppCompatActivity {
         }
         return false;
     }
+
+    public void ChildLogOut(View view) {
+        Intent intent=new Intent(ParentHomePageActivity.this,ParentHomePageActivity.class);
+        startActivityForResult(intent,0);
+    }
 }
