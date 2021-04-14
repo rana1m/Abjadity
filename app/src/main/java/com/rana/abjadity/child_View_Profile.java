@@ -119,9 +119,7 @@ public class child_View_Profile extends AppCompatActivity {
                 throw databaseError.toException();
             }
         });
-
     }
-
 
 
     private void initialization() {
@@ -138,7 +136,6 @@ public class child_View_Profile extends AppCompatActivity {
         storageReference = FirebaseStorage.getInstance().getReference();
         curretUser= FirebaseAuth.getInstance().getCurrentUser();
         LogOutChild2=findViewById(R.id.LogOutChild2);
-
     }
 
     public void ChildLogOut(View view) {

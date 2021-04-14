@@ -65,6 +65,8 @@ public class MapActivity extends AppCompatActivity {
             buttonGray29,buttonGray30,buttonGray31,buttonGray32,buttonGray33,buttonGray34,buttonGray35,buttonGray36,buttonGray37,buttonGray38;
     BottomNavigationView bottomNavigationView;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -710,11 +712,7 @@ public class MapActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        Intent i = new Intent(MapActivity.this,ChildProfileActivity.class);
-        i.putExtra("childId",childId);
-        i.putExtra("parentId",parentId);
-        startActivity(i);
+        return;
     }
     private void initializationForDialog() {
         SaveButton = dialogView.findViewById(R.id.buttonOk);

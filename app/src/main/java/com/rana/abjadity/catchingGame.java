@@ -66,6 +66,12 @@ public class catchingGame extends FragmentActivity implements OnMapReadyCallback
 
 
 
+    @Override
+    public void onBackPressed() {
+        android.os.Process.killProcess(android.os.Process.myPid());
+        this.finish();
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -549,7 +555,7 @@ public class catchingGame extends FragmentActivity implements OnMapReadyCallback
     }
     private void playInstructions() throws IOException {
         mediaPlayerInstructions=new MediaPlayer();
-        String path = "android.resource://"+getPackageName()+"/"+ R.raw.good_job;
+        String path = "android.resource://"+getPackageName()+"/"+ R.raw.catching_game;
         Uri uri =Uri.parse(path);
         mediaPlayerInstructions.setDataSource(this,uri);
         mediaPlayerInstructions.prepareAsync();

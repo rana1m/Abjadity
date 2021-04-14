@@ -380,21 +380,26 @@ public class StepFourActivity extends AppCompatActivity {
     }
 
     private void characterInitialization() {
-        String path = "android.resource://"+getPackageName()+"/"+R.raw.step_one;
+        String path = "android.resource://"+getPackageName()+"/"+R.raw.step_four;
         Uri uri =Uri.parse(path);
         character.setVideoURI(uri);
         character.setZOrderOnTop(true);
         character.pause();
         character.start();
-        character.setOnTouchListener(new View.OnTouchListener() {
+        character.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
-            public boolean onTouch(View sv, MotionEvent event) {
-                character.start();
+            public void onCompletion(MediaPlayer mp) {
                 try {
                     playLetterChant();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }
+        });
+        character.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View sv, MotionEvent event) {
+                character.start();
                 return false;
             }
         });

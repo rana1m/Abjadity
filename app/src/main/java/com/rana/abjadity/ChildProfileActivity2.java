@@ -95,7 +95,10 @@ public class ChildProfileActivity2 extends AppCompatActivity {
         ChildLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               startActivity(new Intent(ChildProfileActivity2.this,ParentHomePageActivity.class));
+                Intent i = new Intent(ChildProfileActivity2.this,ParentHomePageActivity.class);
+                i.putExtra("childId",childId);
+                i.putExtra("parentId",parentId);
+                startActivity(i);
             }
         });
     }

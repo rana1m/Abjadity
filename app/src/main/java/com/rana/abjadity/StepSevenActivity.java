@@ -138,7 +138,7 @@ public class StepSevenActivity extends AppCompatActivity {
         initializationForDialog();
         //play voice
         try {
-//            character.pause();
+            character.pause();
             playVoice();
         } catch (IOException e) {
             e.printStackTrace();

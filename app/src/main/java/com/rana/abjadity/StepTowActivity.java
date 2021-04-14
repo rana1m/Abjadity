@@ -283,7 +283,7 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
         initializationForDialog();
         //play voice
         try {
-//            character.pause();
+            mediaPlayer.stop();
             playVoice();
         } catch (IOException e) {
             e.printStackTrace();

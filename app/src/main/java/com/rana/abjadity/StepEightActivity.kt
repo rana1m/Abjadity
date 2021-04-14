@@ -126,7 +126,7 @@ class StepEightActivity : AppCompatActivity() {
     }
 
     private fun characterInitialization() {
-        val path = "android.resource://" + packageName + "/" + R.raw.v2
+        val path = "android.resource://" + packageName + "/" + R.raw.step_eight
         val uri = Uri.parse(path)
         character?.setVideoURI(uri)
         character?.setZOrderOnTop(true)

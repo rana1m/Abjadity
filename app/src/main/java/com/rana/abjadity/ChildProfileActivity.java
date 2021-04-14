@@ -164,6 +164,7 @@ public class ChildProfileActivity extends AppCompatActivity {
                                             i.putExtra("childId",childId);
                                             i.putExtra("parentId",parentId);
                                             startActivity(i);
+                                            finish();
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
                                         @Override
