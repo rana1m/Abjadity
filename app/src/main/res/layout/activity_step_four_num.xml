@@ -196,8 +196,8 @@
 
             <VideoView
                 android:id="@+id/character2"
-                android:layout_width="225dp"
-                android:layout_height="147dp"
+                android:layout_width="240dp"
+                android:layout_height="169dp"
                 android:backgroundTint="@color/white"
                 android:clickable="true"
                 app:layout_constraintBottom_toBottomOf="parent"

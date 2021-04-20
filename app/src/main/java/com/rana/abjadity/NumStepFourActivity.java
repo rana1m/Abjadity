@@ -138,7 +138,7 @@ public class NumStepFourActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void characterInitialization() {
-        String path = "android.resource://"+getPackageName()+"/"+ R.raw.h1;
+        String path = "android.resource://"+getPackageName()+"/"+ R.raw.n4;
         Uri uri =Uri.parse(path);
         character.setVideoURI(uri);
         character.setZOrderOnTop(true);

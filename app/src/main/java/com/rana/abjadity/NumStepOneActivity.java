@@ -160,7 +160,7 @@ public class NumStepOneActivity extends AppCompatActivity {
 
 
     private void characterInitialization() {
-        String path = "android.resource://"+getPackageName()+"/"+ R.raw.h1;
+        String path = "android.resource://"+getPackageName()+"/"+ R.raw.n1;
         Uri uri =Uri.parse(path);
         character.setVideoURI(uri);
         character.setZOrderOnTop(true);
