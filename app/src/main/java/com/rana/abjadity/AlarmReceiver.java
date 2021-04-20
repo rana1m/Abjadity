@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 
 import androidx.core.app.NotificationCompat;
 
@@ -17,9 +18,9 @@ public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-
         int notificationId = intent.getIntExtra("notificationId", 0);
-       // String message = intent.getStringExtra("حان وقت المرح");
+        String childName = intent.getStringExtra("childName");
+        // String message = intent.getStringExtra("حان وقت المرح");
 
 
         Intent mainIntent = new Intent(context, MainActivity.class);
@@ -42,7 +43,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(android.R.drawable.ic_dialog_info)
                 .setSmallIcon(R.drawable.ic_baseline_alarm_24)
-                .setContentTitle("حان وقت المرح!")
+                .setContentTitle("حان وقت المرح لطفلك " + childName)
                 .setContentText("هيّا بنا لنتعلم ونلعب")
                 .setContentIntent(contentIntent)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)

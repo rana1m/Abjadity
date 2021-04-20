@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.MediaController;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -70,12 +71,15 @@ public class NumStepOneActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_one);
 
+
+
         Bundle extras = getIntent().getExtras();
         if(extras!= null){
             button = extras.getString("button");
         }
 
         initialization();
+        //Toast.makeText(this, "Numbers "+button, Toast.LENGTH_SHORT).show();
         scoresAndLevel();
 
         numberChatInitialization();
@@ -115,32 +119,32 @@ public class NumStepOneActivity extends AppCompatActivity {
         });
 
     }
-     // end OnCreate
-     private void updateScores() {
-         score=3;
-         accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
-             @Override
-             public void onDataChange(DataSnapshot dataSnapshot) {
-                 //loop through accounts to find the parent with that id
-                 for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
+    // end OnCreate
+    private void updateScores() {
+        score=3;
+        accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //loop through accounts to find the parent with that id
+                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
 
-                     //loop through parent children to add them to adapter ArrayList
-                     for (DataSnapshot theChild: userSnapshot.child("children").getChildren()) {
-                         Child child = theChild.getValue(Child.class);
-                         if(child.getId().equals(childId)){
-                             score += child.getScore();
-                             theChild.getRef().child("score").setValue(score);
-                         }
-                     }
-                 }
-             }
+                    //loop through parent children to add them to adapter ArrayList
+                    for (DataSnapshot theChild: userSnapshot.child("children").getChildren()) {
+                        Child child = theChild.getValue(Child.class);
+                        if(child.getId().equals(childId)){
+                            score += child.getScore();
+                            theChild.getRef().child("score").setValue(score);
+                        }
+                    }
+                }
+            }
 
-             @Override
-             public void onCancelled(DatabaseError databaseError) {
-                 throw databaseError.toException();
-             }
-         });
-     }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
+    }
 
     private void playVoice() throws IOException {
         mediaPlayer=new MediaPlayer();
@@ -156,11 +160,8 @@ public class NumStepOneActivity extends AppCompatActivity {
         });
     }
 
-
-
-
     private void characterInitialization() {
-        String path = "android.resource://"+getPackageName()+"/"+ R.raw.n1;
+        String path = "android.resource://"+getPackageName()+"/"+ R.raw.chant;
         Uri uri =Uri.parse(path);
         character.setVideoURI(uri);
         character.setZOrderOnTop(true);
@@ -172,7 +173,7 @@ public class NumStepOneActivity extends AppCompatActivity {
                 return false;
             }
         });
-    }
+    }//numbersChant
 
     private void numberChatInitialization() {
         storageReference.child("numbersChant/"+button+".mov").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -181,6 +182,9 @@ public class NumStepOneActivity extends AppCompatActivity {
                 numberChant.setVideoURI(uri);
                 numberChant.setZOrderOnTop(true);
                 numberChant.start();
+                if(numberChant.isPlaying()){
+                    character.pause();
+                }
                 MediaController mediaController = new MediaController(NumStepOneActivity.this);
                 numberChant.setMediaController(mediaController);
                 mediaController.setAnchorView(numberChant);

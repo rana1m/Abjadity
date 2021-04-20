@@ -60,14 +60,12 @@ public class gameMenuActivity extends AppCompatActivity {
         matchPicturesGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             if(level>=38){
-                    Intent i = new Intent(gameMenuActivity.this, LastGame.class);
-                    i.putExtra("childId",childId);
-                    i.putExtra("parentId",parentId);
-                    startActivity(i);
-               }else{
-                   popUpDialog();
-               }
+
+                Intent i = new Intent(gameMenuActivity.this, LastGame.class);
+                i.putExtra("childId",childId);
+                i.putExtra("parentId",parentId);
+                startActivity(i);
+
             }
         });
         arrangmentOfLettersGame.setOnClickListener(new View.OnClickListener() {
@@ -199,7 +197,7 @@ public class gameMenuActivity extends AppCompatActivity {
 
     private void initializationForDialog() {
         SaveButton = dialogView.findViewById(R.id.buttonOk);
-         textView =dialogView.findViewById(R.id.correct);
+        textView =dialogView.findViewById(R.id.correct);
     }
 
     private void initialization() {

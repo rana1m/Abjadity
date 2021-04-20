@@ -40,8 +40,8 @@ public class LastGame extends Activity {
     public String finalColor = "";
     FirebaseDatabase database;
     DatabaseReference accountRef;
-    Button v_red, v_blue, v_green, v_move, v_yellow, v_white,result;
-    ImageView img;
+    Button v_red, v_blue, v_green, v_move, v_yellow, v_white;
+    ImageView img, result;
     String childId, parentId;
     int num = 28, score;
     TextView word;
@@ -86,7 +86,7 @@ public class LastGame extends Activity {
                     setTint(img,R.color.pink);
                     finalColor = "white";
                 }else{
-                    Toast.makeText(getApplicationContext(),"اختر لون",Toast.LENGTH_SHORT).show();
+                    tryAgain();
                 }
             }
         });
@@ -321,7 +321,7 @@ public class LastGame extends Activity {
         accountRef = database.getReference("accounts");
         childId = getIntent().getStringExtra("childId");
         parentId = getIntent().getStringExtra("parentId");
-        result = findViewById(R.id.result);
+        result = findViewById(R.id.right);
         window = this.getWindow();
     }
 

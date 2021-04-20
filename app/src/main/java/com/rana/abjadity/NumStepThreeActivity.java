@@ -16,6 +16,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -60,10 +61,11 @@ public class NumStepThreeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_three_num_step);
         initialization();
-        characterInitialization();
-        scoresAndLevel();
+        characterInitialization(button);
         StepNumber(button);
-        //Toast.makeText(getApplicationContext(),button+" threeNumA",Toast.LENGTH_LONG).show();
+        scoresAndLevel();
+
+     //   Toast.makeText(getApplicationContext(),button,Toast.LENGTH_LONG).show();
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,6 +165,7 @@ public class NumStepThreeActivity extends AppCompatActivity {
                 pic9.setVisibility(View.VISIBLE);
                 break;
             case "9":
+
                 pic1.setImageResource(R.drawable.balls);
                 pic2.setImageResource(R.drawable.balls);
                 pic3.setImageResource(R.drawable.balls);
@@ -283,19 +286,154 @@ public class NumStepThreeActivity extends AppCompatActivity {
 
     }
 
-    private void characterInitialization() {
-        String path = "android.resource://"+getPackageName()+"/"+ R.raw.h1;
-        Uri uri =Uri.parse(path);
-        character.setVideoURI(uri);
-        character.setZOrderOnTop(true);
-        character.start();
-        character.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View sv, MotionEvent event) {
+    private void characterInitialization(String name) {
+        String path;
+        Uri uri;
+        switch (name){
+            case "1":
+                path = "android.resource://"+getPackageName()+"/"+ R.raw.num1;
+                uri =Uri.parse(path);
+                character.setVideoURI(uri);
+                character.setZOrderOnTop(true);
                 character.start();
-                return false;
-            }
-        });
+                character.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View sv, MotionEvent event) {
+                        character.start();
+                        return false;
+                    }
+                });
+                break;
+            case "2":
+                path = "android.resource://"+getPackageName()+"/"+ R.raw.num2;
+                uri =Uri.parse(path);
+                character.setVideoURI(uri);
+                character.setZOrderOnTop(true);
+                character.start();
+                character.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View sv, MotionEvent event) {
+                        character.start();
+                        return false;
+                    }
+                });
+                break;
+            case "3":
+                path = "android.resource://"+getPackageName()+"/"+ R.raw.num3;
+                uri =Uri.parse(path);
+                character.setVideoURI(uri);
+                character.setZOrderOnTop(true);
+                character.start();
+                character.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View sv, MotionEvent event) {
+                        character.start();
+                        return false;
+                    }
+                });
+                break;
+            case "4":
+                path = "android.resource://"+getPackageName()+"/"+ R.raw.num4;
+                uri =Uri.parse(path);
+                character.setVideoURI(uri);
+                character.setZOrderOnTop(true);
+                character.start();
+                character.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View sv, MotionEvent event) {
+                        character.start();
+                        return false;
+                    }
+                });
+                break;
+            case "5":
+                path = "android.resource://"+getPackageName()+"/"+ R.raw.num5;
+                uri =Uri.parse(path);
+                character.setVideoURI(uri);
+                character.setZOrderOnTop(true);
+                character.start();
+                character.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View sv, MotionEvent event) {
+                        character.start();
+                        return false;
+                    }
+                });
+                break;
+            case "6":
+                path = "android.resource://"+getPackageName()+"/"+ R.raw.num6;
+                uri =Uri.parse(path);
+                character.setVideoURI(uri);
+                character.setZOrderOnTop(true);
+                character.start();
+                character.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View sv, MotionEvent event) {
+                        character.start();
+                        return false;
+                    }
+                });
+            case "7":
+                path = "android.resource://"+getPackageName()+"/"+ R.raw.num7;
+                uri =Uri.parse(path);
+                character.setVideoURI(uri);
+                character.setZOrderOnTop(true);
+                character.start();
+                character.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View sv, MotionEvent event) {
+                        character.start();
+                        return false;
+                    }
+                });
+                break;
+            case "8":
+                path = "android.resource://"+getPackageName()+"/"+ R.raw.num8;
+                uri =Uri.parse(path);
+                character.setVideoURI(uri);
+                character.setZOrderOnTop(true);
+                character.start();
+                character.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View sv, MotionEvent event) {
+                        character.start();
+                        return false;
+                    }
+                });
+                break;
+            case "9":
+                path = "android.resource://"+getPackageName()+"/"+ R.raw.num9;
+                uri =Uri.parse(path);
+                character.setVideoURI(uri);
+                character.setZOrderOnTop(true);
+                character.start();
+                character.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View sv, MotionEvent event) {
+                        character.start();
+                        return false;
+                    }
+                });
+                break;
+            case "10":
+                path = "android.resource://"+getPackageName()+"/"+ R.raw.num10;
+                uri =Uri.parse(path);
+                character.setVideoURI(uri);
+                character.setZOrderOnTop(true);
+                character.start();
+                character.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View sv, MotionEvent event) {
+                        character.start();
+                        return false;
+                    }
+                });
+                break;
+        }
+        // String path = "android.resource://"+getPackageName()+"/"+ R.raw.num1;
+        // Uri uri =Uri.parse(path);
+        //character.setVideoURI(uri);
+
     }
 
 
