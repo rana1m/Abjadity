@@ -111,10 +111,6 @@ public class NumStepFourActivity extends AppCompatActivity implements View.OnCli
         });
 
 
-
-
-
-
     }
 
     public void check_Next_Step() {

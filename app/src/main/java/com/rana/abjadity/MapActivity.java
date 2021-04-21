@@ -145,7 +145,7 @@ public class MapActivity extends AppCompatActivity {
 
         alphabetsRef.child(9+"").setValue(new Letter(9+"", "ذ",  "ذال", "ذهب", "ذرة","ذئب","ذبابة","ذ","ـذ","ـذ"));
         alphabetsRef.child(10+"").setValue(new Letter(10+"", "ر",  "راء", "ريشة", "رغيف","رمان","رأس","ر","ـر","ـر"));
-        alphabetsRef.child(11+"").setValue(new Letter(11+"", "ز",  "زاء", "زورق", "زرافة","زهرة","زيت", "ز","ـز","ـز"));
+        alphabetsRef.child(11+"").setValue(new Letter(11+"", "ز",  "زاي", "زورق", "زرافة","زهرة","زيت", "ز","ـز","ـز"));
         alphabetsRef.child(12+"").setValue(new Letter(12+"", "س",  "سين", "سفينة", "سيارة","سياج","سمك","سـ","ـسـ","ـس"));
         alphabetsRef.child(13+"").setValue(new Letter(13+"", "ش",  "شين", "شرطي", "شجرة","شمعة","شمس","شـ","ـشـ","ـش"));
 
@@ -172,9 +172,9 @@ public class MapActivity extends AppCompatActivity {
         alphabetsRef.child(23+"").setValue(new Letter(23+"", "ل",  "لام", "لوز", "لهب","لعبة","ليمون","لـ","ـلـ","ـل"));
         alphabetsRef.child(24+"").setValue(new Letter(24+"", "م",  "ميم", "ماء", "مظلة","ملعقة","مقص","مـ","ـمـ","ـم"));
         alphabetsRef.child(25+"").setValue(new Letter(25+"", "ن",  "نون", "نافذة", "نهر","نمر","نورس", "نـ","ـنـ","ـن"));
-        alphabetsRef.child(26+"").setValue(new Letter(26+"", "ه",  "هاء", "هرة", "هدية","هلال","هرم","هـ","ـهـ","ـه"));
+        alphabetsRef.child(26+"").setValue(new Letter(26+"", "ه",  "ها", "هرة", "هدية","هلال","هرم","هـ","ـهـ","ـه"));
         alphabetsRef.child(27+"").setValue(new Letter(27+"", "و",  "واو", "وعاء", "ورقة","وزة","وردة","و","ـو","ـو"));
-        alphabetsRef.child(28+"").setValue(new Letter(28+"", "ي",  "ياء", "ياسمين", "يقطين","يد","يمامة","يـ","ـيـ","ـي"));
+        alphabetsRef.child(28+"").setValue(new Letter(28+"", "ي",  "يا", "ياسمين", "يقطين","يد","يمامة","يـ","ـيـ","ـي"));
     }
     private void addNumbersToDatabase() {
 

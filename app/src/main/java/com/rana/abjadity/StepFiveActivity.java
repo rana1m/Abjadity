@@ -1,10 +1,15 @@
 package com.rana.abjadity;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,11 +19,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -26,27 +28,29 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class StepFiveActivity extends AppCompatActivity {
 
     private static final String TAG = "StepFiveActivity";
     private static final int REQUEST_CODE_SPEECH_INPUT = 1000;
     FirebaseDatabase database;
-    static DatabaseReference accountRef,alphabetsRef,digitsRef;
-    static String childId,parentId,childLevel,button,letterChant,letterName;
+    DatabaseReference accountRef,alphabetsRef,digitsRef;
+    String childId,parentId,childLevel,button,letterChant,letterName;
     VideoView character;
     FloatingActionButton back,forward;
     ImageView microphoneIcon;
     TextView speechToText;
     Window window ;
     MediaPlayer mediaPlayer;
-    static int score;
+    int score;
     View dialogView;
     private Button SaveButton;
-     TextView level,scores;
+    TextView level,scores;
 
 
     @Override
@@ -258,7 +262,7 @@ public class StepFiveActivity extends AppCompatActivity {
         });
     }
 
-    private static void updateScores() {
+    private void updateScores() {
         score=5;
         accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

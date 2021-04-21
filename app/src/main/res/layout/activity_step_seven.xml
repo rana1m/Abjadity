@@ -9,7 +9,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
+        android:id="@+id/s3"
         android:layout_width="376dp"
         android:layout_height="109dp"
         android:layout_marginTop="8dp"
@@ -36,7 +36,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintxLayout2"
+        android:id="@+id/s1"
         android:layout_width="376dp"
         android:layout_height="109dp"
         android:layout_marginTop="8dp"
@@ -102,7 +102,7 @@
         app:srcCompat="@drawable/forward" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayouxt2"
+        android:id="@+id/s2"
         android:layout_width="376dp"
         android:layout_height="109dp"
         android:layout_marginStart="16dp"
@@ -163,7 +163,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintxLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/s1" />
 
     <TextView
         android:id="@+id/textView12"
@@ -177,7 +177,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayouxt2" />
+        app:layout_constraintTop_toBottomOf="@+id/s2" />
 
     <TextView
         android:id="@+id/level"

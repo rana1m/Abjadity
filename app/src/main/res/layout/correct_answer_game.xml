@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
+        android:id="@+id/s3"
         android:layout_width="316dp"
         android:layout_height="409dp"
         android:background="@drawable/card"

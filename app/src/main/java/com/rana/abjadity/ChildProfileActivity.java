@@ -36,6 +36,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import com.google.firebase.perf.FirebasePerformance;
+import com.google.firebase.perf.metrics.Trace;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.jaredrummler.materialspinner.MaterialSpinner;
@@ -53,13 +55,20 @@ public class ChildProfileActivity extends AppCompatActivity {
     EditText ChildNewName,ChildNewAge,EnterPass;
     String childNewName,childNewAge, nameC;
     TextView childName,childAge,childLevel,childScore,errorMsg;
-    Button changeImg,editInfo,addAlarm,SaveButton,CancelButton,GoToChildAccount,deleteChildAccount;
+    Button changeImg;
+    View editInfo;
+    Button addAlarm;
+    Button SaveButton;
+    Button CancelButton;
+    Button GoToChildAccount;
+    Button deleteChildAccount;
     View dialogView,dialogViewPass;
     ImageView profileImg;
     Bundle bundle;
     StorageReference storageReference ;
     FirebaseUser curretUser;
     int counter = 3;
+    Trace editInfoTracer,DeleteTracer;
 
     @Override
     public void onBackPressed() {
@@ -93,6 +102,7 @@ public class ChildProfileActivity extends AppCompatActivity {
         editInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                editInfoTracer.start();
                 AlertDialog.Builder builder = new AlertDialog.Builder(ChildProfileActivity.this);
                 ViewGroup viewGroup = findViewById(android.R.id.content);
                 dialogView = LayoutInflater.from(v.getContext()).inflate(R.layout.edit_info_child_dialog, viewGroup, false);
@@ -109,6 +119,7 @@ public class ChildProfileActivity extends AppCompatActivity {
                         fetchInformation();
                         UpdateChildInfo();
                         alertDialog.dismiss();
+                        editInfoTracer.stop();
                     }
 
                 });
@@ -234,8 +245,10 @@ public class ChildProfileActivity extends AppCompatActivity {
         deleteChildAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DeleteTracer.start();
                 deleteChild();
                 ParentHomePageActivity.childsAdapter.removeItem(childPosition);
+                DeleteTracer.stop();
                 finish();
 
             }
@@ -383,6 +396,9 @@ public class ChildProfileActivity extends AppCompatActivity {
         bundle = getIntent().getExtras();
         storageReference = FirebaseStorage.getInstance().getReference();
         curretUser= FirebaseAuth.getInstance().getCurrentUser();
+        editInfoTracer= FirebasePerformance.getInstance().newTrace("editInfo");
+        DeleteTracer= FirebasePerformance.getInstance().newTrace("DeleteTracer");
+
 
 
 

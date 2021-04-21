@@ -68,9 +68,20 @@ public class catchingGame extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onBackPressed() {
-        android.os.Process.killProcess(android.os.Process.myPid());
-        this.finish();
+        super.onBackPressed();
+        Intent i = new Intent(catchingGame.this,gameMenuActivity.class);
+        i.putExtra("childId",childId);
+        i.putExtra("parentId",parentId);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        i.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        startActivity(i);
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
     }
 
     @Override
