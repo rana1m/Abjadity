@@ -33,7 +33,7 @@ public class NumStepFourActivity extends AppCompatActivity implements View.OnCli
     private static final String TAG = "StepFourNumActivity";
     public int counter;
     private FloatingActionButton forward, backword;
-    public ImageView balon1,balon2,balon3,balon4,balon5,balon6,balon7,balon8,balon9,balon10,balon11,balon12;
+    public ImageView balon1,balon2,balon3,balon4,balon5,balon6,balon7,balon8,balon9,balon10,balon11,balon12,right;
     private int num, score;
     final int random = new Random().nextInt((4 - 1) + 1) + 1;
     VideoView character;
@@ -98,7 +98,7 @@ public class NumStepFourActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(NumStepFourActivity.this, FinalNumActivity.class);
+                Intent i = new Intent(NumStepFourActivity.this, NumStepThreeActivity.class);
                 i.putExtra("button",button);
                 i.putExtra("childId",childId);
                 i.putExtra("parentId",parentId);
@@ -142,7 +142,7 @@ public class NumStepFourActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void characterInitialization() {
-        String path = "android.resource://"+getPackageName()+"/"+ R.raw.h1;
+        String path = "android.resource://"+getPackageName()+"/"+ R.raw.stepnum4;
         Uri uri =Uri.parse(path);
         character.setVideoURI(uri);
         character.setZOrderOnTop(true);
@@ -187,6 +187,7 @@ public class NumStepFourActivity extends AppCompatActivity implements View.OnCli
         level=findViewById(R.id.level);
         scores=findViewById(R.id.score);
         window = this.getWindow();
+        right = (ImageView) findViewById(R.id.right);
     }
 
 

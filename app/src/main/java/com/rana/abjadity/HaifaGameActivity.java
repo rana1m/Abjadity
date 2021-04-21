@@ -143,11 +143,11 @@ public class HaifaGameActivity extends AppCompatActivity {
         LinearLayout linearLayout = findViewById(R.id.layoutParent);
 
         if(editText.getText().toString().equals(textAnswer)){
-            Toast.makeText(HaifaGameActivity.this,"صحيح", Toast.LENGTH_LONG).show();
+          //  Toast.makeText(HaifaGameActivity.this,"صحيح", Toast.LENGTH_LONG).show();
             winningFunction();
             //editText.setText("");
         }else {
-            Toast.makeText(HaifaGameActivity.this,"خاطئ", Toast.LENGTH_LONG).show();
+         //   Toast.makeText(HaifaGameActivity.this,"خاطئ", Toast.LENGTH_LONG).show();
             tryAgain();
             editText.setText("");
         }

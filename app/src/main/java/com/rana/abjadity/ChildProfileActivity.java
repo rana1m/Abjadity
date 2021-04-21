@@ -51,7 +51,7 @@ public class ChildProfileActivity extends AppCompatActivity {
     Child desiredChild;
     int childPosition;
     EditText ChildNewName,ChildNewAge,EnterPass;
-    String childNewName,childNewAge;
+    String childNewName,childNewAge, nameC;
     TextView childName,childAge,childLevel,childScore,errorMsg;
     Button changeImg,editInfo,addAlarm,SaveButton,CancelButton,GoToChildAccount,deleteChildAccount;
     View dialogView,dialogViewPass;
@@ -83,7 +83,10 @@ public class ChildProfileActivity extends AppCompatActivity {
         addAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ChildProfileActivity.this,alarmPop.class));
+                Intent ala = new Intent(ChildProfileActivity.this,alarmPop.class);
+                ala.putExtra("childName",nameC);
+                startActivity(ala);
+
             }
         });
 
@@ -224,7 +227,7 @@ public class ChildProfileActivity extends AppCompatActivity {
                 startActivity(i);
                 if(bundle!= null){
                     UpdateProfileImg();}
-                }
+            }
         });
 //            retrieveChildInfo();}
 
@@ -252,7 +255,7 @@ public class ChildProfileActivity extends AppCompatActivity {
                         Child child = theChild.getValue(Child.class);
                         if(child.getId().equals(childId)){
 
-                                theChild.getRef().removeValue();
+                            theChild.getRef().removeValue();
                         }
                     }
                 }
@@ -277,14 +280,14 @@ public class ChildProfileActivity extends AppCompatActivity {
                         if(child.getId().equals(childId)){
 
                             if(!childNewName.equals("")){
-                            theChild.getRef().child("name").setValue(childNewName);
-                            retrieveChildInfo();}
+                                theChild.getRef().child("name").setValue(childNewName);
+                                retrieveChildInfo();}
 
                             if(!childNewAge.equals("")){
                                 theChild.getRef().child("age").setValue(childNewAge);
                                 retrieveChildInfo();}
 
-                        Log.e(TAG,child.getName()+"---"+childNewName);
+                            Log.e(TAG,child.getName()+"---"+childNewName);
 
                         }
                     }
@@ -322,6 +325,7 @@ public class ChildProfileActivity extends AppCompatActivity {
                         if(child.getId().equals(childId)){
                             desiredChild=child;
                             childName.setText(desiredChild.getName());
+                            nameC = desiredChild.getName();
                             childAge.setText(desiredChild.getAge());
                             childLevel.setText(desiredChild.getLevel().toString());
                             childScore.setText(desiredChild.getScore().toString());
