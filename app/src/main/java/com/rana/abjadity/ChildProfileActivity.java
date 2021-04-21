@@ -53,7 +53,13 @@ public class ChildProfileActivity extends AppCompatActivity {
     EditText ChildNewName,ChildNewAge,EnterPass;
     String childNewName,childNewAge, nameC;
     TextView childName,childAge,childLevel,childScore,errorMsg;
-    Button changeImg,editInfo,addAlarm,SaveButton,CancelButton,GoToChildAccount,deleteChildAccount;
+    Button changeImg;
+    View editInfo;
+    Button addAlarm;
+    Button SaveButton;
+    Button CancelButton;
+    Button GoToChildAccount;
+    Button deleteChildAccount;
     View dialogView,dialogViewPass;
     ImageView profileImg;
     Bundle bundle;
@@ -383,6 +389,8 @@ public class ChildProfileActivity extends AppCompatActivity {
         bundle = getIntent().getExtras();
         storageReference = FirebaseStorage.getInstance().getReference();
         curretUser= FirebaseAuth.getInstance().getCurrentUser();
+
+
 
 
 

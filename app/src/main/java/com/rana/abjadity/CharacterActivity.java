@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
 public class CharacterActivity extends AppCompatActivity implements View.OnClickListener{
     private static final String TAG = "CharacterActivity";
 
@@ -116,6 +117,7 @@ public class CharacterActivity extends AppCompatActivity implements View.OnClick
         parentId = getIntent().getStringExtra("parentId");
         database = FirebaseDatabase.getInstance();
         accountRef = database.getReference("accounts");
+
     }
 
 }

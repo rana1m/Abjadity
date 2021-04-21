@@ -35,6 +35,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
@@ -57,6 +58,7 @@ public class StepOneActivity extends AppCompatActivity {
     Window window ;
     MediaPlayer mediaPlayer;
     int score;
+
 
 
     @Override
@@ -135,6 +137,7 @@ public class StepOneActivity extends AppCompatActivity {
                         i.putExtra("button",button);
                         character.pause();
                         startActivity(i);
+
             }
         });
     }

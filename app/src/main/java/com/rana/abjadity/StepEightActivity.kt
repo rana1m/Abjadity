@@ -18,11 +18,11 @@ class StepEightActivity : AppCompatActivity() {
     var parentId=""
     var childId=""
     var character: VideoView? =null
+
     var accountRef: DatabaseReference? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_step_eight)
-
 
         var back: FloatingActionButton = findViewById<FloatingActionButton>(R.id.back)
         var forward: FloatingActionButton = findViewById(R.id.forward)

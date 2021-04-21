@@ -24,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
 import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -56,7 +57,6 @@ public class RegisterActivity extends AppCompatActivity {
                     Error.setVisibility(View.VISIBLE);
 
                 }
-
             }
         });
 
