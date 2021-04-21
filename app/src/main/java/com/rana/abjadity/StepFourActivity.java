@@ -83,92 +83,116 @@ public class StepFourActivity extends AppCompatActivity {
         scoresAndLevel();
         characterInitialization();
 
-        s1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mediaPlayer=new MediaPlayer();
-                String path = "android.resource://" + getPackageName() + "/" + R.raw.s1;
+        if(button.equals("1")||button.equals("2")){
 
-                Uri uri =Uri.parse(path);
-                try {
-                    mediaPlayer.setDataSource(StepFourActivity.this,uri);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                mediaPlayer.prepareAsync();
-                mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                    @Override
-                    public void onPrepared(MediaPlayer mp) {
-                        mp.start();
+            s1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mediaPlayer=new MediaPlayer();
+                    String path;
+                    if(button.equals("1")){
+                         path = "android.resource://" + getPackageName() + "/" + R.raw.s1;
+                    }else {
+                         path = "android.resource://" + getPackageName() + "/" + R.raw.ss1;
                     }
-                });
-            }
-        });
 
-        s2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mediaPlayer=new MediaPlayer();
-                String path = "android.resource://" + getPackageName() + "/" + R.raw.s2;
 
-                Uri uri =Uri.parse(path);
-                try {
-                    mediaPlayer.setDataSource(StepFourActivity.this,uri);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                mediaPlayer.prepareAsync();
-                mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                    @Override
-                    public void onPrepared(MediaPlayer mp) {
-                        mp.start();
+                    Uri uri =Uri.parse(path);
+                    try {
+                        mediaPlayer.setDataSource(StepFourActivity.this,uri);
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                });
-            }
-        });
-
-        s3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mediaPlayer=new MediaPlayer();
-                String path = "android.resource://" + getPackageName() + "/" + R.raw.s3;
-
-                Uri uri =Uri.parse(path);
-                try {
-                    mediaPlayer.setDataSource(StepFourActivity.this,uri);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    mediaPlayer.prepareAsync();
+                    mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                        @Override
+                        public void onPrepared(MediaPlayer mp) {
+                            mp.start();
+                        }
+                    });
                 }
-                mediaPlayer.prepareAsync();
-                mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                    @Override
-                    public void onPrepared(MediaPlayer mp) {
-                        mp.start();
-                    }
-                });
-            }
-        });
-        s4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mediaPlayer=new MediaPlayer();
-                String path = "android.resource://" + getPackageName() + "/" + R.raw.s4;
+            });
 
-                Uri uri =Uri.parse(path);
-                try {
-                    mediaPlayer.setDataSource(StepFourActivity.this,uri);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                mediaPlayer.prepareAsync();
-                mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                    @Override
-                    public void onPrepared(MediaPlayer mp) {
-                        mp.start();
+            s2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mediaPlayer=new MediaPlayer();
+                    String path;
+                    if(button.equals("1")){
+                        path = "android.resource://" + getPackageName() + "/" + R.raw.s2;
+                    }else {
+                        path = "android.resource://" + getPackageName() + "/" + R.raw.ss2;
                     }
-                });
-            }
-        });
+                    Uri uri =Uri.parse(path);
+                    try {
+                        mediaPlayer.setDataSource(StepFourActivity.this,uri);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    mediaPlayer.prepareAsync();
+                    mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                        @Override
+                        public void onPrepared(MediaPlayer mp) {
+                            mp.start();
+                        }
+                    });
+                }
+            });
+
+            s3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mediaPlayer=new MediaPlayer();
+                    String path;
+                    if(button.equals("1")){
+                        path = "android.resource://" + getPackageName() + "/" + R.raw.s3;
+                    }else {
+                        path = "android.resource://" + getPackageName() + "/" + R.raw.ss3;
+                    }
+
+                    Uri uri =Uri.parse(path);
+                    try {
+                        mediaPlayer.setDataSource(StepFourActivity.this,uri);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    mediaPlayer.prepareAsync();
+                    mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                        @Override
+                        public void onPrepared(MediaPlayer mp) {
+                            mp.start();
+                        }
+                    });
+                }
+            });
+            s4.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mediaPlayer=new MediaPlayer();
+                    String path;
+                    if(button.equals("1")){
+                        path = "android.resource://" + getPackageName() + "/" + R.raw.s4;
+                    }else {
+                        path = "android.resource://" + getPackageName() + "/" + R.raw.ss4;
+                    }
+                    Uri uri =Uri.parse(path);
+                    try {
+                        mediaPlayer.setDataSource(StepFourActivity.this,uri);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    mediaPlayer.prepareAsync();
+                    mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                        @Override
+                        public void onPrepared(MediaPlayer mp) {
+                            mp.start();
+                        }
+                    });
+                }
+            });
+        }
+
+
 
 
         alphabetsRef.orderByChild("id").equalTo(button).addListenerForSingleValueEvent(new ValueEventListener() {

@@ -8,7 +8,7 @@
     tools:context=".FinalStepActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
+        android:id="@+id/s3"
         android:layout_width="379dp"
         android:layout_height="605dp"
         android:background="@drawable/card"

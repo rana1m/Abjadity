@@ -15,7 +15,7 @@
         tools:layout_editor_absoluteY="-57dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout2"
+            android:id="@+id/s3"
             android:layout_width="374dp"
             android:layout_height="635dp"
             android:background="@drawable/card"
