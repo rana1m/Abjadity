@@ -3,7 +3,6 @@ package com.rana.abjadity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -31,8 +30,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.perf.FirebasePerformance;
-import com.google.firebase.perf.metrics.Trace;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
@@ -57,12 +54,10 @@ public class StepFourActivity extends AppCompatActivity {
     Window window ;
     Button SaveButton;
     View dialogView;
-    ConstraintLayout s1,s2,s3,s4;
     TextView correct;
     int score;
     TextView level,scores;
     TextToSpeech textToSpeech;
-    Trace step4= FirebasePerformance.getInstance().newTrace("step4");;
 
 
     @Override
@@ -79,101 +74,13 @@ public class StepFourActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        step4.start();
         setContentView(R.layout.activity_step_four);
-        step4.stop();
+
 
         initialization();
         scoresAndLevel();
         characterInitialization();
-
-        s1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mediaPlayer=new MediaPlayer();
-                String path = "android.resource://" + getPackageName() + "/" + R.raw.s1;
-
-                Uri uri =Uri.parse(path);
-                try {
-                    mediaPlayer.setDataSource(StepFourActivity.this,uri);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                mediaPlayer.prepareAsync();
-                mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                    @Override
-                    public void onPrepared(MediaPlayer mp) {
-                        mp.start();
-                    }
-                });
-            }
-        });
-
-        s2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mediaPlayer=new MediaPlayer();
-                String path = "android.resource://" + getPackageName() + "/" + R.raw.s2;
-
-                Uri uri =Uri.parse(path);
-                try {
-                    mediaPlayer.setDataSource(StepFourActivity.this,uri);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                mediaPlayer.prepareAsync();
-                mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                    @Override
-                    public void onPrepared(MediaPlayer mp) {
-                        mp.start();
-                    }
-                });
-            }
-        });
-
-        s3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mediaPlayer=new MediaPlayer();
-                String path = "android.resource://" + getPackageName() + "/" + R.raw.s3;
-
-                Uri uri =Uri.parse(path);
-                try {
-                    mediaPlayer.setDataSource(StepFourActivity.this,uri);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                mediaPlayer.prepareAsync();
-                mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                    @Override
-                    public void onPrepared(MediaPlayer mp) {
-                        mp.start();
-                    }
-                });
-            }
-        });
-        s4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mediaPlayer=new MediaPlayer();
-                String path = "android.resource://" + getPackageName() + "/" + R.raw.s4;
-
-                Uri uri =Uri.parse(path);
-                try {
-                    mediaPlayer.setDataSource(StepFourActivity.this,uri);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                mediaPlayer.prepareAsync();
-                mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                    @Override
-                    public void onPrepared(MediaPlayer mp) {
-                        mp.start();
-                    }
-                });
-            }
-        });
-
+        
 
         alphabetsRef.orderByChild("id").equalTo(button).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -306,8 +213,6 @@ public class StepFourActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-
     }
 
     private void playVoice(String s) throws IOException {
@@ -545,10 +450,6 @@ public class StepFourActivity extends AppCompatActivity {
         window = this.getWindow();
         level=findViewById(R.id.level);
         scores=findViewById(R.id.score);
-        s1=findViewById(R.id.s1);
-        s2=findViewById(R.id.s2);
-        s3=findViewById(R.id.s3);
-        s4=findViewById(R.id.s4);
         textToSpeech=new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {

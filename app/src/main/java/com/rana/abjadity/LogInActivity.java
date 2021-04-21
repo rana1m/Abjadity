@@ -30,8 +30,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.perf.FirebasePerformance;
-import com.google.firebase.perf.metrics.Trace;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -47,9 +45,6 @@ public class LogInActivity extends AppCompatActivity {
     TextView errorMsg,forgetPasswordLink,Error;
     private FirebaseAuth mAuth;
     int counter = 3;
-    Trace tracer;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +58,6 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     private void logIn() {
-        tracer.start();
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,7 +110,6 @@ public class LogInActivity extends AppCompatActivity {
                 }
             }
         });
-        tracer.stop();
     }
 
     private void initialization() {
@@ -129,7 +122,6 @@ public class LogInActivity extends AppCompatActivity {
         forgetPasswordLink=findViewById(R.id.forgetpassword);
         Error=findViewById(R.id.Error);
         mAuth = FirebaseAuth.getInstance();
-        tracer= FirebasePerformance.getInstance().newTrace("logIn");
     }
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

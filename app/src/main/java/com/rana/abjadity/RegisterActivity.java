@@ -23,8 +23,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.perf.FirebasePerformance;
-import com.google.firebase.perf.metrics.Trace;
 
 import java.util.regex.Pattern;
 
@@ -38,7 +36,6 @@ public class RegisterActivity extends AppCompatActivity {
     String _name,_password,_passwordConf,_email;
     TextView ErrorName,ErrorPass,ErrorEmail,ErrorPassConf,Error;
     private FirebaseAuth mAuth;
-    Trace registerTracer;
 
 
     @Override
@@ -51,7 +48,6 @@ public class RegisterActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registerTracer.start();
                 if(isNetworkConnected()){
                     fetchInformation();
                     CheckEmail(_email);
@@ -60,7 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Error.setVisibility(View.VISIBLE);
 
                 }
-                registerTracer.stop();
+
             }
         });
 
@@ -238,7 +234,6 @@ public class RegisterActivity extends AppCompatActivity {
         ErrorPassConf=findViewById(R.id.ErrorPassConf);
         Error=findViewById(R.id.Error);
         mAuth = FirebaseAuth.getInstance();
-        registerTracer= FirebasePerformance.getInstance().newTrace("registerTracer");
 
     }
 

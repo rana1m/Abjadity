@@ -8,7 +8,7 @@
     tools:context=".StepFourActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/s3"
+        android:id="@+id/constraintLayout2"
         android:layout_width="376dp"
         android:layout_height="109dp"
         android:layout_marginTop="8dp"
@@ -19,7 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.457"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/s2">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayouxt2">
 
         <ImageView
             android:id="@+id/imageView3"
@@ -45,7 +45,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/s4"
+        android:id="@+id/constraintLxayout2"
         android:layout_width="376dp"
         android:layout_height="109dp"
         android:layout_marginStart="16dp"
@@ -55,7 +55,7 @@
         android:elevation="@dimen/cardview_default_elevation"
         android:padding="13dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/s3">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
         <ImageView
             android:id="@+id/imageView4"
@@ -80,7 +80,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/s1"
+        android:id="@+id/constraintxLayout2"
         android:layout_width="376dp"
         android:layout_height="109dp"
         android:layout_marginTop="65dp"
@@ -152,7 +152,7 @@
         app:srcCompat="@drawable/forward" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/s2"
+        android:id="@+id/constraintLayouxt2"
         android:layout_width="376dp"
         android:layout_height="109dp"
         android:layout_marginStart="16dp"
@@ -162,7 +162,7 @@
         android:elevation="@dimen/cardview_default_elevation"
         android:padding="13dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/s1">
+        app:layout_constraintTop_toBottomOf="@+id/constraintxLayout2">
 
         <ImageView
             android:id="@+id/imageView2"

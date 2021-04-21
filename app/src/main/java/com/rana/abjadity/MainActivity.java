@@ -21,7 +21,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.perf.metrics.Trace;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -35,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     Button logIn,Register;
     FirebaseAuth mAuth;
     FirebaseUser firebaseUser;
-    Trace tracer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

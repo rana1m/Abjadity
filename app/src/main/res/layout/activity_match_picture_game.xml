@@ -8,7 +8,7 @@
     tools:context=".matchPictureGame">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/s3"
+        android:id="@+id/constraintLayout2"
         android:layout_width="384dp"
         android:layout_height="650dp"
         android:background="@drawable/card_log_in"

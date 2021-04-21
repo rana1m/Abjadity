@@ -38,8 +38,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import com.google.firebase.perf.FirebasePerformance;
-import com.google.firebase.perf.metrics.Trace;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.jaredrummler.materialspinner.MaterialSpinner;
@@ -62,7 +60,7 @@ public class child_View_Profile extends AppCompatActivity {
     Bundle bundle;
     StorageReference storageReference ;
     FirebaseUser curretUser;
-    Trace child_View_Profile;
+
 
 
     @Override
@@ -138,8 +136,6 @@ public class child_View_Profile extends AppCompatActivity {
         storageReference = FirebaseStorage.getInstance().getReference();
         curretUser= FirebaseAuth.getInstance().getCurrentUser();
         LogOutChild2=findViewById(R.id.LogOutChild2);
-        child_View_Profile= FirebasePerformance.getInstance().newTrace("child_View_Profile");
-
     }
 
     public void ChildLogOut(View view) {

@@ -34,8 +34,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.perf.FirebasePerformance;
-import com.google.firebase.perf.metrics.Trace;
 import com.rana.abjadity.common.helpers.CameraPermissionHelper;
 import com.rana.abjadity.common.helpers.DepthSettings;
 import com.rana.abjadity.common.helpers.DisplayRotationHelper;
@@ -101,7 +99,6 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
     TextView correct;
     TextView level,scores;
     int score;
-    Trace step2= FirebasePerformance.getInstance().newTrace("step2");;
 
 
 
@@ -193,7 +190,6 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_tow);
-        step2.start();
         surfaceView = findViewById(R.id.surfaceview);
         Window window = this.getWindow();
 
@@ -266,7 +262,6 @@ public class StepTowActivity extends AppCompatActivity implements SampleRender.R
                 winningFunction();
             }
         });
-        step2.stop();
     }
 
     private void winningFunction() {

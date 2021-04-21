@@ -8,7 +8,7 @@
     tools:context=".LastGame">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/s3"
+        android:id="@+id/constraintLayout2"
         android:layout_width="384dp"
         android:layout_height="650dp"
         android:background="@drawable/card"
@@ -119,19 +119,14 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/round_button"
-        android:textColor="@color/textDarkColor"
-        android:text="إظهار النتيجة"
-        android:backgroundTint="@color/yellow"
+    <ImageView
+        android:id="@+id/right"
+        android:layout_width="217dp"
+        android:layout_height="81dp"
+        android:src="@drawable/right"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/s3" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

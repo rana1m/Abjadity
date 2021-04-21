@@ -10,7 +10,6 @@ import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.*
-import com.google.firebase.perf.FirebasePerformance
 import kotlinx.android.synthetic.main.activity_step_eight.*
 
 class StepEightActivity : AppCompatActivity() {
@@ -19,14 +18,11 @@ class StepEightActivity : AppCompatActivity() {
     var parentId=""
     var childId=""
     var character: VideoView? =null
-    var step7 = FirebasePerformance.getInstance().newTrace("step7")
-
     var accountRef: DatabaseReference? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        step7.start()
         setContentView(R.layout.activity_step_eight)
-        step7.stop()
+
 
         var back: FloatingActionButton = findViewById<FloatingActionButton>(R.id.back)
         var forward: FloatingActionButton = findViewById(R.id.forward)

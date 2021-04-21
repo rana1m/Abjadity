@@ -25,8 +25,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.perf.FirebasePerformance;
-import com.google.firebase.perf.metrics.Trace;
 
 import java.util.LongSummaryStatistics;
 import java.util.Map;
@@ -46,15 +44,11 @@ public class ParentSettingsActivity extends AppCompatActivity {
     private TextView Email, Name;
     View dialogView;
     String uId, parentId;
-    Trace ParentSettings= FirebasePerformance.getInstance().newTrace("ParentSettings");;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ParentSettings.start();
         setContentView(R.layout.activity_parent_settings);
-        ParentSettings.stop();
 
        initialization();
 

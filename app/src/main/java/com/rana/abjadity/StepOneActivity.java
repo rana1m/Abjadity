@@ -35,8 +35,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.perf.FirebasePerformance;
-import com.google.firebase.perf.metrics.Trace;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
@@ -59,8 +57,6 @@ public class StepOneActivity extends AppCompatActivity {
     Window window ;
     MediaPlayer mediaPlayer;
     int score;
-    Trace step1= FirebasePerformance.getInstance().newTrace("step1");;
-
 
 
     @Override
@@ -78,9 +74,7 @@ public class StepOneActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        step1.start();
         setContentView(R.layout.activity_step_one);
-        step1.stop();
 
 
         initialization();
@@ -141,7 +135,6 @@ public class StepOneActivity extends AppCompatActivity {
                         i.putExtra("button",button);
                         character.pause();
                         startActivity(i);
-
             }
         });
     }

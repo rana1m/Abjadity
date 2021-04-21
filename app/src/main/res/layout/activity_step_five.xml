@@ -8,7 +8,7 @@
     tools:context=".StepFiveActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/s3"
+        android:id="@+id/constraintLayout2"
         android:layout_width="374dp"
         android:layout_height="635dp"
         android:background="@drawable/card"

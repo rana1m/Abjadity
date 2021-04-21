@@ -23,8 +23,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.perf.FirebasePerformance;
-import com.google.firebase.perf.metrics.Trace;
 
 import java.util.regex.Pattern;
 
@@ -43,17 +41,13 @@ public class ParentProfileActivity extends AppCompatActivity {
     TextView Email, Name, ErrorName, ErrorEmail,dataUpdated;
     FirebaseUser currentUser;
     ProgressBar dataUpdateProgressBar;
-    Trace ParentProfile= FirebasePerformance.getInstance().newTrace("ParentProfile");;
-
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ParentProfile.start();
         setContentView(R.layout.activity_parent_profile);
-        ParentProfile.stop();
 
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("accounts");

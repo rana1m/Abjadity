@@ -17,8 +17,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.perf.FirebasePerformance;
-import com.google.firebase.perf.metrics.Trace;
 
 public class CharacterActivity extends AppCompatActivity implements View.OnClickListener{
     private static final String TAG = "CharacterActivity";
@@ -29,7 +27,6 @@ public class CharacterActivity extends AppCompatActivity implements View.OnClick
     ImageView char1, char2, char3, char4, char5;
     FirebaseDatabase database;
     DatabaseReference accountRef;
-    Trace tracer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +81,6 @@ public class CharacterActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void uploadImage(String s) {
-        tracer.start();
         accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -107,7 +103,6 @@ public class CharacterActivity extends AppCompatActivity implements View.OnClick
             }
         });
 
-        tracer.stop();
     }
 
     private void initialization(){
@@ -121,8 +116,6 @@ public class CharacterActivity extends AppCompatActivity implements View.OnClick
         parentId = getIntent().getStringExtra("parentId");
         database = FirebaseDatabase.getInstance();
         accountRef = database.getReference("accounts");
-        tracer= FirebasePerformance.getInstance().newTrace("CharacterActivity");
-
     }
 
 }
