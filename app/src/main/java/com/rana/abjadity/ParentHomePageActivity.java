@@ -1,28 +1,19 @@
 package com.rana.abjadity;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,13 +34,13 @@ public class ParentHomePageActivity extends AppCompatActivity {
     Button AddButton,CancelButton;
     View dialogView;
     FirebaseDatabase database;
-    DatabaseReference accountRef;
-    String childName,childAge,parentId,id;
+    static DatabaseReference accountRef;
+    static String  childName,childAge,parentId,id;
     int childPosition;
     ArrayList<Child> children;
     static RecyclerView recyclerView;
     static ChildsAdapter childsAdapter;
-    TextView ErrorName,ErrorAge,message;
+    static TextView ErrorName,ErrorAge,message;
     SpaceNavigationView spaceNavigationView;
 
 
@@ -183,7 +174,7 @@ public class ParentHomePageActivity extends AppCompatActivity {
         ErrorAge=dialogView.findViewById(R.id.ErrorChildAge);
     }
 
-    private void addChildToParent() {
+    public static void addChildToParent() {
         id=new Date().getTime()+"";
         accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -210,7 +201,7 @@ public class ParentHomePageActivity extends AppCompatActivity {
         });
     }
 
-    private boolean CheckForfileds() {
+    private static boolean CheckForfileds() {
         if (childName.equals("")){
             ErrorName.setText("* يرجى إدخال الاسم");
             ErrorName.setVisibility(View.VISIBLE);
@@ -265,7 +256,7 @@ public class ParentHomePageActivity extends AppCompatActivity {
 
     }
 
-    private boolean onlyDigits(String str, int n) {
+    private static boolean onlyDigits(String str, int n) {
 
         for (int i = 0; i < n; i++) {
 

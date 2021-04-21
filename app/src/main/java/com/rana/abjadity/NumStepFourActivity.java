@@ -92,27 +92,7 @@ public class NumStepFourActivity extends AppCompatActivity implements View.OnCli
         balon11.setOnClickListener(this);
         balon12.setOnClickListener(this);
 
-        forward.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(counter==num){
-                    winningFunction();
-                    scoresAndLevel();
-                    visableImages();
-                    counter=0;
-
-                }else {
-                    tryAgain();
-                    visableImages();
-                    counter=0;
-                }
-
-
-            }
-
-
-        });
+        check_Next_Step();
 
         backword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,6 +115,30 @@ public class NumStepFourActivity extends AppCompatActivity implements View.OnCli
 
 
 
+    }
+
+    public void check_Next_Step() {
+        forward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(counter==num){
+                    winningFunction();
+                    scoresAndLevel();
+                    visableImages();
+                    counter=0;
+
+                }else {
+                    tryAgain();
+                    visableImages();
+                    counter=0;
+                }
+
+
+            }
+
+
+        });
     }
 
     private void characterInitialization() {
