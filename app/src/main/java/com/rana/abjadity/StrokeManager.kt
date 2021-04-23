@@ -92,8 +92,6 @@ object StrokeManager {
 
         recognizer.recognize(ink)
                 .addOnSuccessListener { result: RecognitionResult ->
-                    Toast.makeText(context, "أرى حرف الـ ${result.candidates[0].text}", Toast.LENGTH_LONG)
-                            .show()
                     if (result.candidates[0].text.equals(letter)) {
                         winningFunction(context,parentId,childId)                    }
                     else if (letter.equals("أ")&&result.candidates[0].text.equals("ا")){
