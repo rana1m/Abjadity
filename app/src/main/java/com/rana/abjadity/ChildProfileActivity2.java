@@ -101,6 +101,37 @@ public class ChildProfileActivity2 extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+
+        bottomNavigationView.setSelectedItemId(R.id.profileActivity);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()) {
+                    case R.id.back:
+                        i = new Intent(ChildProfileActivity2.this,ChildProfileActivity2.class);
+                        i.putExtra("childId",childId);
+                        i.putExtra("parentId",parentId);
+                        startActivity(i);
+                        break;
+                    case R.id.gameActivity:
+                        i = new Intent(ChildProfileActivity2.this,gameMenuActivity.class);
+                        i.putExtra("childId",childId);
+                        i.putExtra("parentId",parentId);
+                        startActivity(i);
+                        break;
+                    case R.id.mapActivity:
+                        i = new Intent(ChildProfileActivity2.this,MapActivity.class);
+                        i.putExtra("childId",childId);
+                        i.putExtra("parentId",parentId);
+                        startActivity(i);
+                        break;
+
+                }
+                return true;
+            }
+        });
     }
 
 
@@ -170,7 +201,7 @@ public class ChildProfileActivity2 extends AppCompatActivity {
         bundle = getIntent().getExtras();
         storageReference = FirebaseStorage.getInstance().getReference();
         curretUser= FirebaseAuth.getInstance().getCurrentUser();
-
+        bottomNavigationView=findViewById(R.id.bottom_navigation);
 
 
 
