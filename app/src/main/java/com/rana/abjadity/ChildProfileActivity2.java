@@ -52,13 +52,18 @@ public class ChildProfileActivity2 extends AppCompatActivity {
     DatabaseReference accountRef;
     Child desiredChild;
     int childPosition;
-    TextView childName,childAge,childLevel,childScore;
+    TextView childName,childAge,childLevel,childScore,errorMsg;
     Button changeImg;
     ImageView profileImg;
     Bundle bundle;
     StorageReference storageReference ;
+    EditText EnterPass;
     FirebaseUser curretUser;
+    Button SaveButton;
+    Button CancelButton;
     Intent i;
+    int counter = 3;
+    View dialogView,dialogViewPass;
     BottomNavigationView bottomNavigationView;
     @Override
     public void onBackPressed() {
@@ -92,13 +97,98 @@ public class ChildProfileActivity2 extends AppCompatActivity {
 
 
         Button ChildLogOut=findViewById(R.id.ChildLogOut);
+
+
         ChildLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ChildProfileActivity2.this,ParentHomePageActivity.class);
-                i.putExtra("childId",childId);
-                i.putExtra("parentId",parentId);
-                startActivity(i);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(ChildProfileActivity2.this);
+                ViewGroup viewGroup = findViewById(android.R.id.content);
+                dialogViewPass = LayoutInflater.from(v.getContext()).inflate(R.layout.confirm_password_dialog, viewGroup, false);
+
+                builder.setView(dialogViewPass);
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
+                SaveButton = dialogViewPass.findViewById(R.id.buttonOk);
+                CancelButton = dialogViewPass.findViewById(R.id.buttonCancle);
+                EnterPass = dialogViewPass.findViewById(R.id.EnterPassword);
+                errorMsg = dialogViewPass.findViewById(R.id.ErrorPass);
+
+                SaveButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(EnterPass.getText().toString().equals("")){
+                            errorMsg.setVisibility(View.VISIBLE);
+                        }else {
+                            checkPassword();
+                        }
+                    }
+
+                    private void checkPassword() {
+                        accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
+
+                                    AuthCredential credential = EmailAuthProvider.getCredential(curretUser.getEmail(), EnterPass.getText().toString());
+                                    curretUser.reauthenticate(credential).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Intent i = new Intent(ChildProfileActivity2.this,ParentHomePageActivity.class);
+                                            i.putExtra("childId",childId);
+                                            i.putExtra("parentId",parentId);
+                                            startActivity(i);
+                                            finish();
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            errorMsg.setVisibility(View.VISIBLE);
+                                            counter--;
+                                            if (counter == 0)
+                                            // Disable button after 3 failed attempts
+                                            {   SaveButton.setEnabled(false);
+
+                                                errorMsg.setText("تم إيقاف تسجيل الدخول لمدة ٥ دقائق");
+                                                errorMsg.setVisibility(View.VISIBLE);
+
+                                                final Handler handler = new Handler();
+                                                handler.postDelayed(new Runnable()
+                                                {   @Override
+                                                public void run()
+                                                {   SaveButton.setEnabled(true);
+                                                    counter = 3;
+                                                }
+                                                }, 300000);
+                                            }
+                                        }
+                                    });
+
+
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                                throw databaseError.toException();
+                            }
+                        });
+                    }
+
+                });
+
+                CancelButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                    }
+                });
+
+
+
             }
         });
 
