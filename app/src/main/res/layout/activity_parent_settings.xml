@@ -56,6 +56,19 @@
         app:layout_constraintVertical_bias="0.584" />
 
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_vertical"
+        android:background="#FCE9BA"
+        app:itemIconTint="@color/nav_color2"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/parent_bottom_navigation" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

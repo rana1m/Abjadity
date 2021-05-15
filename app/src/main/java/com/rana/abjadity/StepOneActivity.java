@@ -46,29 +46,28 @@ public class StepOneActivity extends AppCompatActivity {
 
     private static final String TAG = "StepOneActivity";
     FirebaseDatabase database;
-    DatabaseReference alphabetsRef,accountRef;
-    String childId,parentId,childLevel,button;
-    VideoView letterChant,character;
-    FloatingActionButton back,forward,play;
+    DatabaseReference alphabetsRef, accountRef;
+    String childId, parentId, childLevel, button;
+    VideoView letterChant, character;
+    FloatingActionButton back, forward, play;
     FrameLayout letterChantFrame;
     Button SaveButton;
-    TextView level,scores;
+    TextView level, scores;
     View dialogView;
-    StorageReference storageReference ;
-    Window window ;
+    StorageReference storageReference;
+    Window window;
     MediaPlayer mediaPlayer;
     int score;
-
 
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i = new Intent(StepOneActivity.this,MapActivity.class);
-        i.putExtra("childId",childId);
-        i.putExtra("parentId",parentId);
-        i.putExtra("childLevel",childLevel);
-        i.putExtra("button",button);
+        Intent i = new Intent(StepOneActivity.this, MapActivity.class);
+        i.putExtra("childId", childId);
+        i.putExtra("parentId", parentId);
+        i.putExtra("childLevel", childLevel);
+        i.putExtra("button", button);
         startActivity(i);
     }
 
@@ -87,9 +86,9 @@ public class StepOneActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 //loop through letters to
-                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
+                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                     Letter letter = userSnapshot.getValue(Letter.class);
-                    Log.e(TAG,letter.getName());
+                    Log.e(TAG, letter.getName());
                     letterChatInitialization();
 
                 }
@@ -117,11 +116,11 @@ public class StepOneActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(StepOneActivity.this,MapActivity.class);
-                i.putExtra("childId",childId);
-                i.putExtra("parentId",parentId);
-                i.putExtra("childLevel",childLevel);
-                i.putExtra("button",button);
+                Intent i = new Intent(StepOneActivity.this, MapActivity.class);
+                i.putExtra("childId", childId);
+                i.putExtra("parentId", parentId);
+                i.putExtra("childLevel", childLevel);
+                i.putExtra("button", button);
                 startActivity(i);
             }
         });
@@ -130,13 +129,13 @@ public class StepOneActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                        Intent i = new Intent(StepOneActivity.this,StepTowActivity.class);
-                        i.putExtra("childId",childId);
-                        i.putExtra("parentId",parentId);
-                        i.putExtra("childLevel",childLevel);
-                        i.putExtra("button",button);
-                        character.pause();
-                        startActivity(i);
+                Intent i = new Intent(StepOneActivity.this, StepTowActivity.class);
+                i.putExtra("childId", childId);
+                i.putExtra("parentId", parentId);
+                i.putExtra("childLevel", childLevel);
+                i.putExtra("button", button);
+                character.pause();
+                startActivity(i);
 
             }
         });
@@ -147,12 +146,12 @@ public class StepOneActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //loop through accounts to find the parent with that id
-                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
+                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
 
                     //loop through parent children to add them to adapter ArrayList
-                    for (DataSnapshot theChild: userSnapshot.child("children").getChildren()) {
+                    for (DataSnapshot theChild : userSnapshot.child("children").getChildren()) {
                         Child child = theChild.getValue(Child.class);
-                        if(child.getId().equals(childId)){
+                        if (child.getId().equals(childId)) {
                             scores.setText(child.getScore().toString());
                             level.setText(child.getLevel().toString());
                         }
@@ -168,19 +167,19 @@ public class StepOneActivity extends AppCompatActivity {
     }
 
     private void updateScores() {
-        score=3;
+        score = 3;
         accountRef.orderByChild("id").equalTo(parentId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //loop through accounts to find the parent with that id
-                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
+                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
 
                     //loop through parent children to add them to adapter ArrayList
-                    for (DataSnapshot theChild: userSnapshot.child("children").getChildren()) {
+                    for (DataSnapshot theChild : userSnapshot.child("children").getChildren()) {
                         Child child = theChild.getValue(Child.class);
-                        if(child.getId().equals(childId)){
-                           score += child.getScore();
-                                theChild.getRef().child("score").setValue(score);
+                        if (child.getId().equals(childId)) {
+                            score += child.getScore();
+                            theChild.getRef().child("score").setValue(score);
                         }
                     }
                 }
@@ -194,10 +193,10 @@ public class StepOneActivity extends AppCompatActivity {
     }
 
     private void playVoice() throws IOException {
-        mediaPlayer=new MediaPlayer();
-        String path = "android.resource://"+getPackageName()+"/"+ R.raw.good_job;
-        Uri uri =Uri.parse(path);
-        mediaPlayer.setDataSource(this,uri);
+        mediaPlayer = new MediaPlayer();
+        String path = "android.resource://" + getPackageName() + "/" + R.raw.good_job;
+        Uri uri = Uri.parse(path);
+        mediaPlayer.setDataSource(this, uri);
         mediaPlayer.prepareAsync();
         mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
@@ -209,8 +208,8 @@ public class StepOneActivity extends AppCompatActivity {
 
 
     private void characterInitialization() {
-        String path = "android.resource://"+getPackageName()+"/"+ R.raw.step_one;
-        Uri uri =Uri.parse(path);
+        String path = "android.resource://" + getPackageName() + "/" + R.raw.step_one;
+        Uri uri = Uri.parse(path);
         character.setVideoURI(uri);
         character.setZOrderOnTop(true);
         character.start();
@@ -224,13 +223,13 @@ public class StepOneActivity extends AppCompatActivity {
     }
 
     private void letterChatInitialization() {
-        storageReference.child("lettersChant/"+button+".mp4").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        storageReference.child("lettersChant/" + button + ".mp4").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 letterChant.setVideoURI(uri);
                 letterChant.setZOrderOnTop(true);
                 letterChant.start();
-                if(letterChant.isPlaying()){
+                if (letterChant.isPlaying()) {
                     character.pause();
                 }
                 MediaController mediaController = new MediaController(StepOneActivity.this);
@@ -283,19 +282,19 @@ public class StepOneActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(StepOneActivity.this,StepTowActivity.class);
-                i.putExtra("childId",childId);
-                i.putExtra("parentId",parentId);
-                i.putExtra("childLevel",childLevel);
-                i.putExtra("button",button);
+                Intent i = new Intent(StepOneActivity.this, StepTowActivity.class);
+                i.putExtra("childId", childId);
+                i.putExtra("parentId", parentId);
+                i.putExtra("childLevel", childLevel);
+                i.putExtra("button", button);
                 mediaPlayer.stop();
                 startActivity(i);
                 alertDialog.dismiss();
             }
-            public boolean onTouchEvent(MotionEvent event)
-            {
 
-                if(event.getAction() == MotionEvent.ACTION_OUTSIDE){
+            public boolean onTouchEvent(MotionEvent event) {
+
+                if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
                     alertDialog.dismiss();
                 }
                 return false;
@@ -307,7 +306,8 @@ public class StepOneActivity extends AppCompatActivity {
         SaveButton = dialogView.findViewById(R.id.buttonOk);
 
     }
-    private void initialization () {
+
+    private void initialization() {
         database = FirebaseDatabase.getInstance();
         alphabetsRef = database.getReference("alphabets");
         accountRef = database.getReference("accounts");
@@ -315,22 +315,18 @@ public class StepOneActivity extends AppCompatActivity {
         parentId = getIntent().getStringExtra("parentId");
         childLevel = getIntent().getStringExtra("childLevel");
         button = getIntent().getStringExtra("button");
-        letterChant=findViewById(R.id.letterChant);
-        character=findViewById(R.id.character);
-        back=findViewById(R.id.back);
-        forward=findViewById(R.id.forward);
-        play=findViewById(R.id.playIcon);
-        letterChantFrame=findViewById(R.id.letterChatFrame);
+        letterChant = findViewById(R.id.letterChant);
+        character = findViewById(R.id.character);
+        back = findViewById(R.id.back);
+        forward = findViewById(R.id.forward);
+        play = findViewById(R.id.playIcon);
+        letterChantFrame = findViewById(R.id.letterChatFrame);
         storageReference = FirebaseStorage.getInstance().getReference();
         window = this.getWindow();
-        score=0;
-        level=findViewById(R.id.level);
-        scores=findViewById(R.id.score);
+        score = 0;
+        level = findViewById(R.id.level);
+        scores = findViewById(R.id.score);
     }
-
-
-
-
 
 
 }

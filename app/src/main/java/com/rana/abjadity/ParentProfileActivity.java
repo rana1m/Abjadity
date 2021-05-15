@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -41,6 +44,7 @@ public class ParentProfileActivity extends AppCompatActivity {
     TextView Email, Name, ErrorName, ErrorEmail,dataUpdated;
     FirebaseUser currentUser;
     ProgressBar dataUpdateProgressBar;
+    BottomNavigationView bottomNavigationView;
 
 
 
@@ -59,6 +63,8 @@ public class ParentProfileActivity extends AppCompatActivity {
 
         initialization();
         getUserData();
+
+
 
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,8 +106,29 @@ public class ParentProfileActivity extends AppCompatActivity {
 
             }
         });
+        bottomNavigationView.setSelectedItemId(R.id.profileActivity);
 
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
+                switch (item.getItemId()) {
+                    case R.id.back:
+                        break;
+                    case R.id.homeActivity:
+                        Intent h = new Intent(ParentProfileActivity.this,ParentHomePageActivity.class);
+                        h.putExtra("parentId",parentId);
+                        startActivity(h);
+                        break;
+                    case R.id.profileActivity:
+                        Intent e = new Intent(ParentProfileActivity.this,ParentSettingsActivity.class);
+                        e.putExtra("parentId",parentId);
+                        startActivity(e);
+                        break;
+                }
+                return true;
+            }
+        });
 
     }
 
@@ -113,7 +140,9 @@ public class ParentProfileActivity extends AppCompatActivity {
         currentUser = mAuth.getCurrentUser();
         dataUpdateProgressBar= findViewById(R.id.dataUpdateProgressBar);
         dataUpdated= findViewById(R.id.dataUpdated);
-    }
+      bottomNavigationView=findViewById(R.id.bottom_navigation);
+
+  }
 
   private void initializationForDialog() {
         SaveButton = dialogView.findViewById(R.id.buttonOk);

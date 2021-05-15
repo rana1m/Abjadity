@@ -153,7 +153,6 @@ public class StepFiveActivity extends AppCompatActivity {
                     // get the text array from voice intent
                     ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 
-
                     speechToText.setText(result.get(0));
 
                     // check for chant

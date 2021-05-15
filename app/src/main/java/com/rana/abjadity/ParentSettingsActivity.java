@@ -10,12 +10,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -44,6 +46,8 @@ public class ParentSettingsActivity extends AppCompatActivity {
     private TextView Email, Name;
     View dialogView;
     String uId, parentId;
+    BottomNavigationView bottomNavigationView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +60,23 @@ public class ParentSettingsActivity extends AppCompatActivity {
         Email = (TextView) findViewById(R.id.Pemail);
         getUserData();*/
 
+        bottomNavigationView.setSelectedItemId(R.id.profileActivity);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()) {
+                    case R.id.back:
+                        break;
+                    case R.id.homeActivity:
+                        Intent h = new Intent(ParentSettingsActivity.this,ParentHomePageActivity.class);
+                        h.putExtra("parentId",parentId);
+                        startActivity(h);
+                        break;
+                }
+                return true;
+            }
+        });
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,6 +191,8 @@ public class ParentSettingsActivity extends AppCompatActivity {
       parentId = getIntent().getStringExtra("parentId");
       logout = findViewById(R.id.logouts);
       accountInfo = findViewById(R.id.accountInfo);
+      bottomNavigationView=findViewById(R.id.bottom_navigation);
+
   }
 
   private void initializationForDialog() {

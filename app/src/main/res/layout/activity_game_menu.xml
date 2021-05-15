@@ -12,9 +12,9 @@
         android:id="@+id/matchPictures"
         android:layout_width="380dp"
         android:layout_height="120dp"
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="17dp"
         android:background="@drawable/card"
         android:backgroundTint="@color/white"
         android:elevation="@dimen/cardview_default_elevation"
@@ -22,23 +22,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/catchingGame">
+
+        <ImageView
+            android:id="@+id/imageView18"
+            android:layout_width="98dp"
+            android:layout_height="93dp"
+            android:layout_marginStart="28dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/coloring_game" />
+
         <TextView
             android:id="@+id/textViedw13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="تلوين"
-            android:textSize="22dp"
             android:textColor="@color/textDarkColor"
+            android:textSize="22dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.311"
+            app:layout_constraintStart_toEndOf="@+id/imageView18"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/catchingGame"
-        android:layout_width="378dp"
+        android:layout_width="380dp"
         android:layout_height="120dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="40dp"
@@ -50,16 +62,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLacgyout2">
+
+        <ImageView
+            android:id="@+id/imageView17"
+            android:layout_width="98dp"
+            android:layout_height="93dp"
+            android:layout_marginStart="28dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/search_icon" />
+
         <TextView
             android:id="@+id/textViewh13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="البحث عن الحروف"
-            android:textSize="22dp"
             android:textColor="@color/textDarkColor"
+            android:textSize="22dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.228"
+            app:layout_constraintStart_toEndOf="@+id/imageView17"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -88,8 +112,19 @@
             android:textSize="22dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.298"
+            app:layout_constraintStart_toEndOf="@+id/imageView16"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView16"
+            android:layout_width="98dp"
+            android:layout_height="93dp"
+            android:layout_marginStart="28dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/arrange_letters" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
