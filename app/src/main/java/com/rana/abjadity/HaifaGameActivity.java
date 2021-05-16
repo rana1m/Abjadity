@@ -1,5 +1,6 @@
 package com.rana.abjadity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,6 +34,8 @@ import java.io.IOException;
 import java.util.Random;
 
 public class HaifaGameActivity extends AppCompatActivity {
+    Intent i;
+    BottomNavigationView bottomNavigationView;
     FirebaseDatabase database;
     DatabaseReference accountRef;
     String childId, parentId;
@@ -67,6 +72,34 @@ public class HaifaGameActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         maxpresCounter = 3;
+
+        bottomNavigationView.setSelectedItemId(R.id.gameActivity);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()) {
+                    case R.id.back:
+                        i = new Intent(HaifaGameActivity.this,MapActivity.class);
+                        startActivity(i);
+                        break;
+                    case R.id.profileActivity:
+                        i = new Intent(HaifaGameActivity.this,ChildProfileActivity2.class);
+                        i.putExtra("childId",childId);
+                        i.putExtra("parentId",parentId);
+                        startActivity(i);
+                        break;
+                    case R.id.mapActivity:
+                        i = new Intent(HaifaGameActivity.this,MapActivity.class);
+                        i.putExtra("childId",childId);
+                        i.putExtra("parentId",parentId);
+                        startActivity(i);
+                        break;
+
+                }
+                return true;
+            }
+        });
 
     }
 
@@ -322,6 +355,7 @@ public class HaifaGameActivity extends AppCompatActivity {
 
     }
     private void initialization() {
+        bottomNavigationView=findViewById(R.id.bottom_navigation);
         database = FirebaseDatabase.getInstance();
         accountRef = database.getReference("accounts");
         childId = getIntent().getStringExtra("childId");

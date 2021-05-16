@@ -10,6 +10,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,10 +22,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.ColorRes;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.ImageViewCompat;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,6 +39,8 @@ import org.jetbrains.annotations.NotNull;
 import kotlin.jvm.internal.Intrinsics;
 
 public class LastGame extends Activity {
+    Intent i;
+    BottomNavigationView bottomNavigationView;
     public String color = "";
     public String finalColor = "";
     FirebaseDatabase database;
@@ -104,7 +109,33 @@ public class LastGame extends Activity {
         });
 
 
+        bottomNavigationView.setSelectedItemId(R.id.gameActivity);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
+                switch (item.getItemId()) {
+                    case R.id.back:
+                        i = new Intent(LastGame.this,MapActivity.class);
+                        startActivity(i);
+                        break;
+                    case R.id.profileActivity:
+                        i = new Intent(LastGame.this,ChildProfileActivity2.class);
+                        i.putExtra("childId",childId);
+                        i.putExtra("parentId",parentId);
+                        startActivity(i);
+                        break;
+                    case R.id.mapActivity:
+                        i = new Intent(LastGame.this,MapActivity.class);
+                        i.putExtra("childId",childId);
+                        i.putExtra("parentId",parentId);
+                        startActivity(i);
+                        break;
+
+                }
+                return true;
+            }
+        });
 
     } // EndOnCreate
 
@@ -309,6 +340,7 @@ public class LastGame extends Activity {
 
 
     private void initilaization() {
+        bottomNavigationView=findViewById(R.id.bottom_navigation);
         v_red = (Button) findViewById(R.id.v_red);
         v_blue = (Button) findViewById(R.id.v_blue);
         v_move = (Button) findViewById(R.id.v_move);

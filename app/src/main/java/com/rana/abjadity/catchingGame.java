@@ -17,6 +17,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -49,6 +51,8 @@ import java.util.Random;
 
 public class catchingGame extends FragmentActivity implements OnMapReadyCallback {
 
+    Intent i;
+    BottomNavigationView bottomNavigationView;
     private static final int REQUESR_CODE =0;
     private GoogleMap mMap;
     String childId,parentId;
@@ -89,6 +93,33 @@ public class catchingGame extends FragmentActivity implements OnMapReadyCallback
             e.printStackTrace();
         }
 
+        bottomNavigationView.setSelectedItemId(R.id.gameActivity);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()) {
+                    case R.id.back:
+                        i = new Intent(catchingGame.this,MapActivity.class);
+                        startActivity(i);
+                        break;
+                    case R.id.profileActivity:
+                        i = new Intent(catchingGame.this,ChildProfileActivity2.class);
+                        i.putExtra("childId",childId);
+                        i.putExtra("parentId",parentId);
+                        startActivity(i);
+                        break;
+                    case R.id.mapActivity:
+                        i = new Intent(catchingGame.this,MapActivity.class);
+                        i.putExtra("childId",childId);
+                        i.putExtra("parentId",parentId);
+                        startActivity(i);
+                        break;
+
+                }
+                return true;
+            }
+        });
     }
 
 
@@ -452,6 +483,7 @@ public class catchingGame extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void initialization() {
+        bottomNavigationView=findViewById(R.id.bottom_navigation);
         database = FirebaseDatabase.getInstance();
         accountRef = database.getReference("accounts");
         childId = getIntent().getStringExtra("childId");
