@@ -31,7 +31,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@drawable/coloring_game" />
+            app:srcCompat="@drawable/coloring_game" />
 
         <TextView
             android:id="@+id/textViedw13"
@@ -71,7 +71,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@drawable/search_icon" />
+            app:srcCompat="@drawable/search_icon" />
 
         <TextView
             android:id="@+id/textViewh13"
@@ -124,7 +124,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@drawable/arrange_letters" />
+            app:srcCompat="@drawable/arrange_letters" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
