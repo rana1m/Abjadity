@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,6 +57,7 @@ public class LastGame extends Activity {
     MediaPlayer mediaPlayer;
     Button SaveButton;
     View dialogView;
+    ImageButton backs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -134,6 +136,16 @@ public class LastGame extends Activity {
 
                 }
                 return true;
+            }
+        });
+
+        backs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(LastGame.this,gameMenuActivity.class);
+                i.putExtra("childId",childId);
+                i.putExtra("parentId",parentId);
+                startActivity(i);
             }
         });
 
@@ -233,7 +245,7 @@ public class LastGame extends Activity {
             path = "android.resource://" + getPackageName() + "/" + R.raw.try_again;
         }
         else {
-            path = "android.resource://" + getPackageName() + "/" + R.raw.correct_answer;
+            path = "android.resource://" + getPackageName() + "/" + R.raw.coloringbeauty;
         }
         Uri uri =Uri.parse(path);
         mediaPlayer.setDataSource(this,uri);
@@ -255,7 +267,7 @@ public class LastGame extends Activity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(LastGame.this);
         ViewGroup viewGroup = findViewById(android.R.id.content);
-        dialogView = LayoutInflater.from(this).inflate(R.layout.correct_answer_dialog, viewGroup, false);
+        dialogView = LayoutInflater.from(this).inflate(R.layout.correct_answer_coloring, viewGroup, false);
 
         builder.setView(dialogView);
         AlertDialog alertDialog = builder.create();
@@ -355,6 +367,7 @@ public class LastGame extends Activity {
         parentId = getIntent().getStringExtra("parentId");
         result = findViewById(R.id.right);
         window = this.getWindow();
+        backs = findViewById(R.id.return1);
     }
 
 

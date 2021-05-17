@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="  أحـسـنــت! اجابة صحيحة"
+            android:text="  تلوين جميل!"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textSize="26dp"
             android:textColor="@color/black"

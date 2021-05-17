@@ -18,6 +18,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -52,6 +53,7 @@ public class HaifaGameActivity extends AppCompatActivity {
     Button SaveButton;
     MediaPlayer mediaPlayer;
     Window window;
+    ImageButton back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +100,16 @@ public class HaifaGameActivity extends AppCompatActivity {
 
                 }
                 return true;
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(HaifaGameActivity.this,gameMenuActivity.class);
+                i.putExtra("childId",childId);
+                i.putExtra("parentId",parentId);
+                startActivity(i);
             }
         });
 
@@ -363,5 +375,6 @@ public class HaifaGameActivity extends AppCompatActivity {
         score = 0;
         gameImageView = findViewById(R.id.gameImageView);
         window = this.getWindow();
+        back = findViewById(R.id.return1);
     }
 }
